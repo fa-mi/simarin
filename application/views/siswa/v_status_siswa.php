@@ -18,8 +18,29 @@
         <div class="x_content">
           <div class="bs-example" data-example-id="simple-jumbotron">
             <div class="jumbotron">
-              <h1>Hello, world!</h1>
-              <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+              <?php if ($this->session->userdata('progres') == 0){
+                    echo '<h1>Belum Mendaftar!</h1>
+                    <p>Anda belum mendaftar prakerin.</p>';
+                    }
+                    elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 0) {
+                    echo '<h1>Sudah Mendaftar!</h1>
+                    <p>Cetak print hasil form pendaftaran untuk ditandangani oleh guru pembimbing/kelas.</p>';
+                  }
+                  elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1) {
+                    echo '<h1>Validasi Guru pembimbing/kelas!</h1>
+                    <p>Konsultasi kepada guru pembimbing/kelas terkait masalah industri tempat PRAKERIN.</p>';
+                  }
+                  elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
+                          && $this->session->userdata('aktif') == 0) {
+                            echo '<h1>Pendataan Admin!</h1>
+                            <p>Serahkan bukti form pendaftaran beserta tanda tangan guru pembimbing/kelas ke ruang Tata Usaha.</p>';
+                  }
+                  elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
+                          && $this->session->userdata('aktif') == 1) {
+                            echo '<h1>Aktif Prakerin!</h1>
+                            <p>Pelaksanaan PRAKERIN di industri yang dipilih.</p>';
+                  }
+                ?>
             </div>
           </div>
         </div>
@@ -35,9 +56,34 @@
         <div class="x_content">
           <div class="row">
             <div class="col-md-12">
-              <div class="progress progress-striped">
-                <div class="progress-bar progress-bar-success" data-transitiongoal="25" role="progressbar">25%</div>
-              </div>
+              <?php if ($this->session->userdata('progres') == 0){
+                    echo '<div class="progress progress-striped">
+                          <div class="progress-bar progress-bar-success" data-transitiongoal="0" role="progressbar">0%</div>
+                          </div>';
+                    }
+                    elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 0) {
+                    echo '<div class="progress progress-striped">
+                          <div class="progress-bar progress-bar-success" data-transitiongoal="25" role="progressbar">25%</div>
+                          </div>';
+                  }
+                  elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1) {
+                    echo '<div class="progress progress-striped">
+                          <div class="progress-bar progress-bar-success" data-transitiongoal="50" role="progressbar">50%</div>
+                          </div>';
+                  }
+                  elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
+                          && $this->session->userdata('aktif') == 0) {
+                            echo '<div class="progress progress-striped">
+                                  <div class="progress-bar progress-bar-success" data-transitiongoal="75" role="progressbar">75%</div>
+                                  </div>';
+                  }
+                  elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
+                          && $this->session->userdata('aktif') == 1) {
+                            echo '<div class="progress progress-striped">
+                                  <div class="progress-bar progress-bar-success" data-transitiongoal="100" role="progressbar">100%</div>
+                                  </div>';
+                  }
+                ?>
             </div>
           </div>
         </div>

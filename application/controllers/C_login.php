@@ -37,12 +37,11 @@ class C_login extends CI_Controller
     $data = $this->m_simarin->edit_data('siswa',$where);
     $d = $this->m_simarin->edit_data('siswa',$where)->row();
     $cek = $data->num_rows();
-    $datax = $this->m_simarin->edit_data('prakerin',$where['nis'])->row();
-    $ceks = $data->num_row();
-    print_r($datax);
+    $datax = $this->m_simarin->edit_data('prakerin',$where['nis']);
+    $dx = $this->m_simarin->edit_data('prakerin',$where['nis'])->row();
+    $ceks = $datax->num_rows();
 
-
-   /*if($cek > 0){
+   if($cek > 0){
       $session = array(
         'nis'=> $d->nis,
         'nama'=> $d->nama,
@@ -51,13 +50,13 @@ class C_login extends CI_Controller
         'jurusan'=> $d->id_jurusan,
         'status' => 'login'
       );
-
+      $progres = array('progres' => $ceks);
+      $this->session->set_userdata($progres);
       $this->session->set_userdata($session);
-
       redirect(base_url().'C_siswa');
     }else{
       redirect(base_url().'C_login?pesan=gagal');
-    }*/
+    }
 
 }  else{
     $this->load->view('v_login');
