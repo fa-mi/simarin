@@ -15,7 +15,16 @@
     <script src="<?php echo base_url(); ?>assets/dashboard/vendors/Chart.js/dist/Chart.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/sweetalert/sweetalert.min.js'); ?>"></script>
+    <script type="text/javascript">
+    function CheckColors(val){
+     var element=document.getElementById('color');
+     if(val=='pick a color'||val=='others')
+       element.style.display='block';
+     else
+       element.style.display='none';
+    }
 
+    </script> 
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

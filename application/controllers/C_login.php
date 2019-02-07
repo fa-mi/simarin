@@ -47,10 +47,14 @@ class C_login extends CI_Controller
         'nama'=> $d->nama,
         'aktif'=>$d->is_aktif,
         'validasi'=>$d->is_validasi,
-        'jurusan'=> $d->id_jurusan,
+        'id_jurusan'=> $d->id_jurusan,
         'status' => 'login'
       );
+      $p = $session['id_jurusan'];
+      $j = $this->m_simarin->c_login_jurusan($p)->row();
+      $jurusan= array('jurusan' => $j->jurusan);
       $progres = array('progres' => $ceks);
+      $this->session->set_userdata($jurusan);
       $this->session->set_userdata($progres);
       $this->session->set_userdata($session);
       redirect(base_url().'C_siswa');
