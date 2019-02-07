@@ -12,11 +12,11 @@ function enabledisabletext()
 {
 	if(document.form.pilihan.value=='lain')
 	{
-	document.form.text.disabled=false;
+	document.form.keterangan.disabled=false;
 	}
 	else
 	{
-	document.form.text.disabled=true;
+	document.form.keterangan.disabled=true;
 	}
 }
 </script>

@@ -14,6 +14,7 @@
         <div class="x_title">
           <h2><i class="fa fa-align-center"></i> Detail<small>Progres</small></h2>
           <div class="clearfix"></div>
+          <button class='btn btn-sm btn-dark'><i class='glyphicon glyphicon-print'></i> Print</button>
         </div>
         <div class="x_content">
           <div class="bs-example" data-example-id="simple-jumbotron">

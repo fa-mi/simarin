@@ -10,7 +10,7 @@
         <div class="x_panel">
           <div class="x_content">
             <br />
-            <form class="form-horizontal form-label-left" name="form" method="post" action="<?php echo base_url('c_siswa/pendaftaran'); ?>">
+            <form class="form-horizontal form-label-left" action="<?php echo base_url('c_siswa/pendaftaran'); ?>" method="post" novalidate name="form" >
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Jurusan :</label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
@@ -21,7 +21,7 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Industri :</label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
                   <select class="form-control" name="pilihan" onchange="enabledisabletext()">
-                    <option>Silahkan Pilih Industri</option>
+                    <option value="menu">Silahkan Pilih Industri</option>
                     <?php
                     foreach ($data as $industri) {
                     	echo "
@@ -36,12 +36,26 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan : </label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="text" class="form-control" placeholder="Industri Lainnya" name="text" disabled="disable">
+                  <input type="text" class="form-control" placeholder="Industri Lainnya" name="keterangan" disabled="disable">
                 </div>
               </div>
+              <div class="form-group">
+                <div class="col-md-3 col-sm-9 col-xs-12 col-md-offset-3 col-sm-offset-3 ">
 
+                  <?php
+              if(isset($_GET['pesan'])){
+                if($_GET['pesan'] == "sudah"){
+                  echo "<div class='alert alert-danger'>Anda Sudah Mendaftar !</div>";
+                }elseif ($_GET['pesan'] == "berhasil") {
+                  echo "<div class='alert alert-success'>Silahkan Cetak Form pada Menu Status !</div>";
+                }elseif ($_GET['pesan'] == "salahpilih") {
+                  echo "<div class='alert alert-info'>Silahkan Pilih Kembali !</div>";
+                }
 
-
+              }
+          ?>
+                </div>
+              </div>
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
