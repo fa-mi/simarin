@@ -81,23 +81,42 @@ $this->form_validation->set_rules('password','Password','trim|required');
 if($this->form_validation->run() != false){
   $where = array(
     'username' => $username,
-    'password' => md5($password),
+    'password' => md5($password)
   );
+  $gurud = array('nip' => $username,
+                  'password' => md5($password) );
+
   $data = $this->m_simarin->edit_data('admin',$where);
   $d = $this->m_simarin->edit_data('admin',$where)->row();
-  $notif = $this->m_simarin->get_notif()->row();
   $cek = $data->num_rows();
-  //print_r($d);
+  $guru = $this->m_simarin->edit_data('guru',$gurud);
+  $g = $this->m_simarin->edit_data('guru',$gurud)->row();
+  $cekg = $guru->num_rows();
   if($cek > 0){
+    $notif = $this->m_simarin->get_notif()->row();
     $session = array(
       'id_admin'=> $d->id_admin,
       'status' => 'login',
       'notif' => $notif->notif
     );
-    $notify = $this->session->set_userdata($session['notif']);
+    $notify = $this->session->set_userdata($session('notif'));
     $this->session->set_userdata($session);
     redirect(base_url().'C_admin');
-}else{
+}
+elseif ($cekg > 0) {
+
+  $notifguru = $this->m_simarin->get_notif_id($g->nip)->row();
+  $session = array(
+    'nip'=> $g->nip,
+    'nama'=> $g->nama,
+    'kelamin'=> $g->kelamin,
+    'status' => 'login',
+    'notif' => $notifguru->notif
+  );
+  $this->session->set_userdata($session);
+  redirect(base_url().'C_guru');
+}
+else{
   redirect(base_url().'C_login/v_login_admin?pesan=gagal');
 }
 

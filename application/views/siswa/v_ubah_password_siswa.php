@@ -12,7 +12,7 @@
 
           <div class="x_content">
 
-            <form class="form-horizontal form-label-left" novalidate action="<?php echo base_url('c_admin/ubah_password'); ?>" method="post">
+            <form class="form-horizontal form-label-left" novalidate action="<?php echo base_url('c_siswa/ubah_password'); ?>" method="post">
 
 
               <div class="item form-group">

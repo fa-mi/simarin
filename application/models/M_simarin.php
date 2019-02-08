@@ -17,9 +17,13 @@ class M_simarin extends CI_Model
   {
     return $this->db->query("SELECT jurusan from jurusan where id_jurusan = $p");
   }
-  function get_notif()
+  function get_notif_id($id)
   {
-    return $this->db->query("SELECT COUNT(siswa.nis) as notif FROM siswa where siswa.is_validasi = 0");
+    $id = "'".$id."'";
+    return $this->db->query("SELECT COUNT(siswa.nis) as notif
+    FROM siswa
+    INNER JOIN prakerin
+    ON siswa.nis = prakerin.nis  where siswa.is_validasi = 0 AND prakerin.nip = $id ");
   }
   function insert_data($data,$table)
   {
@@ -32,7 +36,15 @@ class M_simarin extends CI_Model
   }
   function ubah_password_admin($id,$password)
   {
-    $query = $this->db->query("call ubah_password_admin('$id','$password')");
+    $id = "'".$id."'";
+    $password = "'".$password."'";
+    $query = $this->db->query("call ubah_password_admin($id,$password)");
+  }
+  function ubah_password_siswa($nis,$password)
+  {
+    $nis = "'".$nis."'";
+    $password = "'".$password."'";
+    $query = $this->db->query("call ubah_password_siswa($nis,$password)");
   }
   function delete_data($table,$where)
   {

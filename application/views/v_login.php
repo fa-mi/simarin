@@ -45,8 +45,8 @@
           echo "<div class='alert alert-danger'>Login gagal! Username dan password salah.</div>";
         }else if($_GET['pesan'] == "logout"){
           echo "<div class='alert alert-danger'>Anda telah logout.</div>";
-        }else if($_GET['pesan'] == "belumlogin"){
-          echo "<div class='alert alert-success'>Silahkan login dulu.</div>";
+        }else if($_GET['pesan'] == "login"){
+          echo "<div class='alert alert-success'>Silahkan login Kembali.</div>";
         }else if($_GET['pesan'] == "ok"){
           echo "<div class='alert alert-primary'>Success !</div>";
         }else if($_GET['pesan'] == "email"){
