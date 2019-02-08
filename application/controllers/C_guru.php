@@ -15,6 +15,7 @@ class C_guru extends CI_Controller
 	}
   function index(){
 
+          $data['data']= $this->m_simarin->data_dashboard_guru();
           $this->load->view('guru/header');
           $this->load->view('guru/v_dashboard_guru');
           $this->load->view('guru/footer');
