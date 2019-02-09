@@ -51,6 +51,18 @@ class M_simarin extends CI_Model
     $this->db->where($where);
     $this->delete($table);
   }
+  public function data_dashboard_guru(){
+
+    $nip = "'".$this->session->userdata('nip')."'";
+    $query1 = $this->db->query("SELECT COUNT(1) - COUNT(prakerin.id_industri) as jumlah_industri_lainnya FROM prakerin where prakerin.nip = $nip GROUP BY prakerin.nip");
+    $query2 = $this->db->query("SELECT COUNT(prakerin.id_industri) as jumlah_industri_MOU FROM prakerin where prakerin.nip = $nip GROUP BY prakerin.nip");
+    $query3 = $this->db->query("SELECT COUNT(prakerin.nis) as jumlah_siswa FROM prakerin where prakerin.nip = $nip group by prakerin.nip");
+
+    $result1 = $query1->row_array();
+    $result2 = $query2->row_array();
+    $result3 = $query3->row_array();
+    return array_merge($result1, $result2, $result3);
+  }
   public function data_dashboard_admin(){
 
     $query1 = $this->db->query("SELECT COUNT(industri.id_industri) AS jumlah_industri FROM industri");

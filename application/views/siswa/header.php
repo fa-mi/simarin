@@ -95,13 +95,23 @@
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="<?php echo base_url(); ?>assets/dashboard/images/siswa.png" alt="">
-                    <?php echo $this->session->userdata('tipe_admin'); ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="<?php echo site_url(); ?>c_siswa/v_ubah_password"><i class="fa fa-key pull-right"></i>Ubah Password</a></li>
                     <li><a href="<?php echo site_url(); ?>c_siswa/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
+                </li>
+                <li role="presentation" class="dropdown">
+                  <a data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-calendar"></i>
+                <span class='badge bg-green'> <?php
+                $date = new DateTime(null, new DateTimeZone('Asia/Tokyo'));;
+                //echo date('d, M Y H:i:s e P');
+                echo $date->format('Y-m-d h:i:s A P');?>
+                      </span>
+                          </a>
+
                 </li>
               </ul>
             </nav>

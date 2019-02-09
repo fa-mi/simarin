@@ -38,19 +38,19 @@ $(document).on("click",".update",function(){
 
 });
 
-$(document).on("click",".konfirmasi",function(){
+$(document).on("click",".validasi",function(){
  var id=$(this).attr("data-id");
  swal({
-   title:"Konfirmasi",
-   text:"Yakin akan konfirmasi siswa ini?",
+   title:"Validasi",
+   text:"Yakin akan validasi siswa ini?",
    type: "warning",
    showCancelButton: true,
-   confirmButtonText: "konfirmasi",
+   confirmButtonText: "validasi",
    closeOnConfirm: true,
  },
    function(){
     $.ajax({
-     url:"<?php echo base_url('c_admin/konfirmasi'); ?>",
+     url:"<?php echo base_url('c_guru/validasi'); ?>",
      data:{id:id},
      success: function(){
        $("tr[data-id='"+id+"']").fadeOut("fast",function(){

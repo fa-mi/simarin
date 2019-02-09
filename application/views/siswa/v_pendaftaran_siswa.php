@@ -36,7 +36,36 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan : </label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="text" class="form-control" placeholder="Industri Lainnya" name="keterangan" disabled="disable">
+                  <input type="text" class="form-control" placeholder="Industri Lainnya" name="keterangan" disabled="disable" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Wali :</label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <input type="text" class="form-control" name="nama_wali" placeholder="Nama Wali" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Status Wali :</label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <select class="form-control" name="pilihan_wali" onchange="enabledisabletextwali()">
+                    <option value="menu_wali">Silahkan Pilih Status</option>
+                    <option value="ayah">Ayah</option>
+                    <option value="ibu">Ibu</option>
+                    <option value="lain_wali">Lainnya</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan Wali : </label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <input type="text" class="form-control" placeholder="Wali Lainnya" name="keterangan_wali" disabled="disable">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">No. Telpon Wali :</label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <input type="tel" pattern="[0-9]{3}-[0-9]{12}" class="form-control" name="telp_wali" placeholder="Nomor Telepon Wali" id="phone">
                 </div>
               </div>
               <div class="form-group">
@@ -50,6 +79,8 @@
                   echo "<div class='alert alert-success'>Silahkan Cetak Form pada Menu Status !</div>";
                 }elseif ($_GET['pesan'] == "salahpilih") {
                   echo "<div class='alert alert-info'>Silahkan Pilih Kembali !</div>";
+                }elseif ($_GET['pesan'] == "null") {
+                  echo "<div class='alert alert-warning'>Data Tidak Boleh Kosong !</div>";
                 }
 
               }

@@ -48,29 +48,44 @@ class C_siswa extends CI_Controller
     $dx = $this->m_simarin->edit_data('prakerin',$data)->row();
     $ceks = $datax->num_rows();
     $guru = $this->m_simarin->edit_data('guru',$gurux)->row();
-    $id_industri= $this->input->post('pilihan');
+    $id_industri = $this->input->post('pilihan');
     $keterangan =  $this->input->post('keterangan');
-    if ($ceks == 1) {
+    $nama_wali = $this->input->post('nama_wali');
+    $keterangan_wali =  $this->input->post('keterangan_wali');
+    $telp_wali = $this->input->post('telp_wali');
+    $pilihan_wali = $this->input->post('pilihan_wali');
+
+    //echo $nama_wali;
+    if ($ceks > 0) {
       redirect(base_url().'c_siswa/v_pendaftaran?pesan=sudah');
     }
     else {
-      if ($id_industri == "menu") {
+      if ($id_industri == "menu" || $pilihan_wali == "menu_wali" ) {
         redirect(base_url().'c_siswa/v_pendaftaran?pesan=salahpilih');
       }
       elseif ($id_industri == "lain") {
-        $this->m_simarin->tambah_data_prakerin_null(
-        $this->session->userdata('nis'),$guru->nip,$this->session->userdata('id_jurusan'),$keterangan);
-        $this->session->unset_userdata('progres');
-        $progres = array('progres' => $ceks+1);
-        $this->session->set_userdata($progres);
-      redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
+          if ($keterangan == null || $nama_wali == null || $telp_wali == null) {
+            redirect(base_url().'c_siswa/v_pendaftaran?pesan=null');
+          }
+          else {
+            /*$this->M_simarin->tambah_data_wali(
+            $this->session->userdata('nis'),$nama_wali);
+            $this->m_simarin->tambah_data_prakerin_null(
+            $this->session->userdata('nis'),$guru->nip,$this->session->userdata('id_jurusan'),$keterangan);
+            $this->session->unset_userdata('progres');
+            $progres = array('progres' => $ceks+1);
+            $this->session->set_userdata($progres);*/
+            echo $telp_wali;
+          //redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
+          }
+
       }
       else {
-          $this->m_simarin->tambah_data_prakerin_not_null(
+          /*$this->m_simarin->tambah_data_prakerin_not_null(
           $this->session->userdata('nis'),$guru->nip,$this->session->userdata('id_jurusan'),$id_industri);
           $this->session->unset_userdata('progres');
           $progres = array('progres' => $ceks+1);
-          $this->session->set_userdata($progres);
+          $this->session->set_userdata($progres);*/
         redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
       }
     }

@@ -8,6 +8,25 @@
 </div>
 </div>
 <script language="javascript">
+function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      }
+    });
+  });
+}
+
+
+// Install input filters.
+setInputFilter(document.getElementById("phone"), function(value) {
+  return /^\d*$/.test(value); });
 function enabledisabletext()
 {
 	if(document.form.pilihan.value=='lain')
@@ -19,7 +38,20 @@ function enabledisabletext()
 	document.form.keterangan.disabled=true;
 	}
 }
+
+function enabledisabletextwali()
+{
+	if(document.form.pilihan_wali.value=='lain_wali')
+	{
+	document.form.keterangan_wali.disabled=false;
+	}
+	else
+	{
+	document.form.keterangan_wali.disabled=true;
+	}
+}
 </script>
+
 <script type="text/javascript">
 
 $(function(){

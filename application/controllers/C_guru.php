@@ -17,69 +17,21 @@ class C_guru extends CI_Controller
 
           $data['data']= $this->m_simarin->data_dashboard_guru();
           $this->load->view('guru/header');
-          $this->load->view('guru/v_dashboard_guru');
+          $this->load->view('guru/v_dashboard_guru',$data);
           $this->load->view('guru/footer');
 
   }
-  function informasi()
-  {
-    $this->load->view('guru/header');
-    $this->load->view('guru/v_mekanisme_guru');
-    $this->load->view('guru/footer');
-  }
-  function v_pendaftaran()
-  {
-    $data['data']=$this->m_simarin->list_industri_jurusan($this->session->userdata('id_jurusan'));
-    $this->load->view('guru/header');
-    $this->load->view('guru/v_pendaftaran_guru',$data);
-    $this->load->view('guru/footer');
-  }
-  function status()
-  {
 
-    $this->load->view('guru/header');
-    $this->load->view('guru/v_status_guru');
-    $this->load->view('guru/footer');
-  }
-  function pendaftaran()
-  {
-    $data = array('nis' => $this->session->userdata('nis'));
-    $gurux = array('id_jurusan' => $this->session->userdata('id_jurusan'));
-    $datax = $this->m_simarin->edit_data('prakerin',$data);
-    $dx = $this->m_simarin->edit_data('prakerin',$data)->row();
-    $ceks = $datax->num_rows();
-    $guru = $this->m_simarin->edit_data('guru',$gurux)->row();
-    $id_industri= $this->input->post('pilihan');
-    $keterangan =  $this->input->post('keterangan');
-    if ($ceks == 1) {
-      redirect(base_url().'c_guru/v_pendaftaran?pesan=sudah');
-    }
-    else {
-      if ($id_industri == "menu") {
-        redirect(base_url().'c_guru/v_pendaftaran?pesan=salahpilih');
-      }
-      elseif ($id_industri == "lain") {
-        $this->m_simarin->tambah_data_prakerin_null(
-        $this->session->userdata('nis'),$guru->nip,$this->session->userdata('id_jurusan'),$keterangan);
-        $this->session->unset_userdata('progres');
-        $progres = array('progres' => $ceks+1);
-        $this->session->set_userdata($progres);
-      redirect(base_url().'c_guru/v_pendaftaran?pesan=berhasil');
-      }
-      else {
-          $this->m_simarin->tambah_data_prakerin_not_null(
-          $this->session->userdata('nis'),$guru->nip,$this->session->userdata('id_jurusan'),$id_industri);
-          $this->session->unset_userdata('progres');
-          $progres = array('progres' => $ceks+1);
-          $this->session->set_userdata($progres);
-        redirect(base_url().'c_guru/v_pendaftaran?pesan=berhasil');
-      }
-    }
-
-
-  }
   function v_ubah_password()
   {
+    $this->load->view('guru/header');
+    $this->load->view('guru/v_ubah_password_guru');
+    $this->load->view('guru/footer');
+  }
+
+  function data_siswa()
+  {
+    $data['data']= $this->m_simarin->data_siswa();
     $this->load->view('guru/header');
     $this->load->view('guru/v_ubah_password_guru');
     $this->load->view('guru/footer');
