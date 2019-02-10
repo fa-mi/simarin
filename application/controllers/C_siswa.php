@@ -68,15 +68,14 @@ class C_siswa extends CI_Controller
             redirect(base_url().'c_siswa/v_pendaftaran?pesan=null');
           }
           else {
-            /*$this->M_simarin->tambah_data_wali(
-            $this->session->userdata('nis'),$nama_wali);
+            $this->M_simarin->tambah_data_wali(
+            $this->session->userdata('nis'),$nama_wali,);
             $this->m_simarin->tambah_data_prakerin_null(
             $this->session->userdata('nis'),$guru->nip,$this->session->userdata('id_jurusan'),$keterangan);
             $this->session->unset_userdata('progres');
             $progres = array('progres' => $ceks+1);
-            $this->session->set_userdata($progres);*/
-            echo $telp_wali;
-          //redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
+            $this->session->set_userdata($progres);
+          redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
           }
 
       }

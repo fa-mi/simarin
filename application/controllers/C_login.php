@@ -36,6 +36,7 @@ class C_login extends CI_Controller
     );
     $data = $this->m_simarin->edit_data('siswa',$where);
     $d = $this->m_simarin->edit_data('siswa',$where)->row();
+    $t = $this->m_simarin->waktu_server()->row();
     $cek = $data->num_rows();
     $datax = $this->m_simarin->edit_data('prakerin',$where['nis']);
     $dx = $this->m_simarin->edit_data('prakerin',$where['nis'])->row();
@@ -48,6 +49,7 @@ class C_login extends CI_Controller
         'aktif'=>$d->is_aktif,
         'validasi'=>$d->is_validasi,
         'id_jurusan'=> $d->id_jurusan,
+        'waktu' => $t->waktu,
         'status' => 'login'
       );
       $p = $session['id_jurusan'];

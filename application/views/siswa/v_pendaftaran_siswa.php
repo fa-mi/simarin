@@ -74,13 +74,13 @@
                   <?php
               if(isset($_GET['pesan'])){
                 if($_GET['pesan'] == "sudah"){
-                  echo "<div class='alert alert-danger'>Anda Sudah Mendaftar !</div>";
+                  echo "<div class='alert alert-danger'>Anda Sudah Mendaftar!</div>";
                 }elseif ($_GET['pesan'] == "berhasil") {
-                  echo "<div class='alert alert-success'>Silahkan Cetak Form pada Menu Status !</div>";
+                  echo "<div class='alert alert-success'>Silahkan Cetak Form pada Menu Status!</div>";
                 }elseif ($_GET['pesan'] == "salahpilih") {
-                  echo "<div class='alert alert-info'>Silahkan Pilih Kembali !</div>";
+                  echo "<div class='alert alert-info'>Silahkan Pilih Kembali!</div>";
                 }elseif ($_GET['pesan'] == "null") {
-                  echo "<div class='alert alert-warning'>Data Tidak Boleh Kosong !</div>";
+                  echo "<div class='alert alert-warning'>Data Tidak Boleh Kosong!</div>";
                 }
 
               }

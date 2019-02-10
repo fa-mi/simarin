@@ -17,6 +17,10 @@ class M_simarin extends CI_Model
   {
     return $this->db->query("SELECT jurusan from jurusan where id_jurusan = $p");
   }
+  function waktu_server()
+  {
+    return $this->db->query("SELECT current_timestamp() as waktu");
+  }
   function get_notif_id($id)
   {
     $id = "'".$id."'";
@@ -61,6 +65,17 @@ class M_simarin extends CI_Model
     $result1 = $query1->row_array();
     $result2 = $query2->row_array();
     $result3 = $query3->row_array();
+    if ($result1 == null) {
+      if ($result2 == null) {
+            $result2 = array('jumlah_industri_MOU' => 0);
+            if ($result3 == null) {
+              $result3 = array('jumlah_siswa' => 0);
+            }
+      }
+      $result1 = array('jumlah_industri_lainnya' => 0);
+
+    }
+
     return array_merge($result1, $result2, $result3);
   }
   public function data_dashboard_admin(){
@@ -76,6 +91,11 @@ class M_simarin extends CI_Model
   }
   public function data_industri_jurusan(){
 
+    $query = $this->db->query("call data_industri_jurusan()");
+    return $query->result_array();
+  }
+  public function data_siswa_guru($nip){
+    $nip = "'".$nip."'";
     $query = $this->db->query("call data_industri_jurusan()");
     return $query->result_array();
   }

@@ -104,14 +104,12 @@
                 </li>
                 <li role="presentation" class="dropdown">
                   <a data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-calendar"></i>
-                <span class='badge bg-green'> <?php
-                $date = new DateTime(null, new DateTimeZone('Asia/Tokyo'));;
-                //echo date('d, M Y H:i:s e P');
-                echo $date->format('Y-m-d h:i:s A P');?>
+                    <span class='badge bg-red'> Waktu Server </span>
+                <span class='badge bg-white'> <?php
+                echo $this->session->userdata('waktu');
+                ?>
                       </span>
                           </a>
-
                 </li>
               </ul>
             </nav>
