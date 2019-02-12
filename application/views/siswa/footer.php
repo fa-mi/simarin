@@ -41,7 +41,7 @@ function enabledisabletext()
 
 function enabledisabletextwali()
 {
-	if(document.form.pilihan_wali.value=='lain_wali')
+	if(document.form.status_wali.value=='lain_wali')
 	{
 	document.form.keterangan_wali.disabled=false;
 	}

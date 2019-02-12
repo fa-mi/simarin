@@ -48,7 +48,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Status Wali :</label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <select class="form-control" name="pilihan_wali" onchange="enabledisabletextwali()">
+                  <select class="form-control" name="status_wali" onchange="enabledisabletextwali()">
                     <option value="menu_wali">Silahkan Pilih Status</option>
                     <option value="ayah">Ayah</option>
                     <option value="ibu">Ibu</option>
@@ -81,7 +81,10 @@
                   echo "<div class='alert alert-info'>Silahkan Pilih Kembali!</div>";
                 }elseif ($_GET['pesan'] == "null") {
                   echo "<div class='alert alert-warning'>Data Tidak Boleh Kosong!</div>";
+                }elseif ($_GET['pesan'] == "telp") {
+                  echo "<div class='alert alert-warning'>No Telp Sudah Ada!</div>";
                 }
+
 
               }
           ?>

@@ -113,19 +113,20 @@ class M_simarin extends CI_Model
     $industri = "'".$data['industri']."'";
     $query = $this->db->query("call tambah_industri($data[id_jurusan],$industri,$data[jumlah])");
   }
-  public function tambah_data_prakerin_not_null($nis,$nip,$id_jurusan,$id_industri){
+  public function tambah_data_prakerin($nis,$nip,$id_jurusan,$keterangan,$nama_wali,$telp_wali,$status_wali,$id_industri){
     $nis = "'".$nis."'";
     $nip = "'".$nip."'";
     $id_jurusan = "'".$id_jurusan."'";
-    $id_industri = "'".$id_industri."'";
-    $query = $this->db->query("call tambah_data_prakerin_not_null($nis,$nip,$id_industri,$id_jurusan)");
-  }
-  public function tambah_data_prakerin_null($nis,$nip,$id_jurusan,$keterangan){
-    $nis = "'".$nis."'";
-    $nip = "'".$nip."'";
-    $id_jurusan = "'".$id_jurusan."'";
-    $keterangan = "'".$keterangan."'";
-    $query = $this->db->query("call tambah_data_prakerin_null($nis,$nip,$id_jurusan,$keterangan)");
+    $nama_wali = "'".$nama_wali."'";
+    $telp_wali = "'".$telp_wali."'";
+    $status_wali = "'".$status_wali."'";
+    if ($keterangan != null) {
+      $keterangan = "'".$keterangan."'";
+    }
+    else {
+      $keterangan = "'"."Industri MOU"."'";
+    }
+    $query = $this->db->query("call tambah_data_prakerin($nis,$nip,$id_jurusan,$keterangan,$nama_wali,$telp_wali,$status_wali,$id_industri)");
   }
   public function konfirmasi($id){
 
