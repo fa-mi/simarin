@@ -59,6 +59,7 @@
               <div class="profile_info">
                 <span>Selamat Datang,</span>
                 <h2><?php echo $this->session->userdata('nama'); ?></h2>
+                <p><font color="lime">Jurusan <?php echo $this->session->userdata('jurusan'); ?></font><p>
               </div>
             </div>
             <!-- /menu profile quick info -->

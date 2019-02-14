@@ -53,7 +53,7 @@ class C_login extends CI_Controller
         'status' => 'login'
       );
       $p = $session['id_jurusan'];
-      $j = $this->m_simarin->c_login_jurusan($p)->row();
+      $j = $this->m_simarin->get_jurusan($p)->row();
       $jurusan= array('jurusan' => $j->jurusan);
       $progres = array('progres' => $ceks);
       $this->session->set_userdata($jurusan);
@@ -113,11 +113,16 @@ elseif ($cekg > 0) {
     'nip'=> $g->nip,
     'nama'=> $g->nama,
     'kelamin'=> $g->kelamin,
-    'status' => 'login',
-    'notif' => $notifguru->notif
+    'status' => 'login'
   );
+  $notifgurusession = array(
+  'notif' => $notifguru->notif);
+  $j = $this->m_simarin->get_jurusan($session['id_jurusan'])->row();
+  $jurusan= array('jurusan' => $j->jurusan);
+  $this->session->set_userdata($notifgurusession);
   $this->session->set_userdata($session);
-  //echo $this->session->userdata('id_jurusan');
+  $this->session->set_userdata($jurusan);
+  //echo $this->session->userdata('jurusan');
   redirect(base_url().'C_guru');
 }
 else{

@@ -30,9 +30,13 @@ class C_guru extends CI_Controller
 
   function data_siswa()
   {
+    $this->session->unset_userdata('notif');
+    $notifgurusession = array(
+    'notif' => 0);
+    $this->session->set_userdata($notifgurusession);
     $data['data']= $this->m_simarin->data_siswa_guru($this->session->userdata('nip'));
     $this->load->view('guru/header');
-    $this->load->view('guru/v_data_siswa_guru');
+    $this->load->view('guru/v_data_siswa_guru',$data);
     $this->load->view('guru/footer');
   }
 

@@ -13,7 +13,7 @@ class M_simarin extends CI_Model
   {
     return $this->db->get($table);
   }
-  function c_login_jurusan($p)
+  function get_jurusan($p)
   {
     return $this->db->query("SELECT jurusan from jurusan where id_jurusan = $p");
   }
@@ -89,7 +89,7 @@ class M_simarin extends CI_Model
   }
   public function data_siswa_guru($nip){
     $nip = "'".$nip."'";
-    $query = $this->db->query("call data_industri_jurusan()");
+    $query = $this->db->query("call data_siswa_guru($nip)");
     return $query->result_array();
   }
   public function list_semua_industri(){

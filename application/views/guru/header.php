@@ -42,7 +42,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url(); ?>c_admin" class="site_title"><i class="	fa fa-life-saver"></i> <span>Dashboard Guru </span></a>
+              <a href="<?php echo site_url(); ?>c_guru" class="site_title"><i class="	fa fa-life-saver"></i> <span>Dashboard Guru </span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -63,7 +63,7 @@
                     ?>
                     <?php echo $this->session->userdata('nama'); ?>
                 </span>
-
+                <p><font color="lime">Jurusan <?php echo $this->session->userdata('jurusan'); ?></font><p>
               </div>
             </div>
             <br />
@@ -74,6 +74,8 @@
                   <li><a href="<?php echo site_url(); ?>c_guru"><i class="fa fa-home"></i> Dashboard <span class="fa fa-chevron-right"></span></a>
                   </li>
                   <li><a href="<?php echo site_url(); ?>c_guru/data_siswa"><i class="fa fa-user"></i> Data Siswa <span class="fa fa-chevron-right"></span></a>
+                  </li>
+                  <li><a href="<?php echo site_url(); ?>c_guru/informasi"><i class="fa fa-info-circle"></i> Informasi <span class="fa fa-chevron-right"></span></a>
                   </li>
                 </ul>
               </div>
@@ -100,7 +102,15 @@
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-comments-o"></i>
-                <span class='badge bg-red'> <?php echo $this->session->userdata('notif'); ?>
+                <span class='badge bg-red'>
+                  <?php
+                  if ($this->session->userdata('notif') > 0) {
+                    echo $this->session->userdata('notif');
+                  }
+                  else {
+                  echo "0";
+                  }
+                  ?>
                       </span>
                           </a>
                           <ul class='dropdown-menu list-unstyled msg_list' role='menu'>
@@ -109,7 +119,15 @@
                                 <span class='image'><img src='<?php echo base_url(); ?>assets/dashboard/images/siswa.png' alt='Profile Image' /></span>
                                 <span>
                                   <span>Validasi Siswa</span>
-                                  <span class='time'><?php echo $this->session->userdata('notif'); ?></span>
+                                  <span class='time'><?php
+                                  if ($this->session->userdata('notif') > 0) {
+                                    echo $this->session->userdata('notif');
+                                  }
+                                  else {
+                                  echo "-";
+                                  }
+                                  ?>
+                                </span>
                                 </span>
                               </a>
                             </li>
