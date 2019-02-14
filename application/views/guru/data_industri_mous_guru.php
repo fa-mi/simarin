@@ -24,7 +24,7 @@
                 <tr>
                   <th>NIS</th>
                   <th>Jurusan</th>
-                  <th>Nama Lengkap</th>
+                  <th>Nama</th>
                   <th>Industri</th>
                   <th>Validasi</th>
                   <th>Edit</th>

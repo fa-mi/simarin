@@ -63,11 +63,12 @@ class M_simarin extends CI_Model
     $query2 = $this->db->query("SELECT COUNT(prakerin.nis) as jumlah_siswa FROM prakerin where prakerin.nip = $nip group by prakerin.nip");
     $result1 = $query1->row_array();
     $result2 = $query2->row_array();
+
       if ($result1 == null) {
             $result1 = array('jumlah_industri_MOU' => 0);
-            if ($result2 == null) {
-              $result2 = array('jumlah_siswa' => 0);
-            }
+      }
+      else if ($result2 == null) {
+        $result2 = array('jumlah_siswa' => 0);
       }
     return array_merge($result1, $result2);
   }

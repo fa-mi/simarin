@@ -38,7 +38,7 @@ class C_login extends CI_Controller
     $d = $this->m_simarin->edit_data('siswa',$where)->row();
     $t = $this->m_simarin->waktu_server()->row();
     $cek = $data->num_rows();
-    $datax = $this->m_simarin->edit_data('siswa',array('nis'=>$where['nis']));
+    $datax = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']));
     $dx = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']))->row();
     $ceks = $datax->num_rows();
 
