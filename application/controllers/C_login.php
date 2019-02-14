@@ -38,8 +38,8 @@ class C_login extends CI_Controller
     $d = $this->m_simarin->edit_data('siswa',$where)->row();
     $t = $this->m_simarin->waktu_server()->row();
     $cek = $data->num_rows();
-    $datax = $this->m_simarin->edit_data('prakerin',$where['nis']);
-    $dx = $this->m_simarin->edit_data('prakerin',$where['nis'])->row();
+    $datax = $this->m_simarin->edit_data('siswa',array('nis'=>$where['nis']));
+    $dx = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']))->row();
     $ceks = $datax->num_rows();
 
    if($cek > 0){
@@ -109,6 +109,7 @@ elseif ($cekg > 0) {
 
   $notifguru = $this->m_simarin->get_notif_id($g->nip)->row();
   $session = array(
+    'id_jurusan'=>$g->id_jurusan,
     'nip'=> $g->nip,
     'nama'=> $g->nama,
     'kelamin'=> $g->kelamin,
@@ -116,6 +117,7 @@ elseif ($cekg > 0) {
     'notif' => $notifguru->notif
   );
   $this->session->set_userdata($session);
+  //echo $this->session->userdata('id_jurusan');
   redirect(base_url().'C_guru');
 }
 else{

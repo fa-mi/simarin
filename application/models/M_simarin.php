@@ -56,27 +56,20 @@ class M_simarin extends CI_Model
     $this->delete($table);
   }
   public function data_dashboard_guru(){
-
+    $id_jurusan = $this->session->userdata('id_jurusan');
     $nip = "'".$this->session->userdata('nip')."'";
-    $query1 = $this->db->query("SELECT COUNT(1) - COUNT(prakerin.id_industri) as jumlah_industri_lainnya FROM prakerin where prakerin.nip = $nip GROUP BY prakerin.nip");
-    $query2 = $this->db->query("SELECT COUNT(prakerin.id_industri) as jumlah_industri_MOU FROM prakerin where prakerin.nip = $nip GROUP BY prakerin.nip");
-    $query3 = $this->db->query("SELECT COUNT(prakerin.nis) as jumlah_siswa FROM prakerin where prakerin.nip = $nip group by prakerin.nip");
 
+    $query1 = $this->db->query("SELECT COUNT(industri.id_industri) as jumlah_industri_MOU FROM industri where industri.id_jurusan = $id_jurusan");
+    $query2 = $this->db->query("SELECT COUNT(prakerin.nis) as jumlah_siswa FROM prakerin where prakerin.nip = $nip group by prakerin.nip");
     $result1 = $query1->row_array();
     $result2 = $query2->row_array();
-    $result3 = $query3->row_array();
-    if ($result1 == null) {
-      if ($result2 == null) {
-            $result2 = array('jumlah_industri_MOU' => 0);
-            if ($result3 == null) {
-              $result3 = array('jumlah_siswa' => 0);
+      if ($result1 == null) {
+            $result1 = array('jumlah_industri_MOU' => 0);
+            if ($result2 == null) {
+              $result2 = array('jumlah_siswa' => 0);
             }
       }
-      $result1 = array('jumlah_industri_lainnya' => 0);
-
-    }
-
-    return array_merge($result1, $result2, $result3);
+    return array_merge($result1, $result2);
   }
   public function data_dashboard_admin(){
 

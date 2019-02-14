@@ -49,7 +49,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?php echo base_url(); ?>assets/dashboard/images/admin.png" alt="..." class="img-circle profile_img">
+                <img src="<?php echo base_url(); ?>assets/dashboard/images/guru.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,
@@ -88,7 +88,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo base_url(); ?>assets/dashboard/images/admin.png" alt="">
+                    <img src="<?php echo base_url(); ?>assets/dashboard/images/guru.jpg" alt="">
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
