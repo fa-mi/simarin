@@ -34,10 +34,22 @@ class C_guru extends CI_Controller
     $notifgurusession = array(
     'notif' => 0);
     $this->session->set_userdata($notifgurusession);
-    $data['data']= $this->m_simarin->data_siswa_guru($this->session->userdata('nip'));
+    $data['data']= $this->m_simarin->data_siswa_guru($this->session->userdata('nip'),null,null);
     $this->load->view('guru/header');
     $this->load->view('guru/v_data_siswa_guru',$data);
     $this->load->view('guru/footer');
+  }
+  function validasi()
+  {
+    $id= $this->input->post("id");
+    $this->m_simarin->validasi_siswa($id);
+    echo "{}";
+  }
+  function batal_siswa()
+  {
+    $id= $this->input->post("id");
+    $this->m_simarin->batal_siswa($id);
+    echo "{}";
   }
 
   function ubah_password()

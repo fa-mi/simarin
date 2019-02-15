@@ -88,9 +88,22 @@ class M_simarin extends CI_Model
     $query = $this->db->query("call data_industri_jurusan()");
     return $query->result_array();
   }
-  public function data_siswa_guru($nip){
+  public function data_siswa_guru($nip,$nama,$nis){
     $nip = "'".$nip."'";
-    $query = $this->db->query("call data_siswa_guru($nip)");
+    if ($nama == null) {
+      $nama = "'%'";
+    }
+    else {
+      $nama = "'".$nama."%'";
+    }
+    if ($nis == null) {
+      $nis = "'%'";
+    }
+    else {
+      $nis = "'".$nis."%'";
+    }
+
+    $query = $this->db->query("call data_siswa_guru($nip,$nama,$nis)");
     return $query->result_array();
   }
   public function list_semua_industri(){
@@ -120,11 +133,22 @@ class M_simarin extends CI_Model
     else {
       $keterangan = "'"."Industri MOU"."'";
     }
+    if ($id_industri != null) {
+      $id_industri = $id_industri;
+    }
+    else {
+      $id_industri = "null";
+    }
     $query = $this->db->query("call tambah_data_prakerin($nis,$nip,$id_jurusan,$keterangan,$nama_wali,$telp_wali,$status_wali,$id_industri)");
   }
-  public function konfirmasi($id){
+  public function validasi_siswa($id){
 
-    $query = $this->db->query("call konfirmasi($id)");
+    $query = $this->db->query("call validasi_siswa($id)");
+    return $query->result_array();
+  }
+  public function batal_siswa($id){
+
+    $query = $this->db->query("call batal_siswa($id)");
     return $query->result_array();
   }
   public function batal_konfirmasi($id){

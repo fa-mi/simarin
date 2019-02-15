@@ -67,15 +67,15 @@
                         <h2 class="StepTitle">Step 2</h2>
                         <p>
                           Siswa/siswi melaksanakan konsultasi kepada guru pembimbing/kelas masing-masing terkait industri yang dituju.
-                          Dengan memberikan<b> print/hard file</b> tentang form yang harus ditandatangani oleh guru pembimbing/kelas masing-masing.
                           Apabila guru pembimbing/kelas tidak menyetujui industri yang dituju, maka siswa/siswi wajib kembali ke step sebelumnya sebelum melanjutkan ke step berikutnya.
                         </p>
                       </div>
                       <div id="step-3">
                         <h2 class="StepTitle">Step 3</h2>
                         <p>
-                          Siswa/siswi membawa<b>print/hard file </b>form yang sudah ditandatangani oleh guru pembimbing/kelas untuk diberikan ke ruangan Tata Usaha.
                           Siswa/siswi menunggu balasan dari pihak industri, terkait proses Praktek Kerja Industri yang sedang berlangsung di industri yang dipilih.
+                          Apabila pihak industri tidak menyetujui balasan kepada pihak sekolah dan atau tidak membalas di waktu yang telah ditentukan,
+                          maka siswa-siswi wajib mengkonsultasi kepada guru pembimbing/kelas masing-masing.
                         </p>
                       </div>
                       <div id="step-4">

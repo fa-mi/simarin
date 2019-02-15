@@ -45,7 +45,8 @@ class C_login extends CI_Controller
    if($cek > 0){
       $session = array(
         'nis'=> $d->nis,
-        'nama'=> $d->nama,
+        'nama_depan'=> $d->nama_depan,
+        'nama_belakang'=> $d->nama_belakang,
         'aktif'=>$d->is_aktif,
         'validasi'=>$d->is_validasi,
         'id_jurusan'=> $d->id_jurusan,

@@ -45,7 +45,7 @@ $(document).on("click",".validasi",function(){
    text:"Yakin akan validasi siswa ini?",
    type: "warning",
    showCancelButton: true,
-   confirmButtonText: "validasi",
+   confirmButtonText: "Validasi",
    closeOnConfirm: true,
  },
    function(){
@@ -87,6 +87,29 @@ $(document).on("click",".hapus-industri",function(){
     });
  });
 });
+$(document).on("click",".batal",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Batalkan Siswa",
+   text:"Yakin akan membatalkan siswa ini?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "Batal",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_guru/batal_siswa'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+       });
+     }
+    });
+    location.reload();
+ });
+});
 
 });
 </script>
@@ -119,6 +142,22 @@ $(document).on("click",".hapus-industri",function(){
 <!-- bootstrap-daterangepicker -->
 <script src="<?php echo base_url(); ?>assets/dashboard/vendors/moment/min/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Datatables -->
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/jszip/dist/jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/pdfmake/build/vfs_fonts.js"></script>
 
 <!-- Custom Theme Scripts -->
 <script src="<?php echo base_url(); ?>assets/dashboard/build/js/custom.min.js"></script>
