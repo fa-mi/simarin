@@ -20,7 +20,7 @@ class C_login extends CI_Controller
   }
   function v_login_admin(){
 
-          $this->load->view('admin/v_login_admin');
+          $this->load->view('v_login_admin');
   }
 
   function login(){
@@ -45,6 +45,9 @@ class C_login extends CI_Controller
    if($cek > 0){
       $session = array(
         'nis'=> $d->nis,
+        'tahun_ajaran' => $d->tahun_ajaran,
+        'kelamin' => $d->kelamin,
+        'alamat' => $d->alamat,
         'nama_depan'=> $d->nama_depan,
         'nama_belakang'=> $d->nama_belakang,
         'aktif'=>$d->is_aktif,
@@ -60,6 +63,7 @@ class C_login extends CI_Controller
       $this->session->set_userdata($jurusan);
       $this->session->set_userdata($progres);
       $this->session->set_userdata($session);
+      //print_r($d);
       redirect(base_url().'C_siswa');
     }else{
       redirect(base_url().'C_login?pesan=gagal');

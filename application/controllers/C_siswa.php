@@ -65,8 +65,6 @@ class C_siswa extends CI_Controller
     if ($status_wali == "lain_wali") {
       $status_wali = $keterangan_wali;
     }
-
-    //echo $status_wali;
      if ($ceks > 0) {
       redirect(base_url().'c_siswa/v_pendaftaran?pesan=sudah');
     }
@@ -106,7 +104,13 @@ class C_siswa extends CI_Controller
         }
       }
     }
-    // */
+  }
+  function v_profile()
+  {
+
+    $this->load->view('siswa/header');
+    $this->load->view('siswa/v_profile_siswa');
+    $this->load->view('siswa/footer');
   }
   function v_ubah_password()
   {

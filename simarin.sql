@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.6
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 10, 2019 at 03:16 AM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.1.12
+-- Generation Time: Feb 17, 2019 at 11:18 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,6 +31,13 @@ BEGIN
 UPDATE siswa SET siswa.status = 0 WHERE siswa.nis = in_nis;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `batal_siswa` (IN `in_nis` VARCHAR(50))  NO SQL
+BEGIN
+DELETE FROM wali WHERE wali.nis = in_nis;
+DELETE FROM prakerin WHERE prakerin.nis = in_nis;
+UPDATE siswa SET is_validasi = 0 WHERE siswa.nis = in_nis;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `data_dashboard_admin` ()  NO SQL
 BEGIN
 SELECT COUNT(industri.id_industri) AS jumlah_industri FROM industri;
@@ -45,15 +52,23 @@ ON jurusan.id_jurusan = industri.id_jurusan
 GROUP BY jurusan.jurusan ASC;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `data_siswa_guru` (IN `in_nip` VARCHAR(50), IN `in_nama` VARCHAR(50), IN `in_nis` VARCHAR(50))  NO SQL
+BEGIN
+SELECT siswa.nis,CONCAT(siswa.nama_depan," ",siswa.nama_belakang) AS nama,jurusan.jurusan,industri.industri,siswa.is_validasi as validasi,siswa.is_aktif as aktif
+FROM siswa
+LEFT JOIN prakerin
+ON siswa.nis = prakerin.nis
+LEFT JOIN jurusan
+ON jurusan.id_jurusan = prakerin.id_jurusan
+LEFT JOIN industri
+ON industri.id_industri = prakerin.id_industri
+WHERE prakerin.nip = in_nip AND siswa.nama_depan LIKE in_nama AND siswa.nis LIKE in_nis;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `hapus_industri` (IN `in_id_industri` INT)  NO SQL
 BEGIN
 UPDATE siswa SET siswa.id_industri = null WHERE siswa.id_industri = id;
 DELETE FROM industri WHERE industri.id_industri = id;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `konfirmasi` (IN `in_nis` INT)  NO SQL
-BEGIN
-UPDATE siswa SET siswa.is_validasi = 1 WHERE siswa.nis = in_nis;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `list_industri_jurusan` (IN `in_id_jurusan` INT)  NO SQL
@@ -103,18 +118,6 @@ ON siswa.id_industri = industri.id_industri
 WHERE siswa.is_validasi = 1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `tabel_siswa_guru` (IN `in_nip` VARCHAR(50))  NO SQL
-BEGIN
-SELECT siswa.nis,siswa.nama,jurusan.jurusan
-FROM siswa
-INNER JOIN jurusan
-ON siswa.id_jurusan = jurusan.id_jurusan
-LEFT JOIN prakerin
-ON siswa.nis = prakerin.nis
-WHERE prakerin.nip = in_nip
-GROUP BY siswa.nis,siswa.nama,jurusan.jurusan;
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `tambah_data_prakerin` (IN `in_nis` VARCHAR(50), IN `in_nip` VARCHAR(50), IN `in_id_jurusan` INT, IN `in_keterangan` VARCHAR(50), IN `in_nama` VARCHAR(50), IN `in_telp` VARCHAR(50), IN `in_status` VARCHAR(50), IN `in_id_industri` INT)  NO SQL
 BEGIN
 INSERT INTO prakerin (nis,nip,id_industri,id_jurusan,keterangan) VALUES (in_nis,in_nip,in_id_industri,in_id_jurusan,in_keterangan);
@@ -142,6 +145,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ubah_password_siswa` (IN `in_nis` VARCHAR(50), IN `in_password` VARCHAR(50))  NO SQL
 BEGIN
 UPDATE siswa SET siswa.password = in_password WHERE siswa.nis = in_nis;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `validasi_siswa` (IN `in_nis` INT)  NO SQL
+BEGIN
+UPDATE siswa SET siswa.is_validasi = 1 WHERE siswa.nis = in_nis;
 END$$
 
 DELIMITER ;
@@ -177,15 +185,16 @@ CREATE TABLE `guru` (
   `id_jurusan` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `kelamin` tinyint(1) NOT NULL
+  `kelamin` tinyint(1) NOT NULL,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `guru`
 --
 
-INSERT INTO `guru` (`nip`, `id_jurusan`, `nama`, `password`, `kelamin`) VALUES
-('555', 6, 'Hadi', '76671d4b83f6e6f953ea2dfb75ded921', 1);
+INSERT INTO `guru` (`nip`, `id_jurusan`, `nama`, `password`, `kelamin`, `status`) VALUES
+('555', 6, 'Hadi', '76671d4b83f6e6f953ea2dfb75ded921', 1, 'Guru Pembimbing');
 
 -- --------------------------------------------------------
 
@@ -246,15 +255,9 @@ CREATE TABLE `prakerin` (
   `nip` varchar(50) NOT NULL,
   `id_industri` int(11) DEFAULT NULL,
   `id_jurusan` int(11) NOT NULL,
-  `keterangan` varchar(50) DEFAULT NULL
+  `keterangan` varchar(50) NOT NULL,
+  `waktu_pendaftaran` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `prakerin`
---
-
-INSERT INTO `prakerin` (`nis`, `nip`, `id_industri`, `id_jurusan`, `keterangan`) VALUES
-('123', '555', 2, 6, 'Industri MOU');
 
 -- --------------------------------------------------------
 
@@ -265,7 +268,8 @@ INSERT INTO `prakerin` (`nis`, `nip`, `id_industri`, `id_jurusan`, `keterangan`)
 CREATE TABLE `siswa` (
   `nis` varchar(50) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `nama_depan` varchar(50) NOT NULL,
+  `nama_belakang` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `kelamin` tinyint(1) NOT NULL,
   `tempat_lahir` varchar(50) NOT NULL,
@@ -278,9 +282,9 @@ CREATE TABLE `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`nis`, `id_jurusan`, `nama`, `password`, `kelamin`, `tempat_lahir`, `tanggal_lahir`, `is_aktif`, `is_validasi`) VALUES
-('123', 6, 'Fahmi', 'f11d50d63d3891a44c332e46d6d7d561', 1, 'jombang', '1996-09-06', 0, 0),
-('321', 6, 'Wita', '9757bb3cf28a5797e08ff7247bcc5ff0', 0, 'malang', '1997-10-05', 0, 0);
+INSERT INTO `siswa` (`nis`, `id_jurusan`, `nama_depan`, `nama_belakang`, `password`, `kelamin`, `tempat_lahir`, `tanggal_lahir`, `is_aktif`, `is_validasi`) VALUES
+('123', 6, 'Fahmi', 'Aquinas', 'f11d50d63d3891a44c332e46d6d7d561', 1, 'jombang', '1996-09-06', 0, 0),
+('321', 6, 'Wita', 'Saraswati', '9757bb3cf28a5797e08ff7247bcc5ff0', 0, 'malang', '1997-10-05', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -294,13 +298,6 @@ CREATE TABLE `wali` (
   `no_telp` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `wali`
---
-
-INSERT INTO `wali` (`nis`, `nama`, `no_telp`, `status`) VALUES
-('123', 'Dewi Sri', '081330499953', 'Bibi');
 
 --
 -- Indexes for dumped tables

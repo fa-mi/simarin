@@ -2,7 +2,6 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Status</h3>
       </div>
     </div>
 
@@ -12,7 +11,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><i class="fa fa-bell"></i> Detail<small>Progres</small></h2>
+          <h2><i class="fa fa-bell"></i> Simarin<small>Status</small></h2>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -28,12 +27,12 @@
                   }
                   elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1) {
                     echo '<h1>Sudah Validasi Guru pembimbing/kelas!</h1>
-                    <p>Menunggu Pihak Sekolah untuk mendata siswa-siswi yang mendaftar.</p>';
+                    <p>Menunggu pihak sekolah untuk mendata siswa-siswi yang mendaftar.</p>';
                   }
                   elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
                           && $this->session->userdata('aktif') == 0) {
                             echo '<h1>Sudah Validasi Pihak Sekolah!</h1>
-                            <p>Menunggu Pihak Industri untuk membalas terkait proses PRAKERIN.</p>';
+                            <p>Melaksanakan pembekalan terkait PRAKERIN.</p>';
                   }
                   elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
                           && $this->session->userdata('aktif') == 1) {
