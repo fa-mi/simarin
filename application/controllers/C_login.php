@@ -41,6 +41,8 @@ class C_login extends CI_Controller
     $datax = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']));
     $dx = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']))->row();
     $ceks = $datax->num_rows();
+    $bimbing = $this->m_simarin->guru_pembimbing($d->nis,$d->id_jurusan);
+    $progres = array('progres' => $ceks);
 
    if($cek > 0){
       $session = array(
@@ -54,16 +56,12 @@ class C_login extends CI_Controller
         'validasi'=>$d->is_validasi,
         'id_jurusan'=> $d->id_jurusan,
         'waktu' => $t->waktu,
+        'nama_guru' => $bimbing->nama_guru,
+        'jurusan' => $bimbing->jurusan,
         'status' => 'login'
       );
-      $p = $session['id_jurusan'];
-      $j = $this->m_simarin->get_jurusan($p)->row();
-      $jurusan= array('jurusan' => $j->jurusan);
-      $progres = array('progres' => $ceks);
-      $this->session->set_userdata($jurusan);
       $this->session->set_userdata($progres);
       $this->session->set_userdata($session);
-      //print_r($d);
       redirect(base_url().'C_siswa');
     }else{
       redirect(base_url().'C_login?pesan=gagal');
@@ -113,21 +111,19 @@ if($this->form_validation->run() != false){
 elseif ($cekg > 0) {
 
   $notifguru = $this->m_simarin->get_notif_id($g->nip)->row();
+  $j = $this->m_simarin->data_jurusan($g->id_jurusan);
   $session = array(
     'id_jurusan'=>$g->id_jurusan,
     'nip'=> $g->nip,
     'nama'=> $g->nama,
     'kelamin'=> $g->kelamin,
+    'jurusan' =>$j->jurusan,
     'status' => 'login'
   );
   $notifgurusession = array(
   'notif' => $notifguru->notif);
-  $j = $this->m_simarin->get_jurusan($session['id_jurusan'])->row();
-  $jurusan= array('jurusan' => $j->jurusan);
   $this->session->set_userdata($notifgurusession);
   $this->session->set_userdata($session);
-  $this->session->set_userdata($jurusan);
-  //echo $this->session->userdata('jurusan');
   redirect(base_url().'C_guru');
 }
 else{

@@ -13,13 +13,20 @@ class M_simarin extends CI_Model
   {
     return $this->db->get($table);
   }
-  function get_jurusan($p)
-  {
-    return $this->db->query("SELECT jurusan from jurusan where id_jurusan = $p");
-  }
   function waktu_server()
   {
     return $this->db->query("SELECT current_timestamp() as waktu");
+  }
+  function data_jurusan($id)
+  {
+    $query =  $this->db->query("SELECT jurusan FROM jurusan where jurusan.id_jurusan = $id");
+    return $query->row();
+  }
+  function guru_pembimbing($nis,$id_jurusan)
+  {
+    $nis = "'".$nis."'";
+    $query = $this->db->query("call guru_pembimbing($nis,$id_jurusan)");
+    return $query->row();
   }
   function get_notif_id($id)
   {
@@ -28,15 +35,6 @@ class M_simarin extends CI_Model
     FROM siswa
     INNER JOIN prakerin
     ON siswa.nis = prakerin.nis  where siswa.is_validasi = 0 AND prakerin.nip = $id ");
-  }
-  function insert_data($data,$table)
-  {
-    $this->db->insert($table,$data);
-  }
-  function update_data($where,$table,$data)
-  {
-    $this->db->where($where);
-    $this->db->update($table,$data);
   }
   function ubah_password_admin($id,$password)
   {

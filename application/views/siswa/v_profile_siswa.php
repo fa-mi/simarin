@@ -16,6 +16,12 @@
           </div>
           <div class="x_content">
             <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+              <div class="profile_img">
+                <div id="crop-avatar">
+                  <!-- Current avatar -->
+                  <img class="img-responsive avatar-view" src="<?php echo base_url(); ?>assets/dashboard/images/siswa.png" alt="Avatar" title="Change the avatar">
+                </div>
+              </div>
             </div>
             <div class="col-md-9 col-sm-9 col-xs-12">
 
@@ -41,7 +47,7 @@
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                       <input type="text" class="form-control has-feedback-left" readonly="readonly" placeholder="<?php echo $this->session->userdata('tahun_ajaran'); ?>">
-                      <span class="fa fa-graduation-cap form-control-feedback left" aria-hidden="true"></span>
+                      <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -68,6 +74,10 @@
                       </div>';
                     }
                     ?>
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                      <input type="text" class="form-control has-feedback-left" readonly="readonly" placeholder="<?php echo $this->session->userdata('nama_guru'); ?>">
+                      <span class="fa fa-graduation-cap form-control-feedback left" aria-hidden="true"></span>
+                    </div>
                     <div class="ln_solid"></div>
                   </form>
                 </div>
