@@ -81,9 +81,9 @@ class M_simarin extends CI_Model
     $result3 = $query3->row_array();
     return array_merge($result1, $result2, $result3);
   }
-  public function data_industri_jurusan(){
+  public function data_industri_jurusan($id){
 
-    $query = $this->db->query("call data_industri_jurusan()");
+    $query = $this->db->query("call data_industri_jurusan($id)");
     return $query->result_array();
   }
   public function data_siswa_guru($nip,$nama,$nis){

@@ -1,16 +1,11 @@
 <div class="right_col" role="main">
   <div class="">
-    <div class="page-title">
-      <div class="title_left">
-        <h3>Tabel Siswa</h3>
-      </div>
-    </div>
     <div class="clearfix"></div>
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>List Data Siswa</h2>
+            <h2>Tabel Siswa</h2>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -44,7 +39,7 @@
                       </td>
                       <td>";
                       if ($siswa['validasi'] == 0) {
-                        echo "<button type='button' class='btn btn-danger btn-sm validasi' data-id='$siswa[nis]'>Belum Validasi</button>";
+                        echo "<button type='button' class='btn btn-danger btn-sm' data-id='$siswa[nis]'>Belum Validasi</button>";
                       }
                       else if ($siswa['aktif'] == 0 && $siswa['validasi'] == 1) {
                         echo "<button type='button' class='btn btn-info btn-sm' data-id='$siswa[nis]'>Sudah Validasi</button>";
@@ -71,6 +66,8 @@
                  ?>
               </tbody>
             </table>
+
+
           </div>
         </div>
       </div>

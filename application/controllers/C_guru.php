@@ -39,6 +39,14 @@ class C_guru extends CI_Controller
     $this->load->view('guru/v_data_siswa_guru',$data);
     $this->load->view('guru/footer');
   }
+
+    function data_industri()
+    {
+      $data['data']= $this->m_simarin->data_industri_jurusan($this->session->userdata('id_jurusan'));
+      $this->load->view('guru/header');
+      $this->load->view('guru/v_data_industri_guru',$data);
+      $this->load->view('guru/footer');
+    }
   function validasi()
   {
     $id= $this->input->post("id");

@@ -28,7 +28,7 @@ class C_siswa extends CI_Controller
   }
   function v_pendaftaran()
   {
-    $data['data']=$this->m_simarin->list_industri_jurusan($this->session->userdata('id_jurusan'));
+    $data['data']=$this->m_simarin->data_industri_jurusan($this->session->userdata('id_jurusan'));
     $this->load->view('siswa/header');
     $this->load->view('siswa/v_pendaftaran_siswa',$data);
     $this->load->view('siswa/footer');

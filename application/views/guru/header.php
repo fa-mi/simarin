@@ -121,10 +121,10 @@
                           </a>
                           <ul class='dropdown-menu list-unstyled msg_list' role='menu'>
                             <li>
-                              <a>
+                              <a href="<?php echo site_url(); ?>c_guru/data_siswa">
                                 <span class='image'><img src='<?php echo base_url(); ?>assets/dashboard/images/siswa.png' alt='Profile Image' /></span>
                                 <span>
-                                  <span>Validasi Siswa</span>
+                                  <span>Siswa Baru Mendaftar</span>
                                   <span class='time'><?php
                                   if ($this->session->userdata('notif') > 0) {
                                     echo $this->session->userdata('notif');
