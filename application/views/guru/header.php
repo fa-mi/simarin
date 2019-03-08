@@ -81,8 +81,6 @@
                   </li>
                   <li><a href="<?php echo site_url(); ?>c_guru/data_industri"><i class="fa fa-building"></i> Data Industri MOU <span class="fa fa-chevron-right"></span></a>
                   </li>
-                  <li><a href="<?php echo site_url(); ?>c_guru/informasi"><i class="fa fa-info-circle"></i> Informasi <span class="fa fa-chevron-right"></span></a>
-                  </li>
                 </ul>
               </div>
             </div>

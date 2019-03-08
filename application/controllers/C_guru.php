@@ -35,6 +35,7 @@ class C_guru extends CI_Controller
     'notif' => 0);
     $this->session->set_userdata($notifgurusession);
     $data['data']= $this->m_simarin->data_siswa_guru($this->session->userdata('nip'),null,null);
+    //print_r($data);
     $this->load->view('guru/header');
     $this->load->view('guru/v_data_siswa_guru',$data);
     $this->load->view('guru/footer');

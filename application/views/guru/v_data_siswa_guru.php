@@ -50,7 +50,7 @@
                       echo "
                       </td>
                       <td>
-                      <button class='btn btn-xs btn-default' data-id='$siswa[nis]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
+                      <button class='btn btn-xs btn-default' data-id='$siswa[nis]' data-toggle='modal' data-target='.modal-info-$siswa[nis]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
                       ";
                       if ($siswa['validasi'] == 0) {
                         echo "<button class='btn btn-xs btn-warning validasi' data-id='$siswa[nis]'><i class='glyphicon glyphicon-ok-sign'></i> Validasi</button>";
@@ -60,7 +60,37 @@
                       }
                       echo "
                       <button class='btn btn-xs btn-danger batal' data-id='$siswa[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
-                      </td>
+                      </td>";
+                      echo "
+                      <div class='modal fade modal-info-$siswa[nis]' tabindex='-1' role='dialog' aria-hidden='true'>
+                        <div class='modal-dialog modal-sm'>
+                          <div class='modal-content'>
+
+                            <div class='modal-header'>
+                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
+                              </button>
+                              <h4 class='modal-title' id='myModalLabel2'>Detail Siswa</h4>
+                            </div>
+                            <div class='modal-body'>
+                              <p>Tahun Ajaran : $siswa[tahun_ajaran]<p>
+                              <p>TTL : $siswa[ttl] </p>
+                              <p>Alamat : $siswa[alamat] </p>
+                              <p>Kelamin : ";
+                            if ($siswa['kelamin'] == 1) {
+                              echo "Laki-laki";
+                            }
+                            else {
+                              echo "Perempuan";
+                            }
+                            echo "
+                              </p>
+                              <p> Nama Wali : $siswa[nama_wali]</p>
+                              <p> Status Wali : $siswa[status_wali]</p>
+                              <p> No. Telp Wali : $siswa[telp_wali]</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       </tr>";
                 }
                  ?>

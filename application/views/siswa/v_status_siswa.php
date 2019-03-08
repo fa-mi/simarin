@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
           <h2><i class="fa fa-align-left"></i> Progres<small>Siswa</small></h2>
@@ -54,7 +54,7 @@
         </div>
         <div class="x_content">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
               <?php if ($this->session->userdata('progres') == 0){
                     echo '<div class="progress progress-striped">
                           <div class="progress-bar progress-bar-success" data-transitiongoal="0" role="progressbar">0%</div>

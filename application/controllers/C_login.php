@@ -41,10 +41,12 @@ class C_login extends CI_Controller
     $datax = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']));
     $dx = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']))->row();
     $ceks = $datax->num_rows();
-    $bimbing = $this->m_simarin->guru_pembimbing($d->nis,$d->id_jurusan);
+
     $progres = array('progres' => $ceks);
 
+//print_r($cek);
    if($cek > 0){
+     $bimbing = $this->m_simarin->guru_pembimbing($d->nis,$d->id_jurusan);
       $session = array(
         'nis'=> $d->nis,
         'tahun_ajaran' => $d->tahun_ajaran,
@@ -60,6 +62,7 @@ class C_login extends CI_Controller
         'jurusan' => $bimbing->jurusan,
         'status' => 'login'
       );
+
       $this->session->set_userdata($progres);
       $this->session->set_userdata($session);
       redirect(base_url().'C_siswa');
@@ -104,7 +107,7 @@ if($this->form_validation->run() != false){
       'status' => 'login',
       'notif' => $notif->notif
     );
-    $notify = $this->session->set_userdata($session('notif'));
+    //$notify = $this->session->set_userdata($session('notif'));
     $this->session->set_userdata($session);
     redirect(base_url().'C_admin');
 }

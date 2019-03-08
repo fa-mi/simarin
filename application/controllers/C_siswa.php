@@ -47,8 +47,7 @@ class C_siswa extends CI_Controller
     $datax = $this->m_simarin->edit_data('prakerin',$data);
     $dx = $this->m_simarin->edit_data('prakerin',$data)->row();
     $ceks = $datax->num_rows();
-    $wali = $this->m_simarin->edit_data('wali',$data);
-    $cek_wali = $wali->num_rows();
+    $wali = $this->m_simarin->get_data('wali')->row();
     $guru = $this->m_simarin->edit_data('guru',$gurux)->row();
     $id_industri = $this->input->post('pilihan');
     $keterangan =  $this->input->post('keterangan');
@@ -57,6 +56,7 @@ class C_siswa extends CI_Controller
     $keterangan_wali =  $this->input->post('keterangan_wali');
     $telp_wali = $this->input->post('telp_wali');
     $pilihan_wali = $this->input->post('pilihan_wali');
+    //print_r($wali);
     if ($id_industri == "lain") {
       $id_industri = null;
     }else {
@@ -69,7 +69,7 @@ class C_siswa extends CI_Controller
       redirect(base_url().'c_siswa/v_pendaftaran?pesan=sudah');
     }
     else {
-      if ($cek_wali > 1) {
+      if ($wali->no_telp == $telp_wali) {
         redirect(base_url().'c_siswa/v_pendaftaran?pesan=telp');
       }
 

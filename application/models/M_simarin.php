@@ -36,6 +36,13 @@ class M_simarin extends CI_Model
     INNER JOIN prakerin
     ON siswa.nis = prakerin.nis  where siswa.is_validasi = 0 AND prakerin.nip = $id ");
   }
+  function get_notif()
+  {
+    return $this->db->query("SELECT COUNT(siswa.nis) as notif
+    FROM siswa
+    INNER JOIN prakerin
+    ON siswa.nis = prakerin.nis  where siswa.is_validasi = 0 ");
+  }
   function ubah_password_admin($id,$password)
   {
     $id = "'".$id."'";
