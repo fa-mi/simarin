@@ -38,13 +38,12 @@ class C_login extends CI_Controller
     $d = $this->m_simarin->edit_data('siswa',$where)->row();
     $t = $this->m_simarin->waktu_server()->row();
     $cek = $data->num_rows();
+    $p = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']))->num_rows();
     $datax = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']));
     $dx = $this->m_simarin->edit_data('prakerin',array('nis'=>$where['nis']))->row();
     $ceks = $datax->num_rows();
 
     $progres = array('progres' => $ceks);
-
-//print_r($cek);
    if($cek > 0){
      $bimbing = $this->m_simarin->guru_pembimbing($d->nis,$d->id_jurusan);
       $session = array(
@@ -54,14 +53,16 @@ class C_login extends CI_Controller
         'alamat' => $d->alamat,
         'nama_depan'=> $d->nama_depan,
         'nama_belakang'=> $d->nama_belakang,
-        'aktif'=>$d->is_aktif,
-        'validasi'=>$d->is_validasi,
         'id_jurusan'=> $d->id_jurusan,
         'waktu' => $t->waktu,
         'nama_guru' => $bimbing->nama_guru,
         'jurusan' => $bimbing->jurusan,
         'status' => 'login'
       );
+      if ($p > 0) {
+          $validasi = array('validasi' => $dx->is_validasi);
+          $this->session->set_userdata($validasi);
+      }
 
       $this->session->set_userdata($progres);
       $this->session->set_userdata($session);
@@ -73,7 +74,6 @@ class C_login extends CI_Controller
 }  else{
     $this->load->view('v_login');
   }
-
 }
 function logout(){
   $this->session->sess_destroy();
@@ -107,7 +107,6 @@ if($this->form_validation->run() != false){
       'status' => 'login',
       'notif' => $notif->notif
     );
-    //$notify = $this->session->set_userdata($session('notif'));
     $this->session->set_userdata($session);
     redirect(base_url().'C_admin');
 }

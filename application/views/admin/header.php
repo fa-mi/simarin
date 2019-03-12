@@ -32,7 +32,12 @@
     <link href="<?php echo base_url(); ?>assets/dashboard/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
+    <!-- Datatables -->
+    <link href="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url(); ?>assets/dashboard/build/css/custom.min.css" rel="stylesheet">
       <script type="text/javascript" src="<?php echo base_url('assets/jquery.js'); ?>"></script>
@@ -56,7 +61,7 @@
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,</span>
-                <h2><?php echo $this->session->userdata('tipe_admin'); ?></h2>
+                <h2>ADMIN</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -73,9 +78,8 @@
 
                   <li><a><i class="fa fa-user"></i> Menu Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa">Tabel Siswa</a></li>
-                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa_belum_konfirmasi">Data Calon Prakerin Belum Konfirmasi</a></li>
-                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa_sudah_konfirmasi">Data Calon Prakerin Sudah Konfirmasi</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa">Data Siswa</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa_prakerin">Data Siswa Prakerin</a></li>
                     </ul>
                   </li>
 
@@ -114,34 +118,13 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-
                     <img src="<?php echo base_url(); ?>assets/dashboard/images/admin.png" alt="">
-
-                    <?php echo $this->session->userdata('tipe_admin'); ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="<?php echo site_url(); ?>c_admin/v_ubah_password"><i class="fa fa-key pull-right"></i>Ubah Password</a></li>
                     <li><a href="<?php echo site_url(); ?>c_admin/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
-                </li>
-                <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-comments-o"></i>
-                <span class='badge bg-red'> <?php echo $this->session->flashdata('notif'); ?>
-                      </span>
-                          </a>
-                          <ul class='dropdown-menu list-unstyled msg_list' role='menu'>
-                            <li>
-                              <a>
-                                <span class='image'><img src='<?php echo base_url(); ?>assets/dashboard/images/siswa.png' alt='Profile Image' /></span>
-                                <span>
-                                  <span>Validasi Siswa</span>
-                                  <span class='time'><?php echo $this->session->flashdata('notif'); ?></span>
-                                </span>
-                              </a>
-                            </li>
-                          </ul>
                 </li>
               </ul>
             </nav>

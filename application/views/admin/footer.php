@@ -8,6 +8,32 @@
 </div>
 </div>
 <script type="text/javascript">
+function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      }
+    });
+  });
+}
+setInputFilter(document.getElementById("nis"), function(value) {
+  return /^\d*$/.test(value); });
+setInputFilter(document.getElementById("nama_depan"), function(value) {
+  return /^\D*$/.test(value); });
+setInputFilter(document.getElementById("nama_belakang"), function(value) {
+  return /^\D*$/.test(value); });
+setInputFilter(document.getElementById("agama"), function(value) {
+  return /^\D*$/.test(value); });
+setInputFilter(document.getElementById("tempat_lahir"), function(value) {
+  return /^\D*$/.test(value); });
+  setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
+    return /^\d*$/.test(value); });
 
 $(function(){
 
@@ -65,10 +91,10 @@ $(document).on("click",".konfirmasi",function(){
 
 });
 
-$(document).on("click",".hapus-industri",function(){
+$(document).on("click",".hapus-siswa",function(){
  var id=$(this).attr("data-id");
  swal({
-   title:"Hapus Industri",
+   title:"Hapus Siswa",
    text:"Yakin akan menghapus data ini?",
    type: "warning",
    showCancelButton: true,
@@ -77,7 +103,7 @@ $(document).on("click",".hapus-industri",function(){
  },
    function(){
     $.ajax({
-     url:"<?php echo base_url('c_admin/delete'); ?>",
+     url:"<?php echo base_url('c_admin/hapus_siswa'); ?>",
      data:{id:id},
      success: function(){
        $("tr[data-id='"+id+"']").fadeOut("fast",function(){
@@ -104,6 +130,22 @@ $(document).on("click",".hapus-industri",function(){
 
 <!-- jQuery Sparklines -->
 <script src="<?php echo base_url(); ?>assets/dashboard/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- Datatables -->
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/jszip/dist/jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/pdfmake/build/vfs_fonts.js"></script>
 <!-- Flot -->
 <script src="<?php echo base_url(); ?>assets/dashboard/vendors/Flot/jquery.flot.js"></script>
 <script src="<?php echo base_url(); ?>assets/dashboard/vendors/Flot/jquery.flot.pie.js"></script>

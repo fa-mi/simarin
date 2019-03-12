@@ -35,7 +35,6 @@ class C_siswa extends CI_Controller
   }
   function status()
   {
-
     $this->load->view('siswa/header');
     $this->load->view('siswa/v_status_siswa');
     $this->load->view('siswa/footer');
@@ -56,7 +55,7 @@ class C_siswa extends CI_Controller
     $keterangan_wali =  $this->input->post('keterangan_wali');
     $telp_wali = $this->input->post('telp_wali');
     $pilihan_wali = $this->input->post('pilihan_wali');
-    //print_r($wali);
+
     if ($id_industri == "lain") {
       $id_industri = null;
     }else {
@@ -100,6 +99,8 @@ class C_siswa extends CI_Controller
             $this->session->unset_userdata('progres');
             $progres = array('progres' => $ceks+1);
             $this->session->set_userdata($progres);
+            $validasi = array('validasi' => $dx->is_validasi);
+            $this->session->set_userdata($validasi);
           redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
         }
       }

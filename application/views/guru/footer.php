@@ -17,27 +17,6 @@ $.ajaxSetup({
  dataType: "json"
 })
 
-$(document).on("click",".update",function(){
- var id=$(this).attr("data-id");
- swal({
-   title:"update",
-   text:"Masukkan nama industri",
-   type: "input",
-   showCancelButton: true,
-   confirmButtonText: "update",
-   closeOnConfirm: true,
-   inputPlaceholder: "Nama Industri"
- },
-   function(){
-    $.ajax({
-     url:"<?php echo base_url('c_admin/update'); ?>",
-     data:{id:id},
-     type: "POST",
-    });
- });
-
-});
-
 $(document).on("click",".validasi",function(){
  var id=$(this).attr("data-id");
  swal({
@@ -65,28 +44,6 @@ $(document).on("click",".validasi",function(){
 
 });
 
-$(document).on("click",".hapus-industri",function(){
- var id=$(this).attr("data-id");
- swal({
-   title:"Hapus Industri",
-   text:"Yakin akan menghapus data ini?",
-   type: "warning",
-   showCancelButton: true,
-   confirmButtonText: "Hapus",
-   closeOnConfirm: true,
- },
-   function(){
-    $.ajax({
-     url:"<?php echo base_url('c_admin/delete'); ?>",
-     data:{id:id},
-     success: function(){
-       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
-         $(this).remove();
-       });
-     }
-    });
- });
-});
 $(document).on("click",".batal",function(){
  var id=$(this).attr("data-id");
  swal({
@@ -99,7 +56,7 @@ $(document).on("click",".batal",function(){
  },
    function(){
     $.ajax({
-     url:"<?php echo base_url('c_guru/batal_siswa'); ?>",
+     url:"<?php echo base_url('c_guru/hapus_data_prakerin_siswa'); ?>",
      data:{id:id},
      success: function(){
        $("tr[data-id='"+id+"']").fadeOut("fast",function(){

@@ -34,14 +34,14 @@ class M_simarin extends CI_Model
     return $this->db->query("SELECT COUNT(siswa.nis) as notif
     FROM siswa
     INNER JOIN prakerin
-    ON siswa.nis = prakerin.nis  where siswa.is_validasi = 0 AND prakerin.nip = $id ");
+    ON siswa.nis = prakerin.nis  where prakerin.is_validasi = 0 AND prakerin.nip = $id ");
   }
   function get_notif()
   {
     return $this->db->query("SELECT COUNT(siswa.nis) as notif
     FROM siswa
     INNER JOIN prakerin
-    ON siswa.nis = prakerin.nis  where siswa.is_validasi = 0 ");
+    ON siswa.nis = prakerin.nis  where prakerin.is_validasi = 0 ");
   }
   function ubah_password_admin($id,$password)
   {
@@ -79,14 +79,17 @@ class M_simarin extends CI_Model
   }
   public function data_dashboard_admin(){
 
-    $query1 = $this->db->query("SELECT COUNT(industri.id_industri) AS jumlah_industri FROM industri");
-    $query2 = $this->db->query("SELECT COUNT(siswa.nis) AS jumlah_siswa_konfirmasi FROM siswa where siswa.is_validasi = 1");
-    $query3 = $this->db->query("SELECT COUNT(siswa.nis) AS jumlah_siswa_belum_konfirmasi FROM siswa where siswa.is_validasi = 0");
+    $query1 = $this->db->query("SELECT COUNT(DISTINCT(industri.industri)) AS jumlah_industri FROM industri");
+    $query2 = $this->db->query("SELECT COUNT(siswa.nis) AS jumlah_siswa FROM siswa");
+    $query3 = $this->db->query("SELECT COUNT(siswa.nis) AS jumlah_siswa_daftar_prakerin FROM siswa INNER JOIN prakerin on prakerin.nis = siswa.nis where prakerin.is_aktif = 0");
+    $query4 = $this->db->query("SELECT COUNT(siswa.nis) AS jumlah_siswa_aktif_prakerin FROM siswa INNER JOIN prakerin on prakerin.nis = siswa.nis where prakerin.is_aktif = 1");
+
 
     $result1 = $query1->row_array();
     $result2 = $query2->row_array();
     $result3 = $query3->row_array();
-    return array_merge($result1, $result2, $result3);
+    $result4 = $query4->row_array();
+    return array_merge($result1, $result2, $result3, $result4);
   }
   public function data_industri_jurusan($id){
 
@@ -111,6 +114,12 @@ class M_simarin extends CI_Model
     $query = $this->db->query("call data_siswa_guru($nip,$nama,$nis)");
     return $query->result_array();
   }
+  public function data_siswa_admin()
+  {
+    $query = $this->db->query("call data_siswa_admin()");
+    return $query->result_array();
+  }
+
   public function list_semua_industri(){
 
     $query = $this->db->query("call list_semua_industri()");
@@ -151,9 +160,9 @@ class M_simarin extends CI_Model
     $query = $this->db->query("call validasi_siswa($id)");
     return $query->result_array();
   }
-  public function batal_siswa($id){
+  public function hapus_data_prakerin_siswa($id){
 
-    $query = $this->db->query("call batal_siswa($id)");
+    $query = $this->db->query("call hapus_data_prakerin_siswa($id)");
     return $query->result_array();
   }
   public function batal_konfirmasi($id){

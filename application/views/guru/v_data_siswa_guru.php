@@ -5,7 +5,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Tabel Siswa</h2>
+            <h2>Data Siswa Mendaftar</h2>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -74,16 +74,17 @@
                             <div class='modal-body'>
                               <p>Tahun Ajaran : $siswa[tahun_ajaran]<p>
                               <p>TTL : $siswa[ttl] </p>
-                              <p>Alamat : $siswa[alamat] </p>
+                              <p>Agama : $siswa[agama] </p>
                               <p>Kelamin : ";
                             if ($siswa['kelamin'] == 1) {
-                              echo "Laki-laki";
+                              echo "Pria";
                             }
                             else {
                               echo "Perempuan";
                             }
                             echo "
                               </p>
+                              <p>Alamat : $siswa[alamat] </p>    
                               <p> Nama Wali : $siswa[nama_wali]</p>
                               <p> Status Wali : $siswa[status_wali]</p>
                               <p> No. Telp Wali : $siswa[telp_wali]</p>

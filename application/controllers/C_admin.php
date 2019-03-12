@@ -45,22 +45,9 @@ class C_admin extends CI_Controller
   }
   function data_siswa()
   {
+    $data['data']= $this->m_simarin->data_siswa_admin();
     $this->load->view('admin/header');
-    $this->load->view('admin/v_data_siswa_admin');
-    $this->load->view('admin/footer');
-  }
-  function tabel_siswa_belum_konfirmasi()
-  {
-    $data['data']=$this->m_simarin->list_siswa_belum_konfirmasi();
-    $this->load->view('admin/header');
-    $this->load->view('admin/v_tabel_siswa_belum_konfirmasi_admin',$data);
-    $this->load->view('admin/footer');
-  }
-  function tabel_siswa_sudah_konfirmasi()
-  {
-    $data['data']=$this->m_simarin->list_siswa_sudah_konfirmasi();
-    $this->load->view('admin/header');
-    $this->load->view('admin/v_tabel_siswa_sudah_konfirmasi_admin',$data);
+    $this->load->view('admin/v_data_siswa_admin',$data);
     $this->load->view('admin/footer');
   }
   function konfirmasi()
@@ -112,9 +99,15 @@ class C_admin extends CI_Controller
   function v_tambah_industri()
   {
     $data['data']=$this->m_simarin->list_jurusan();
-
     $this->load->view('admin/header');
     $this->load->view('admin/v_tambah_industri',$data);
+    $this->load->view('admin/footer');
+  }
+  function v_tambah_siswa()
+  {
+    $data['data']=$this->m_simarin->list_jurusan();
+    $this->load->view('admin/header');
+    $this->load->view('admin/v_tambah_siswa',$data);
     $this->load->view('admin/footer');
   }
 

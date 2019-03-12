@@ -54,10 +54,10 @@ class C_guru extends CI_Controller
     $this->m_simarin->validasi_siswa($id);
     echo "{}";
   }
-  function batal_siswa()
+  function hapus_data_prakerin_siswa()
   {
     $id= $this->input->post("id");
-    $this->m_simarin->batal_siswa($id);
+    $this->m_simarin->hapus_data_prakerin_siswa($id);
     echo "{}";
   }
 
