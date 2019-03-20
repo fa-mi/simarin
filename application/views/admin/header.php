@@ -78,8 +78,13 @@
 
                   <li><a><i class="fa fa-user"></i> Menu Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa">Data Siswa</a></li>
-                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa_prakerin">Data Siswa Prakerin</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa">Tabel Siswa</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa_prakerin">Tabel Siswa Prakerin</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-university"></i> Menu Guru <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_industri">Tabel Bimbingan</a></li>
                     </ul>
                   </li>
 

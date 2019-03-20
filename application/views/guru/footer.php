@@ -56,7 +56,7 @@ $(document).on("click",".batal",function(){
  },
    function(){
     $.ajax({
-     url:"<?php echo base_url('c_guru/hapus_data_prakerin_siswa'); ?>",
+     url:"<?php echo base_url('c_guru/batal_siswa'); ?>",
      data:{id:id},
      success: function(){
        $("tr[data-id='"+id+"']").fadeOut("fast",function(){

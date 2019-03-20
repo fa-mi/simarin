@@ -24,24 +24,125 @@
               </thead>
               <tbody>
                 <?php
-
-                foreach ($data as $siswa) {
-                  echo "<tr data-id='$siswa[nis]'>
-                  <td><span class='span-jurusan caption' data-id='$siswa[nis]'>$siswa[nis]</span> </td>
-                      <td><span class='span-jurusan caption' data-id='$siswa[nis]'>$siswa[jurusan]</span> </td>
-                      <td><span class='span-industri caption' data-id='$siswa[nis]'>$siswa[nama]</span></td>
-                      <td><span class='span-industri caption' data-id='$siswa[nis]'>$siswa[tahun_ajaran]</span></td>";
-                      echo "<td>
-                      <button class='btn btn-xs btn-default' data-id='$siswa[nis]' data-toggle='modal' data-target='.modal-info-$siswa[nis]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
-                      ";
-                      echo "<button class='btn btn-xs btn-warning update' data-id='$siswa[nis]'><i class='glyphicon glyphicon-edit'></i> Update</button>";
-                      echo "
-                      <button class='btn btn-xs btn-danger hapus-siswa' data-id='$siswa[nis]'><i class='glyphicon glyphicon-trash'></i> Hapus</button>
-                      </td>";
-                }
-
-
+                foreach ($data as $siswa):
+                  $nis = $siswa['nis'];
+                  $nama= $siswa['nama'];
+                  $jurusan= $siswa['jurusan'];
+                  $agama= $siswa['agama'];
+                  $tahun_ajaran= $siswa['tahun_ajaran'];
+                  $alamat = $siswa['alamat'];
+                  $nama_depan = $siswa['nama_depan'];
+                  $nama_belakang = $siswa['nama_belakang'];
+                  $id_jurusan = $siswa['id_jurusan'];
+                  $ttl = $siswa['ttl'];
+                  $kelamin = $siswa['kelamin'];
                  ?>
+
+                  <tr data-id='<?php echo $nis; ?>'>
+                  <td><span class='span-jurusan caption' data-id='<?php echo $nis; ?>'><?php echo $nis; ?></span> </td>
+                      <td><span class='span-jurusan caption' data-id='<?php echo $nis; ?>'><?php echo $jurusan; ?></span> </td>
+                      <td><span class='span-nama caption' data-id='<?php echo $nis; ?>'><?php echo $nama; ?></span></td>
+                      <td><span class='span-tahun_ajaran caption' data-id='<?php echo $nis; ?>'><?php echo $tahun_ajaran; ?></span></td>
+                      <td>
+                      <button class='btn btn-xs btn-default' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-info-<?php echo $nis; ?>'>
+                        <i class='glyphicon glyphicon-info-sign'></i> Info</button>
+                      <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='#modal-update-<?php echo $nis; ?>'>
+                        <i class='glyphicon glyphicon-edit'></i> Update</a></button>
+                      <button class='btn btn-xs btn-danger hapus-siswa' data-id='<?php echo $nis; ?>'>
+                        <i class='glyphicon glyphicon-trash'></i> Hapus</button>
+                      </td>
+
+                      <div class='modal fade modal-info-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
+                        <div class='modal-dialog modal-sm'>
+                          <div class='modal-content'>
+
+                            <div class='modal-header'>
+                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
+                              </button>
+                              <h4 class='modal-title' id='myModalLabel2'>Detail Siswa</h4>
+                            </div>
+                            <div class='modal-body'>
+                              <p>TTL : <?php echo $ttl; ?> </p>
+                              <p>Agama : <?php echo $agama; ?> </p>
+                              <p>Kelamin :
+                                <?php if($kelamin == 1) {
+                                  echo "Pria";
+                                }
+                                else {
+                                  echo "Wanita";
+                                } ?>
+                              </p>
+                              <p>Alamat : <?php echo $alamat; ?> </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <?php
+                      foreach ($data as $siswa):
+                        $nis = $siswa['nis'];
+                        $tempat_lahir = $siswa['tempat_lahir'];
+                        $tanggal_lahir = $siswa['tanggal_lahir'];
+                        $nama= $siswa['nama'];
+                        $jurusan= $siswa['jurusan'];
+                        $agama= $siswa['agama'];
+                        $tahun_ajaran= $siswa['tahun_ajaran'];
+                        $alamat = $siswa['alamat'];
+                        $nama_depan = $siswa['nama_depan'];
+                        $nama_belakang = $siswa['nama_belakang'];
+                        $id_jurusan = $siswa['id_jurusan'];
+                        $ttl = $siswa['ttl'];
+                        $kelamin = $siswa['kelamin'];
+                       ?>
+                       <div id="modal-update-<?php echo $nis; ?>" class="modal fade">
+                             <div class="modal-dialog">
+                                  <form method="post" action="<?php echo base_url(); ?>c_admin/ubah_data_siswa">
+                                       <div class="modal-content">
+                                            <div class="modal-header">
+                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                 <h4 class="modal-title">Update Siswa</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                 <label>NIS</label>
+                                                 <input type="text" name="nis" id="nis" class="form-control" value=<?php echo $nis; ?> readonly>
+                                                 <label>Nama Depan</label>
+                                                 <input type="text" name="nama_depan" id="nama_depan" class="form-control" value=<?php echo $nama_depan; ?>>
+                                                 <label>Nama Belakang</label>
+                                                 <input type="text" name="nama_belakang" id="nama_belakang" class="form-control" value=<?php echo $nama_belakang; ?>>
+                                                 <label>Tempat Lahir</label>
+                                                 <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" value=<?php echo $tempat_lahir; ?>>
+                                                 <label>Tanggal Lahir</label>
+                                                 <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control" value=<?php echo $tanggal_lahir; ?>>
+                                                 <label>Kelamin</label>
+                                                 </br>
+                                                 <div id="jenis_kelamin" class="btn-group" data-toggle="buttons">
+                                                   <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                     <input type="radio" name="jenis_kelamin" value="1" required> &nbsp; Pria &nbsp;
+                                                   </label>
+                                                   <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                     <input type="radio" name="jenis_kelamin" value="0"> Wanita
+                                                   </label>
+                                                 </div>
+                                                 </br>
+                                                 <label>Alamat</label>
+                                                 <input type="text" name="alamat" id="alamat" class="form-control" value=<?php echo $alamat; ?> >
+                                                 <label>Tahun Ajaran</label>
+                                                 <input type="text" name="tahun_ajaran" id="tahun_ajaran" class="form-control" value=<?php echo $tahun_ajaran; ?> onkeypress="isInputNumber(event)">
+                                                 <label>Agama</label>
+                                                 <input type="text" name="agama" id="agama" class="form-control" value=<?php echo $agama; ?> >
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                 <input type="hidden" name="user_id" id="user_id" />
+                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                 <input type="submit" name="action" id="action" class="btn btn-success" value="Update" />
+                                            </div>
+                                       </div>
+                                  </form>
+                             </div>
+                        </div>
+                       <?php endforeach;?>
+                      </tr>
+<?php endforeach;?>
               </tbody>
             </table>
 

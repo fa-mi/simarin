@@ -50,23 +50,42 @@ class C_admin extends CI_Controller
     $this->load->view('admin/v_data_siswa_admin',$data);
     $this->load->view('admin/footer');
   }
-  function konfirmasi()
+  function data_siswa_prakerin()
+  {
+    $data['data']= $this->m_simarin->data_siswa_prakerin_admin();
+    $this->load->view('admin/header');
+    $this->load->view('admin/v_data_siswa_prakerin_admin',$data);
+    $this->load->view('admin/footer');
+  }
+  function konfirmasi_siswa()
   {
     $id= $this->input->post("id");
-    $this->m_simarin->konfirmasi($id);
+    $this->m_simarin->konfirmasi_siswa($id);
     echo "{}";
   }
-  function update()
+  function batal_siswa()
   {
     $id= $this->input->post("id");
-    print_r($id);
-    //$this->m_simarin->konfirmasi($id);
-    //echo "{}";
-  }
-  function delete(){
-    $id= $this->input->post("id");
-    $this->m_simarin->delete($id);
+    $this->m_simarin->hapus_data_prakerin_siswa($id);
     echo "{}";
+  }
+  function ubah_data_siswa()
+  {
+    $nis = $this->input->post("nis");
+    $nama_depan = $this->input->post("nama_depan");
+    $nama_belakang = $this->input->post("nama_belakang");
+    $tempat_lahir = $this->input->post("tempat_lahir");
+    $tanggal_lahir = $this->input->post("tanggal_lahir");
+    $jenis_kelamin = $this->input->post("jenis_kelamin");
+    $agama = $this->input->post("agama");
+    $alamat = $this->input->post("alamat");
+    $tahun_ajaran = $this->input->post("tahun_ajaran");
+    $data = array('nis' => $nis, 'nama_depan' => $nama_depan, 'nama_belakang' => $nama_belakang,
+    'tempat_lahir' => $tempat_lahir, 'tanggal_lahir' => $tanggal_lahir, 'jenis_kelamin' => $jenis_kelamin,
+    'alamat' => $alamat, 'tahun_ajaran' => $tahun_ajaran, 'agama' => $agama);
+    $this->m_simarin->ubah_data_siswa($data);
+    redirect(base_url().'C_admin/data_siswa');
+
   }
   public function hapus_industri(){
 		$id= $this->input->post("id");
@@ -93,7 +112,39 @@ class C_admin extends CI_Controller
       $this->m_simarin->tambah_industri($data);
       redirect(base_url().'C_admin/v_tambah_industri?pesan=ok');
     }
-
+  }
+  function hapus_siswa()
+  {
+    $id= $this->input->post("id");
+    $this->m_simarin->hapus_siswa($id);
+    echo "{}";
+  }
+  function tambah_siswa()
+  {
+    $nis = $this->input->post("nis");
+    $id_jurusan = $this->input->post("id_jurusan");
+    $nama_depan = $this->input->post("nama_depan");
+    $nama_belakang = $this->input->post("nama_belakang");
+    $tempat_lahir = $this->input->post("tempat_lahir");
+    $tanggal_lahir = $this->input->post("tanggal_lahir");
+    $jenis_kelamin = $this->input->post("jenis_kelamin");
+    $agama = $this->input->post("agama");
+    $alamat = $this->input->post("alamat");
+    $tahun_ajaran = $this->input->post("tahun_ajaran");
+    $d = $this->m_simarin->edit_data('siswa',array('nis' => $nis ));
+    $cek = $d->num_rows();
+    if ($cek > 0) {
+      redirect(base_url().'C_admin/v_tambah_siswa?pesan=gagal');
+    }
+    else {
+      $data = array('nis' => $nis,
+              'id_jurusan' => $id_jurusan, 'nama_depan' => $nama_depan, 'nama_belakang' => $nama_belakang,
+              'tempat_lahir' => $tempat_lahir, 'tanggal_lahir' => $tanggal_lahir, 'jenis_kelamin' => $jenis_kelamin,
+              'agama' => $agama, 'alamat' => $alamat, 'tahun_ajaran' => $tahun_ajaran,
+            );
+            $this->m_simarin->tambah_siswa($data);
+      redirect(base_url().'C_admin/v_tambah_siswa?pesan=ok');
+    }
   }
 
   function v_tambah_industri()

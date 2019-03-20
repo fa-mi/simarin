@@ -32,8 +32,20 @@ setInputFilter(document.getElementById("agama"), function(value) {
   return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("tempat_lahir"), function(value) {
   return /^\D*$/.test(value); });
-  setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
-    return /^\d*$/.test(value); });
+setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
+  return /^\d*$/.test(value); });
+
+  function isInputNumber(evt) {
+    var char = String.fromCharCode(evt.which);
+    if (!(/[0-9]/.test(char))) {
+      evt.preventDefault();
+
+    }
+
+  }
+
+</script>
+<script type="text/javascript">
 
 $(function(){
 
@@ -43,27 +55,6 @@ $.ajaxSetup({
  dataType: "json"
 })
 
-$(document).on("click",".update",function(){
- var id=$(this).attr("data-id");
- swal({
-   title:"update",
-   text:"Masukkan nama industri",
-   type: "input",
-   showCancelButton: true,
-   confirmButtonText: "update",
-   closeOnConfirm: true,
-   inputPlaceholder: "Nama Industri"
- },
-   function(){
-    $.ajax({
-     url:"<?php echo base_url('c_admin/update'); ?>",
-     data:{id:id},
-     type: "POST",
-    });
- });
-
-});
-
 $(document).on("click",".konfirmasi",function(){
  var id=$(this).attr("data-id");
  swal({
@@ -71,12 +62,12 @@ $(document).on("click",".konfirmasi",function(){
    text:"Yakin akan konfirmasi siswa ini?",
    type: "warning",
    showCancelButton: true,
-   confirmButtonText: "konfirmasi",
+   confirmButtonText: "Konfirmasi",
    closeOnConfirm: true,
  },
    function(){
     $.ajax({
-     url:"<?php echo base_url('c_admin/konfirmasi'); ?>",
+     url:"<?php echo base_url('c_admin/konfirmasi_siswa'); ?>",
      data:{id:id},
      success: function(){
        $("tr[data-id='"+id+"']").fadeOut("fast",function(){
@@ -95,15 +86,15 @@ $(document).on("click",".hapus-siswa",function(){
  var id=$(this).attr("data-id");
  swal({
    title:"Hapus Siswa",
-   text:"Yakin akan menghapus data ini?",
+   text:"Yakin akan menghapus data siswa ini?",
    type: "warning",
    showCancelButton: true,
-   confirmButtonText: "Hapus",
+   confirmButtonText: "hapus",
    closeOnConfirm: true,
  },
    function(){
     $.ajax({
-     url:"<?php echo base_url('c_admin/hapus_siswa'); ?>",
+     url:"<?php echo base_url('c_admin/batal_siswa'); ?>",
      data:{id:id},
      success: function(){
        $("tr[data-id='"+id+"']").fadeOut("fast",function(){
@@ -111,6 +102,7 @@ $(document).on("click",".hapus-siswa",function(){
        });
      }
     });
+    location.reload();
  });
 });
 

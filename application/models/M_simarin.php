@@ -49,6 +49,17 @@ class M_simarin extends CI_Model
     $password = "'".$password."'";
     $query = $this->db->query("call ubah_password_admin($id,$password)");
   }
+  function ubah_data_siswa($data)
+  {
+    $nis = "'".$data['nis']."'";
+    $nama_depan = "'".$data['nama_depan']."'";
+    $nama_belakang = "'".$data['nama_belakang']."'";
+    $tempat_lahir = "'".$data['tempat_lahir']."'";
+    $agama = "'".$data['agama']."'";
+    $alamat = "'".$data['alamat']."'";
+    $tanggal_lahir = "'".$data['tanggal_lahir']."'";
+    $query = $this->db->query("call ubah_data_siswa($nis,$nama_depan,$nama_belakang,$tempat_lahir,$tanggal_lahir,$data[jenis_kelamin],$alamat,$agama,$data[tahun_ajaran])");
+  }
   function ubah_password_siswa($nis,$password)
   {
     $nis = "'".$nis."'";
@@ -119,6 +130,11 @@ class M_simarin extends CI_Model
     $query = $this->db->query("call data_siswa_admin()");
     return $query->result_array();
   }
+  public function data_siswa_prakerin_admin()
+  {
+    $query = $this->db->query("call data_siswa_prakerin()");
+    return $query->result_array();
+  }
 
   public function list_semua_industri(){
 
@@ -133,6 +149,16 @@ class M_simarin extends CI_Model
   public function tambah_industri($data){
     $industri = "'".$data['industri']."'";
     $query = $this->db->query("call tambah_industri($data[id_jurusan],$industri,$data[jumlah])");
+  }
+  public function tambah_siswa($data){
+    $nis = "'".$data['nis']."'";
+    $nama_depan = "'".$data['nama_depan']."'";
+    $nama_belakang = "'".$data['nama_belakang']."'";
+    $tempat_lahir = "'".$data['tempat_lahir']."'";
+    $agama = "'".$data['agama']."'";
+    $alamat = "'".$data['alamat']."'";
+    $tanggal_lahir = "'".$data['tanggal_lahir']."'";
+    $query = $this->db->query("call tambah_siswa($nis,$nama_depan,$nama_belakang,$data[id_jurusan],$tempat_lahir,$tanggal_lahir,$alamat,$agama,$data[jenis_kelamin],$data[tahun_ajaran])");
   }
   public function tambah_data_prakerin($nis,$nip,$id_jurusan,$keterangan,$nama_wali,$telp_wali,$status_wali,$id_industri){
     $nis = "'".$nis."'";
@@ -160,9 +186,17 @@ class M_simarin extends CI_Model
     $query = $this->db->query("call validasi_siswa($id)");
     return $query->result_array();
   }
+  public function konfirmasi_siswa($id){
+    $query = $this->db->query("call konfirmasi_siswa($id)");
+    return $query->result_array();
+  }
   public function hapus_data_prakerin_siswa($id){
 
     $query = $this->db->query("call hapus_data_prakerin_siswa($id)");
+    return $query->result_array();
+  }
+  public function hapus_siswa($id){
+    $query = $this->db->query("call hapus_siswa($id)");
     return $query->result_array();
   }
   public function batal_konfirmasi($id){

@@ -14,21 +14,21 @@
             <form class="form-horizontal form-label-left" action="<?php echo base_url('c_admin/tambah_siswa'); ?>" method="post" novalidate >
               <div class="form-group">
                 <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">NIS <span class="required"></span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS <span class="required"></span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="text" class="optional form-control col-md-7 col-xs-12" name="nis" id="nis">
                   </div>
                 </div>
                 <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">Nama Depan <span class="required"></span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_depan">Nama Depan <span class="required"></span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="text" name="nama_depan" id="nama_depan" class="optional form-control col-md-7 col-xs-12">
                   </div>
                 </div>
                 <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">Nama Belakang <span class="required"></span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_belakang">Nama Belakang <span class="required"></span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="text" name="nama_belakang" id="nama_belakang" class="optional form-control col-md-7 col-xs-12">
@@ -50,28 +50,28 @@
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">Tempat Lahir <span class="required"></span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Tempat Lahir <span class="required"></span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="text" name="tempat_lahir" id="tempat_lahir" class="optional form-control col-md-7 col-xs-12">
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">Tanggal Lahir <span class="required"></span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Tanggal Lahir <span class="required"></span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="optional form-control col-md-7 col-xs-12">
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Jenis Kelamin</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div id="gender" class="btn-group" data-toggle="buttons">
+                  <div id="jenis_kelamin" class="btn-group" data-toggle="buttons">
                     <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="male"> &nbsp; Pria &nbsp;
+                      <input type="radio" name="jenis_kelamin" value="1"> &nbsp; Pria &nbsp;
                     </label>
                     <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="female"> Wanita
+                      <input type="radio" name="jenis_kelamin" value="0"> Wanita
                     </label>
                   </div>
                 </div>
@@ -97,17 +97,17 @@
                   <input type="text" id="tahun_ajaran" name="tahun_ajaran" required="required" class="form-control col-md-7 col-xs-12">
                 </div>
               </div>
-              </div>
-              <div class="ln_solid"></div>
               <?php
               if(isset($_GET['pesan'])){
               if($_GET['pesan'] == "gagal"){
-              echo "<div class='col-md-3 col-md-offset-3 alert alert-danger'>Nama Industri Sudah Ada !</div>";
+              echo "<div class='col-md-3 col-md-offset-3 alert alert-danger'>NIS siswa sudah ada !</div>";
               }else if($_GET['pesan'] == "ok"){
               echo "<div class='col-md-3 col-md-offset-3 alert alert-success'>Data Berhasil Diinputkan !</div>";
               }
               }
               ?>
+              </div>
+              <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
                   <button type="button" class="btn btn-default"><a href="<?php echo site_url(); ?>c_admin/data_siswa">Kembali</a></button>

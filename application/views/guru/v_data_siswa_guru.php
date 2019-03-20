@@ -56,7 +56,7 @@
                         echo "<button class='btn btn-xs btn-warning validasi' data-id='$siswa[nis]'><i class='glyphicon glyphicon-ok-sign'></i> Validasi</button>";
                       }
                       else {
-                        echo "<button class='btn btn-xs btn-warning' data-id='$siswa[nis]'><i class='glyphicon glyphicon-ok-sign'></i> Validasi</button>";
+                        echo "";
                       }
                       echo "
                       <button class='btn btn-xs btn-danger batal' data-id='$siswa[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
@@ -80,11 +80,11 @@
                               echo "Pria";
                             }
                             else {
-                              echo "Perempuan";
+                              echo "Wanita";
                             }
                             echo "
                               </p>
-                              <p>Alamat : $siswa[alamat] </p>    
+                              <p>Alamat : $siswa[alamat] </p>
                               <p> Nama Wali : $siswa[nama_wali]</p>
                               <p> Status Wali : $siswa[status_wali]</p>
                               <p> No. Telp Wali : $siswa[telp_wali]</p>
