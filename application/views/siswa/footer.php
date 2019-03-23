@@ -27,6 +27,8 @@ function setInputFilter(textbox, inputFilter) {
 // Install input filters.
 setInputFilter(document.getElementById("phone"), function(value) {
   return /^\d*$/.test(value); });
+  setInputFilter(document.getElementById("nama_wali"), function(value) {
+    return /^\D*$/.test(value); });
 function enabledisabletext()
 {
 	if(document.form.pilihan.value=='lain')

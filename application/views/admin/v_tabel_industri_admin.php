@@ -26,6 +26,7 @@
                   <th>Jurusan</th>
                   <th>Industri</th>
                   <th>Status</th>
+                  <th>Jumlah Siswa Diterima</th>
                   <th>Edit</th>
 
                 </tr>
@@ -47,13 +48,9 @@
                       }
                       echo "
                       </td>
-                      <td> ";
-                      echo "<button class='btn btn-xs btn-info' data-id='$industri[id_industri]'><i class='glyphicon glyphicon-zoom-in'></i>";
-                      echo "<a href=";
-                      echo "'<?php echo site_url(); ?>c_siswa'";
-                      echo ">";
-                      echo "Lihat</a></button>";
-                      echo "
+                      <td><span class='span-industri caption' data-id='$industri[id_industri]'>$industri[jumlah_siswa]</span></td>
+                      <td>
+                      <button class='btn btn-xs btn-info' data-id='$industri[id_industri]'><i class='glyphicon glyphicon-zoom-in'></i> Info </button>
                       <button class='btn btn-xs btn-warning update' data-id='$industri[id_industri]'><i class='glyphicon glyphicon-edit'></i> Edit</button>
                 			<button class='btn btn-xs btn-danger hapus-industri' data-id='$industri[id_industri]'><i class='glyphicon glyphicon-remove'></i> Hapus</button>
                       </td>

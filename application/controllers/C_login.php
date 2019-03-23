@@ -64,8 +64,10 @@ class C_login extends CI_Controller
           $this->session->set_userdata($validasi);
       }
 
+      $aktif = array('aktif' => $dx->is_aktif );
       $this->session->set_userdata($progres);
       $this->session->set_userdata($session);
+      $this->session->set_userdata($aktif);
       redirect(base_url().'C_siswa');
     }else{
       redirect(base_url().'C_login?pesan=gagal');

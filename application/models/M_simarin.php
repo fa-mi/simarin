@@ -226,6 +226,11 @@ class M_simarin extends CI_Model
     $query = $this->db->query("call list_jurusan()");
     return $query->result_array();
   }
+  public function list_industri(){
+
+    $query = $this->db->query("call list_industri()");
+    return $query->result_array();
+  }
 
 
 }

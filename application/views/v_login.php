@@ -77,14 +77,6 @@
           Login
         </button>
       </div>
-
-
-
-					<div class="text-center p-t-12">
-						<a class="txt2" href="<?php echo site_url(); ?>c_login/forget">
-							Lupa Password?
-						</a>
-					</div>
 					<div class="text-center p-t-12">
 						<a class="txt2" href="<?php echo site_url(); ?>c_login/v_login_admin">
 							Login Sebagai Admin/Guru Kelas.
