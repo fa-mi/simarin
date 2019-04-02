@@ -31,7 +31,7 @@ setInputFilter(document.getElementById("phone"), function(value) {
     return /^\D*$/.test(value); });
 function enabledisabletext()
 {
-	if(document.form.pilihan.value=='lain')
+	if(document.form.industri.value=='lain')
 	{
 	document.form.keterangan.disabled=false;
 	}
@@ -41,17 +41,6 @@ function enabledisabletext()
 	}
 }
 
-function enabledisabletextwali()
-{
-	if(document.form.status_wali.value=='lain_wali')
-	{
-	document.form.keterangan_wali.disabled=false;
-	}
-	else
-	{
-	document.form.keterangan_wali.disabled=true;
-	}
-}
 </script>
 
 <!-- jQuery -->

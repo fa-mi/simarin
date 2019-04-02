@@ -36,6 +36,7 @@
                   $id_jurusan = $siswa['id_jurusan'];
                   $ttl = $siswa['ttl'];
                   $kelamin = $siswa['kelamin'];
+                  $password = $siswa['password'];
                  ?>
 
                   <tr data-id='<?php echo $nis; ?>'>
@@ -105,13 +106,17 @@
                                                  <label>NIS</label>
                                                  <input type="text" name="nis" id="nis" class="form-control" value=<?php echo $nis; ?> readonly>
                                                  <label>Nama Depan</label>
-                                                 <input type="text" name="nama_depan" id="nama_depan" class="form-control" value=<?php echo $nama_depan; ?>>
+                                                 <input type="text" name="nama_depan" id="nama_depan" class="form-control" value=<?php echo $nama_depan; ?> onkeypress="isInputChar(event)"
+                                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                                                  <label>Nama Belakang</label>
-                                                 <input type="text" name="nama_belakang" id="nama_belakang" class="form-control" value=<?php echo $nama_belakang; ?>>
+                                                 <input type="text" name="nama_belakang" id="nama_belakang" class="form-control" value=<?php echo $nama_belakang; ?> onkeypress="isInputChar(event)"
+                                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                                                  <label>Tempat Lahir</label>
-                                                 <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" value=<?php echo $tempat_lahir; ?>>
+                                                 <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" value=<?php echo $tempat_lahir; ?> onkeypress="isInputChar(event)"
+                                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                                                  <label>Tanggal Lahir</label>
-                                                 <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control" value=<?php echo $tanggal_lahir; ?>>
+                                                 <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control" value=<?php echo $tanggal_lahir; ?>
+                                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                                                  <label>Kelamin</label>
                                                  </br>
                                                  <div id="jenis_kelamin" class="btn-group" data-toggle="buttons">
@@ -124,11 +129,14 @@
                                                  </div>
                                                  </br>
                                                  <label>Alamat</label>
-                                                 <input type="text" name="alamat" id="alamat" class="form-control" value=<?php echo $alamat; ?> >
+                                                 <input type="text" name="alamat" id="alamat" class="form-control" value=<?php echo $alamat; ?>
+                                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                                                  <label>Tahun Ajaran</label>
-                                                 <input type="text" name="tahun_ajaran" id="tahun_ajaran" class="form-control" value=<?php echo $tahun_ajaran; ?> onkeypress="isInputNumber(event)">
+                                                 <input type="text" name="tahun_ajaran" id="tahun_ajaran" class="form-control" value=<?php echo $tahun_ajaran; ?> onkeypress="isInputNumber(event)"
+                                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                                                  <label>Agama</label>
-                                                 <input type="text" name="agama" id="agama" class="form-control" value=<?php echo $agama; ?> >
+                                                 <input type="text" name="agama" id="agama" class="form-control" value=<?php echo $agama; ?> onkeypress="isInputChar(event)"
+                                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
 
                                             </div>
                                             <div class="modal-footer">
@@ -151,5 +159,10 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="alert alert-info alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+    </button>
+    <strong>Data siswa yang sudah mendaftar prakerin tidak bisa dihapus !</strong>
   </div>
 </div>

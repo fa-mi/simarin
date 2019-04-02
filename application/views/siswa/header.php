@@ -34,7 +34,51 @@
     <link href="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url(); ?>assets/dashboard/build/css/custom.min.css" rel="stylesheet">
+    <script>
+    function startTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      var weekday = new Array(7);
+      weekday[0] = "Minggu";
+      weekday[1] = "Senin";
+      weekday[2] = "Selasa";
+      weekday[3] = "Rabu";
+      weekday[4] = "Kamis";
+      weekday[5] = "Jumat";
+      weekday[6] = "Sabtu";
 
+      var month = new Array();
+      month[0] = "Januari";
+      month[1] = "Februari";
+      month[2] = "Maret";
+      month[3] = "April";
+      month[4] = "Mei";
+      month[5] = "Juni";
+      month[6] = "Juli";
+      month[7] = "Agustus";
+      month[8] = "September";
+      month[9] = "October";
+      month[10] = "November";
+      month[11] = "Desember";
+
+      var month = month[today.getMonth()];
+      var day = weekday[today.getDay()];
+      var date = today.getDate();
+      var year = today.getFullYear();
+      document.getElementById('date').innerHTML =
+      day + ", "+date+" "+month+" "+year+" ("+h + ":" + m + ":" + s+")";
+      var t = setTimeout(startTime, 500);
+
+    }
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+    }
+    </script>
     <style>
     .disabled {
     pointer-events:none; //This makes it not clickable
@@ -42,13 +86,13 @@
 }
     </style>
   </head>
-  <body class="nav-md">
+  <body class="nav-md" onload="startTime()">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url(); ?>c_siswa" class="site_title"><i class="	fa fa-life-saver"></i> <span>Dashboard Siswa</span></a>
+              <a href="<?php echo site_url(); ?>c_siswa" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN</span></a>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->
@@ -106,10 +150,7 @@
                 <li role="presentation" class="dropdown">
                   <a>
                     <span class='badge bg-red'> Waktu Server </span>
-                <span class='badge bg-white'> <?php
-                echo $this->session->userdata('waktu');
-                ?>
-                      </span>
+                      <span class='badge bg-white' id="date"></span>
                           </a>
                 </li>
               </ul>

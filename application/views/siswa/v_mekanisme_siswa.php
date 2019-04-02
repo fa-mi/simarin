@@ -33,7 +33,7 @@
                             <span class="step_no">2</span>
                             <span class="step_descr">
                                               Step 2<br />
-                                              <small>Validasi dengan guru pendamping/kelas</small>
+                                              <small>Pendataan oleh admin</small>
                                           </span>
                           </a>
                         </li>
@@ -42,7 +42,7 @@
                             <span class="step_no">3</span>
                             <span class="step_descr">
                                               Step 3<br />
-                                              <small>Pendataan oleh admin</small>
+                                              <small>Pembekalan calon siswa-siwi Prakerin</small>
                                           </span>
                           </a>
                         </li>
@@ -51,15 +51,6 @@
                             <span class="step_no">4</span>
                             <span class="step_descr">
                                               Step 4<br />
-                                              <small>Pembekalan calon siswa-siwi Prakerin</small>
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-5">
-                            <span class="step_no">5</span>
-                            <span class="step_descr">
-                                              Step 5<br />
                                               <small>Siswa/siswi melaksanakan kegiatan PRAKERIN</small>
                                           </span>
                           </a>
@@ -75,25 +66,18 @@
                       <div id="step-2">
                         <h2 class="StepTitle">Step 2</h2>
                         <p>
-                          Siswa/siswi melaksanakan konsultasi kepada guru pembimbing/kelas masing-masing terkait industri yang dituju.
-                          Apabila guru pembimbing/kelas tidak menyetujui industri yang dituju, maka siswa/siswi wajib kembali ke step sebelumnya sebelum melanjutkan ke step berikutnya.
+                          Pendataan terkait pendaftaran Prakerin oleh admin.
                         </p>
                       </div>
                       <div id="step-3">
-                        <h2 class="StepTitle">Step 4</h2>
-                        <p>
-                          Siswa/siswi memberikan form yang sudah ditandatangani oleh ortu/wali kepada staff penanganan Prakerin.
-                        </p>
-                      </div>
-                      <div id="step-4">
-                        <h2 class="StepTitle">Step 4</h2>
+                        <h2 class="StepTitle">Step 3</h2>
                         <p>
                           Siswa/siswi wajib mengikuti pembekalan terkait Prakerin yang diselenggarakan oleh pihak sekolah.
                           <b>Terdapat absensi dari tiap pembekalan yang ada.</b>
                         </p>
                       </div>
-                      <div id="step-5">
-                        <h2 class="StepTitle">Step 5</h2>
+                      <div id="step-4">
+                        <h2 class="StepTitle">Step 4</h2>
                         <p>
                           Siswa/siswi melaksanakan kegiatan Praktek Kerja Industri
                           di Industri dengan <b>baik, semangat, patuh, berwibawa, dan menjaga nama baik sekolah SMK Muhammadiyah 1 Malang</b>

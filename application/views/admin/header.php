@@ -13,15 +13,50 @@
     <script src="<?php echo base_url(); ?>assets/dashboard/vendors/Chart.js/dist/Chart.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/sweetalert/sweetalert.min.js'); ?>"></script>
-    <script type="text/javascript">
-    function CheckColors(val){
-     var element=document.getElementById('color');
-     if(val=='pick a color'||val=='others')
-       element.style.display='block';
-     else
-       element.style.display='none';
-    }
+    <script>
+    function startTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      var weekday = new Array(7);
+      weekday[0] = "Minggu";
+      weekday[1] = "Senin";
+      weekday[2] = "Selasa";
+      weekday[3] = "Rabu";
+      weekday[4] = "Kamis";
+      weekday[5] = "Jumat";
+      weekday[6] = "Sabtu";
 
+      var month = new Array();
+      month[0] = "Januari";
+      month[1] = "Februari";
+      month[2] = "Maret";
+      month[3] = "April";
+      month[4] = "Mei";
+      month[5] = "Juni";
+      month[6] = "Juli";
+      month[7] = "Agustus";
+      month[8] = "September";
+      month[9] = "October";
+      month[10] = "November";
+      month[11] = "Desember";
+
+      var month = month[today.getMonth()];
+      var day = weekday[today.getDay()];
+      var date = today.getDate();
+      var year = today.getFullYear();
+      document.getElementById('date').innerHTML =
+      day + ", "+date+" "+month+" "+year+" ("+h + ":" + m + ":" + s+")";
+      var t = setTimeout(startTime, 500);
+
+    }
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+    }
     </script>
 
     <!-- Bootstrap -->
@@ -43,13 +78,13 @@
       <script type="text/javascript" src="<?php echo base_url('assets/jquery.js'); ?>"></script>
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md" onload="startTime()">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url(); ?>c_admin" class="site_title"><i class="	fa fa-life-saver"></i> <span>Dashboard Admin </span></a>
+              <a href="<?php echo site_url(); ?>c_admin" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN </span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -78,16 +113,11 @@
 
                   <li><a><i class="fa fa-user"></i> Menu Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa">Tabel Siswa</a></li>
-                      <li><a href="<?php echo site_url(); ?>c_admin/data_siswa_prakerin">Tabel Siswa Prakerin</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa">Tabel Siswa</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa_prakerin">Tabel Siswa Prakerin</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_penjajakan_siswa">Tabel Penjajakan Siswa</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-university"></i> Menu Guru <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_industri">Tabel Bimbingan</a></li>
-                    </ul>
-                  </li>
-
                   <li><a><i class="fa fa-building"></i> Menu Industri <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo site_url(); ?>c_admin/tabel_industri">Tabel Industri</a></li>
@@ -130,6 +160,12 @@
                     <li><a href="<?php echo site_url(); ?>c_admin/v_ubah_password"><i class="fa fa-key pull-right"></i>Ubah Password</a></li>
                     <li><a href="<?php echo site_url(); ?>c_admin/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
+                </li>
+                <li role="presentation" class="dropdown">
+                  <a>
+                    <span class='badge bg-red'> Waktu Server </span>
+                      <span class='badge bg-white' id="date"></span>
+                          </a>
                 </li>
               </ul>
             </nav>

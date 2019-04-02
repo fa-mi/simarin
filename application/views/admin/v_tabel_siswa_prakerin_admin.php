@@ -17,7 +17,6 @@
                   <th>Nama</th>
                   <th>Industri</th>
                   <th>Waktu Pendaftaran</th>
-                  <th>Validasi</th>
                   <th>Aktif</th>
                   <th>Edit</th>
 
@@ -34,15 +33,6 @@
                      <td><span class='span-email caption' data-id='$data[nis]'>$data[industri]</span></td>
                      <td><span class='span-email caption' data-id='$data[nis]'>$data[waktu_pendaftaran]</span></td>
                      <td>";
-                     if ($data['validasi'] == 0) {
-                       echo "<button type='button' class='btn btn-danger btn-sm' data-id='$data[nis]'>Belum Validasi</button>";
-                     }
-                     else {
-                     echo "<button type='button' class='btn btn-success btn-sm' data-id='$data[nis]'>Sudah Validasi</button>";
-                     }
-                     echo "
-                     </td>
-                     <td>";
                      if ($data['aktif'] == 0) {
                        echo "<button type='button' class='btn btn-warning btn-sm' data-id='$data[nis]'>Belum aktif</button>";
                      }
@@ -53,14 +43,14 @@
                      <td>
                      <button class='btn btn-xs btn-default' data-id='$data[nis]' data-toggle='modal' data-target='.modal-info-$data[nis]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
                      ";
-                     if ($data['aktif'] == 0) {
-                       echo "<button class='btn btn-xs btn-info konfirmasi' data-id='$data[nis]'><i class='glyphicon glyphicon-ok-sign'></i> Konfirmasi</button>";
-                     }
-                     else {
+                     if ($data['aktif'] == 1) {
                        echo "";
                      }
+                     else {
+                       echo "<button class='btn btn-xs btn-info konfirmasi' data-id='$data[nis]'><i class='glyphicon glyphicon-ok-sign'></i> Aktifasi</button>
+                       <button class='btn btn-xs btn-danger batal_siswa' data-id='$data[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>";
+                     }
                      echo "
-                     <button class='btn btn-xs btn-danger batal' data-id='$data[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
                      </td>";
                      echo "
                      <div class='modal fade modal-info-$data[nis]' tabindex='-1' role='dialog' aria-hidden='true'>
@@ -72,11 +62,9 @@
                              </button>
                              <h4 class='modal-title' id='myModalLabel2'>Info Siswa</h4>
                            </div>
-                           <div class='modal-body'>             
+                           <div class='modal-body'>
                              <p>Keterangan Industri : $data[keterangan]<p>
                              <p>Waktu Prakerin : $data[waktu_prakerin] </p>
-                             <p>Nama Pembimbing : $data[nama_guru] </p>
-                             <p>Nama Pembimbing : $data[nama_guru] </p>
                              <p> Nama Wali : $data[nama_wali]</p>
                              <p> Status Wali : $data[status]</p>
                              <p> No. Telp Wali : $data[no_telp]</p>

@@ -11,12 +11,14 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_content">
-            <form class="form-horizontal form-label-left" action="<?php echo base_url('c_admin/tambah_industri'); ?>" method="post" novalidate >
+            <form class="form-horizontal form-label-left" action="<?php echo base_url('c_admin/tambah_industri'); ?>" method="post">
               <div class="form-group">
+
+                <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilih Jurusan</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <select class="form-control" name="id_jurusan">
-                    <option>Silahkan Pilih</option>
+                    <option value="0">Silahkan Pilih</option>
                     <?php
                     foreach ($data as $jurusan) {
                     	echo "
@@ -28,18 +30,21 @@
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">Nama Industri <span class="required"></span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">Nama Industri
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" name="industri" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                  <input type="text" name="nama_industri" id="nama_industri" class="optional form-control col-md-7 col-xs-12" required
+                  oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Jumlah Calon Prakerin <span class="required"></span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Jumlah Siswa Prakerin
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="texr" name="jumlah" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="jumlah" name="jumlah" required class="form-control col-md-7 col-xs-12" oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')"
+                  oninput="setCustomValidity('')">
                 </div>
+              </div>
               </div>
               <div class="ln_solid"></div>
               <?php
@@ -48,6 +53,8 @@
               echo "<div class='col-md-3 col-md-offset-3 alert alert-danger'>Nama Industri Sudah Ada !</div>";
               }else if($_GET['pesan'] == "ok"){
               echo "<div class='col-md-3 col-md-offset-3 alert alert-success'>Data Berhasil Diinputkan !</div>";
+            }else if($_GET['pesan'] == "salah"){
+              echo "<div class='col-md-3 col-md-offset-3 alert alert-danger'>Salah Input Jurusan !</div>";
               }
               }
               ?>
@@ -57,8 +64,8 @@
                   <button type="submit" class="btn btn-success">Submit</button>
                 </div>
               </div>
+            </div>
             </form>
-
           </div>
         </div>
       </div>

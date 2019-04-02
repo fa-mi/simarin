@@ -13,17 +13,11 @@
           </div>
           <div class="x_content">
             <br />
-            <form class="form-horizontal form-label-left" action="<?php echo base_url('c_siswa/pendaftaran'); ?>" method="post" novalidate name="form" >
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Jurusan :</label>
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="text" class="form-control" readonly="readonly" placeholder="<?php echo $this->session->userdata('jurusan') ?>">
-                </div>
-              </div>
+            <form class="form-horizontal form-label-left" action="<?php echo base_url('c_siswa/pendaftaran'); ?>" method="post" name="form" >
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Industri :</label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <select class="form-control" name="pilihan" onchange="enabledisabletext()">
+                  <select class="form-control" name="industri" onchange="enabledisabletext()">
                     <option value="menu">Silahkan Pilih Industri</option>
                     <?php
                     foreach ($data as $industri) {
@@ -39,13 +33,15 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan : </label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="text" class="form-control" placeholder="Industri Lainnya" name="keterangan" disabled="disable" required>
+                  <input type="text" class="form-control" placeholder="Industri Lainnya" name="keterangan" disabled="disable" required
+                  oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Wali :</label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="text" class="form-control" name="nama_wali" placeholder="Nama Wali" id="nama_wali" required>
+                  <input type="text" class="form-control" name="nama_wali" placeholder="Nama Wali" id="nama_wali" required
+                  oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="form-group">
@@ -55,20 +51,15 @@
                     <option value="menu_wali">Silahkan Pilih Status</option>
                     <option value="ayah">Ayah</option>
                     <option value="ibu">Ibu</option>
-                    <option value="lain_wali">Lainnya</option>
                   </select>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan Wali : </label>
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="text" class="form-control" placeholder="Wali Lainnya" name="keterangan_wali" disabled="disable">
-                </div>
-              </div>
+
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">No. Telpon Wali :</label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="tel" pattern="[0-9]{3}-[0-9]{12}" class="form-control" name="telp_wali" placeholder="Nomor Telepon Wali" id="phone">
+                  <input type="tel" class="form-control" name="telp_wali" placeholder="Nomor Telepon Wali" id="phone" required
+                  oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="form-group">
@@ -79,11 +70,11 @@
                 if($_GET['pesan'] == "sudah"){
                   echo "<div class='alert alert-danger'>Anda Sudah Mendaftar!</div>";
                 }elseif ($_GET['pesan'] == "berhasil") {
-                  echo "<div class='alert alert-success'>Silahkan Cetak Form pada Menu Status!</div>";
-                }elseif ($_GET['pesan'] == "salahpilih") {
-                  echo "<div class='alert alert-info'>Silahkan Pilih Kembali!</div>";
-                }elseif ($_GET['pesan'] == "null") {
-                  echo "<div class='alert alert-warning'>Data Tidak Boleh Kosong!</div>";
+                  echo "<div class='alert alert-success'>Menunggu Pendataaan Oleh Admin!</div>";
+                }elseif ($_GET['pesan'] == "salahpilihindustri") {
+                  echo "<div class='alert alert-info'>Silahkan Pilih Industri!</div>";
+                }elseif ($_GET['pesan'] == "salahpilihwali") {
+                  echo "<div class='alert alert-info'>Silahkan Pilih Status Wali!</div>";
                 }elseif ($_GET['pesan'] == "telp") {
                   echo "<div class='alert alert-warning'>No Telp Sudah Ada!</div>";
                 }

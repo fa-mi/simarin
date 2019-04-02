@@ -21,13 +21,9 @@
                     echo '<h1>Belum Mendaftar!</h1>
                     <p>Anda belum mendaftar prakerin.</p>';
                     }
-                    elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 0 && $this->session->userdata('aktif') == null) {
+                    elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 0 && $this->session->userdata('aktif') == 0) {
                     echo '<h1>Sudah Mendaftar!</h1>
-                    <p>Konsultasi kepada guru pembimbing/kelas terkait masalah industri tempat PRAKERIN.</p>';
-                  }
-                  elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1 && $this->session->userdata('aktif') == null) {
-                    echo '<h1>Sudah Validasi Guru pembimbing/kelas!</h1>
-                    <p>Menunggu pihak sekolah untuk mendata siswa-siswi yang mendaftar.</p>';
+                    <p>Menunggu Pendataan Oleh Pihak Sekolah</p>';
                   }
                   elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
                           && $this->session->userdata('aktif') == 0) {

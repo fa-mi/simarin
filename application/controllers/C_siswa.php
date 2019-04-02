@@ -7,7 +7,10 @@ class C_siswa extends CI_Controller
 {
   function __construct(){
 		parent::__construct();
-    $this->load->model('m_simarin');
+    $this->load->model('m_siswa');
+    $this->load->model('m_prakerin');
+    $this->load->model('m_wali');
+    $this->load->model('m_industri');
 
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url().'c_login?pesan=belumlogin');
@@ -28,7 +31,7 @@ class C_siswa extends CI_Controller
   }
   function v_pendaftaran()
   {
-    $data['data']=$this->m_simarin->data_industri_jurusan($this->session->userdata('id_jurusan'));
+    $data['data']=$this->m_industri->data_industri_jurusan($this->session->userdata('id_jurusan'));
     $this->load->view('siswa/header');
     $this->load->view('siswa/v_pendaftaran_siswa',$data);
     $this->load->view('siswa/footer');
@@ -42,17 +45,14 @@ class C_siswa extends CI_Controller
   function pendaftaran()
   {
     $data = array('nis' => $this->session->userdata('nis'));
-    $gurux = array('id_jurusan' => $this->session->userdata('id_jurusan'));
-    $datax = $this->m_simarin->edit_data('prakerin',$data);
-    $dx = $this->m_simarin->edit_data('prakerin',$data)->row();
+    $datax = $this->m_prakerin->edit_data('prakerin',$data);
+    $dx = $this->m_prakerin->edit_data('prakerin',$data)->row();
     $ceks = $datax->num_rows();
-    $wali = $this->m_simarin->get_data('wali')->row();
-    $guru = $this->m_simarin->edit_data('guru',$gurux)->row();
-    $id_industri = $this->input->post('pilihan');
+    $wali = $this->m_wali->get_data('wali')->row();
+    $id_industri = $this->input->post('industri');
     $keterangan =  $this->input->post('keterangan');
     $nama_wali = $this->input->post('nama_wali');
     $status_wali = $this->input->post('status_wali');
-    $keterangan_wali =  $this->input->post('keterangan_wali');
     $telp_wali = $this->input->post('telp_wali');
     $pilihan_wali = $this->input->post('pilihan_wali');
 
@@ -71,48 +71,25 @@ class C_siswa extends CI_Controller
       if ($wali->no_telp == $telp_wali) {
         redirect(base_url().'c_siswa/v_pendaftaran?pesan=telp');
       }
-
-      if ($id_industri == "menu" || $pilihan_wali == "menu_wali" ) {
-        redirect(base_url().'c_siswa/v_pendaftaran?pesan=salahpilih');
-        if ($keterangan == null || $nama_wali == null || $keterangan_wali == null || $telp_wali == null) {
-          redirect(base_url().'c_siswa/v_pendaftaran?pesan=null');
-        }
-        else {
-          $this->m_simarin->tambah_data_prakerin($this->session->userdata('nis'),
-          $guru->nip,$this->session->userdata('id_jurusan'),$keterangan,$nama_wali,$telp_wali,$status_wali,$id_industri
-          );
-            $this->session->unset_userdata('progres');
-            $progres = array('progres' => $ceks+1);
-            $this->session->set_userdata($progres);
-          redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
-        }
+       elseif ($id_industri == "menu" ) {
+        redirect(base_url().'c_siswa/v_pendaftaran?pesan=salahpilihindustri');
       }
-
+      elseif ($status_wali == "menu_wali" ) {
+       redirect(base_url().'c_siswa/v_pendaftaran?pesan=salahpilihwali');
+     }
       else {
-        if ($nama_wali == null || $telp_wali == null) {
-          redirect(base_url().'c_siswa/v_pendaftaran?pesan=null');
-        }
-        else {
-          $this->m_simarin->tambah_data_prakerin($this->session->userdata('nis'),
-          $guru->nip,$this->session->userdata('id_jurusan'),$keterangan,$nama_wali,$telp_wali,$status_wali,$id_industri
-          );
-            $this->session->unset_userdata('progres');
-            $progres = array('progres' => $ceks+1);
-            $this->session->set_userdata($progres);
-            $validasi = array('validasi' => $dx->is_validasi);
-            $this->session->set_userdata($validasi);
-          redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
-        }
+        $input = array('nis' => $data['nis'] , 'id_jurusan' => $this->session->userdata('id_jurusan'),
+        'id_industri' => $id_industri, 'nama_wali' => $nama_wali, 'status_wali' => $status_wali,
+        'telp_wali' => $telp_wali,'keterangan' => $keterangan);
+        $this->m_prakerin->tambah_data_prakerin($input);
+        $this->session->unset_userdata('progres');
+        $progres = array('progres' => $ceks+1);
+        $this->session->set_userdata($progres);
+        redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
       }
     }
   }
-  function v_profile()
-  {
 
-    $this->load->view('siswa/header');
-    $this->load->view('siswa/v_profile_siswa');
-    $this->load->view('siswa/footer');
-  }
   function v_ubah_password()
   {
     $this->load->view('siswa/header');
@@ -133,7 +110,7 @@ class C_siswa extends CI_Controller
         'password2' => md5($password2)
       );
       if($where['password'] == $where['password2']){
-        $this->m_simarin->ubah_password_siswa($where['nis'],$where['password']);
+        $this->m_siswa->ubah_password_siswa($where['nis'],$where['password']);
         $this->session->sess_destroy();
         redirect(base_url().'c_login?pesan=login');
 

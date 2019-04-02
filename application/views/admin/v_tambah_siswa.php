@@ -6,39 +6,41 @@
       </div>
     </div>
     <div class="clearfix"></div>
-
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_content">
-            <form class="form-horizontal form-label-left" action="<?php echo base_url('c_admin/tambah_siswa'); ?>" method="post" novalidate >
+            <form class="form-horizontal form-label-left" action="<?php echo base_url('c_admin/tambah_siswa'); ?>" method="post">
               <div class="form-group">
                 <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS <span class="required"></span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="optional form-control col-md-7 col-xs-12" name="nis" id="nis">
+                    <input type="text" class="optional form-control col-md-7 col-xs-12" name="nis" id="nis" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')"
+                    oninput="setCustomValidity('')">
                   </div>
                 </div>
                 <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_depan">Nama Depan <span class="required"></span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_depan">Nama Depan
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="nama_depan" id="nama_depan" class="optional form-control col-md-7 col-xs-12">
+                    <input type="text" name="nama_depan" id="nama_depan" class="optional form-control col-md-7 col-xs-12" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')"
+                    oninput="setCustomValidity('')">
                   </div>
                 </div>
                 <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_belakang">Nama Belakang <span class="required"></span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_belakang">Nama Belakang
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="nama_belakang" id="nama_belakang" class="optional form-control col-md-7 col-xs-12">
+                    <input type="text" name="nama_belakang" id="nama_belakang" class="optional form-control col-md-7 col-xs-12" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')"
+                    oninput="setCustomValidity('')">
                   </div>
                 </div>
                 <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilih Jurusan</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <select class="form-control" name="id_jurusan">
-                    <option>Silahkan Pilih</option>
+                    <option value="0">Silahkan Pilih</option>
                     <?php
                     foreach ($data as $jurusan) {
                     	echo "
@@ -50,17 +52,19 @@
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Tempat Lahir <span class="required"></span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Tempat Lahir
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" name="tempat_lahir" id="tempat_lahir" class="optional form-control col-md-7 col-xs-12">
+                  <input type="text" name="tempat_lahir" id="tempat_lahir" class="optional form-control col-md-7 col-xs-12" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')"
+                  oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Tanggal Lahir <span class="required"></span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Tanggal Lahir
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="optional form-control col-md-7 col-xs-12">
+                  <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="optional form-control col-md-7 col-xs-12" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')"
+                  oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="item form-group">
@@ -68,33 +72,33 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <div id="jenis_kelamin" class="btn-group" data-toggle="buttons">
                     <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="jenis_kelamin" value="1"> &nbsp; Pria &nbsp;
+                      <input type="radio" name="jenis_kelamin" value="1" required> &nbsp; Pria &nbsp;
                     </label>
                     <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="jenis_kelamin" value="0"> Wanita
+                      <input type="radio" name="jenis_kelamin" value="0" required> Wanita
                     </label>
                   </div>
                 </div>
               </div>
             <div class="item form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Agama<span class="required"></span>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Agama
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="agama" name="agama" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="agama" name="agama" required="required" class="form-control col-md-7 col-xs-12" oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
               </div>
             </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Alamat<span class="required"></span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Alamat
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" name="alamat" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" name="alamat" required="required" class="form-control col-md-7 col-xs-12" oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Tahun Ajaran<span class="required"></span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Tahun Ajaran
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="tahun_ajaran" name="tahun_ajaran" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="tahun_ajaran" name="tahun_ajaran" required="required" class="form-control col-md-7 col-xs-12" oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                 </div>
               </div>
               <?php
@@ -103,6 +107,8 @@
               echo "<div class='col-md-3 col-md-offset-3 alert alert-danger'>NIS siswa sudah ada !</div>";
               }else if($_GET['pesan'] == "ok"){
               echo "<div class='col-md-3 col-md-offset-3 alert alert-success'>Data Berhasil Diinputkan !</div>";
+            }else if($_GET['pesan'] == "salah"){
+              echo "<div class='col-md-3 col-md-offset-3 alert alert-warning'>Input Jurusan Salah !</div>";
               }
               }
               ?>
@@ -110,7 +116,7 @@
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
-                  <button type="button" class="btn btn-default"><a href="<?php echo site_url(); ?>c_admin/data_siswa">Kembali</a></button>
+                  <button type="button" class="btn btn-default"><a href="<?php echo site_url(); ?>c_admin/tabel_siswa">Kembali</a></button>
                   <button type="submit" class="btn btn-success">Submit</button>
                 </div>
               </div>

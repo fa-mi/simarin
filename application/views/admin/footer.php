@@ -35,6 +35,46 @@ setInputFilter(document.getElementById("tempat_lahir"), function(value) {
 setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
   return /^\d*$/.test(value); });
 
+
+
+  function isInputNumber(evt) {
+    var char = String.fromCharCode(evt.which);
+    if (!(/[0-9]/.test(char))) {
+      evt.preventDefault();
+
+    }
+
+  }
+  function isInputChar(evt) {
+    var char = String.fromCharCode(evt.which);
+    if (!(/[a-z]/[A-Z]/.test(char))) {
+      evt.preventDefault();
+
+    }
+
+  }
+
+</script>
+<script type="text/javascript">
+function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      }
+    });
+  });
+}
+setInputFilter(document.getElementById("nama_industri"), function(value) {
+  return /^\D*$/.test(value); });
+setInputFilter(document.getElementById("jumlah"), function(value) {
+  return /^\d*$/.test(value); });
+
   function isInputNumber(evt) {
     var char = String.fromCharCode(evt.which);
     if (!(/[0-9]/.test(char))) {
@@ -45,6 +85,7 @@ setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
   }
 
 </script>
+
 <script type="text/javascript">
 
 $(function(){
@@ -55,7 +96,7 @@ $.ajaxSetup({
  dataType: "json"
 })
 
-$(document).on("click",".konfirmasi",function(){
+$(document).on("click",".aktifasi",function(){
  var id=$(this).attr("data-id");
  swal({
    title:"Konfirmasi",
@@ -67,7 +108,7 @@ $(document).on("click",".konfirmasi",function(){
  },
    function(){
     $.ajax({
-     url:"<?php echo base_url('c_admin/konfirmasi_siswa'); ?>",
+     url:"<?php echo base_url('c_admin/aktifasi_siswa'); ?>",
      data:{id:id},
      success: function(){
        $("tr[data-id='"+id+"']").fadeOut("fast",function(){
@@ -94,6 +135,101 @@ $(document).on("click",".hapus-siswa",function(){
  },
    function(){
     $.ajax({
+     url:"<?php echo base_url('c_admin/hapus_siswa'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+       });
+     }
+    });
+    location.reload();
+ });
+});
+
+$(document).on("click",".administrasi-siswa",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Konfirmasi Siswa",
+   text:"Yakin akan konfirmasi data siswa ini?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "Konfirmasi",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/administrasi_siswa'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+       });
+     }
+    });
+    location.reload();
+ });
+});
+
+$(document).on("click",".nilai-siswa",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Konfirmasi Siswa",
+   text:"Yakin akan konfirmasi data siswa ini?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "Konfirmasi",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/nilai_siswa'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+       });
+     }
+    });
+    location.reload();
+ });
+});
+$(document).on("click",".pinjam-siswa",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Konfirmasi Siswa",
+   text:"Yakin akan konfirmasi data siswa ini?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "Konfirmasi",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/administrasi_siswa'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+       });
+     }
+    });
+    location.reload();
+ });
+});
+
+$(document).on("click",".batal_siswa",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Batalkan Siswa",
+   text:"Yakin akan menghapus data siswa ini?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "hapus",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
      url:"<?php echo base_url('c_admin/batal_siswa'); ?>",
      data:{id:id},
      success: function(){
@@ -106,7 +242,38 @@ $(document).on("click",".hapus-siswa",function(){
  });
 });
 
+$(document).on("click",".hapus-industri",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Hapus industri",
+   text:"Yakin akan menghapus data industri ini?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "hapus",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/hapus_industri'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+       });
+     }
+    });
+    location.reload();
+ });
 });
+
+});
+</script>
+<script src="<?php echo base_url(); ?>assets/vendor/tilt/tilt.jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/popper.js"></script>
+<script >
+  $('.js-tilt').tilt({
+    scale: 1.1
+  })
 </script>
 
 <!-- jQuery -->

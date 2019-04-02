@@ -10,8 +10,6 @@ class C_login extends CI_Controller
     parent::__construct();
 
     $this->load->model('m_simarin');
-
-
   }
 
   function index(){
@@ -45,7 +43,6 @@ class C_login extends CI_Controller
 
     $progres = array('progres' => $ceks);
    if($cek > 0){
-     $bimbing = $this->m_simarin->guru_pembimbing($d->nis,$d->id_jurusan);
       $session = array(
         'nis'=> $d->nis,
         'tahun_ajaran' => $d->tahun_ajaran,
@@ -55,8 +52,6 @@ class C_login extends CI_Controller
         'nama_belakang'=> $d->nama_belakang,
         'id_jurusan'=> $d->id_jurusan,
         'waktu' => $t->waktu,
-        'nama_guru' => $bimbing->nama_guru,
-        'jurusan' => $bimbing->jurusan,
         'status' => 'login'
       );
       if ($p > 0) {
@@ -93,42 +88,16 @@ if($this->form_validation->run() != false){
     'username' => $username,
     'password' => md5($password)
   );
-  $gurud = array('nip' => $username,
-                  'password' => md5($password) );
-
   $data = $this->m_simarin->edit_data('admin',$where);
   $d = $this->m_simarin->edit_data('admin',$where)->row();
   $cek = $data->num_rows();
-  $guru = $this->m_simarin->edit_data('guru',$gurud);
-  $g = $this->m_simarin->edit_data('guru',$gurud)->row();
-  $cekg = $guru->num_rows();
   if($cek > 0){
-    $notif = $this->m_simarin->get_notif()->row();
     $session = array(
       'id_admin'=> $d->id_admin,
       'status' => 'login',
-      'notif' => $notif->notif
     );
     $this->session->set_userdata($session);
     redirect(base_url().'C_admin');
-}
-elseif ($cekg > 0) {
-
-  $notifguru = $this->m_simarin->get_notif_id($g->nip)->row();
-  $j = $this->m_simarin->data_jurusan($g->id_jurusan);
-  $session = array(
-    'id_jurusan'=>$g->id_jurusan,
-    'nip'=> $g->nip,
-    'nama'=> $g->nama,
-    'kelamin'=> $g->kelamin,
-    'jurusan' =>$j->jurusan,
-    'status' => 'login'
-  );
-  $notifgurusession = array(
-  'notif' => $notifguru->notif);
-  $this->session->set_userdata($notifgurusession);
-  $this->session->set_userdata($session);
-  redirect(base_url().'C_guru');
 }
 else{
   redirect(base_url().'C_login/v_login_admin?pesan=gagal');
