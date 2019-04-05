@@ -34,10 +34,12 @@ function enabledisabletext()
 	if(document.form.industri.value=='lain')
 	{
 	document.form.keterangan.disabled=false;
+  document.form.alamat_industri.disabled=false;
 	}
 	else
 	{
 	document.form.keterangan.disabled=true;
+  document.form.alamat_industri.disabled=true;
 	}
 }
 

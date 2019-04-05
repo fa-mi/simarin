@@ -170,7 +170,17 @@ $(document).on("click",".administrasi-siswa",function(){
     location.reload();
  });
 });
-
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'print',
+                messageTop: 'This print was produced using the Print button for DataTables'
+            }
+        ]
+    } );
+} );
 $(document).on("click",".nilai-siswa",function(){
  var id=$(this).attr("data-id");
  swal({
@@ -277,7 +287,7 @@ $(document).on("click",".hapus-industri",function(){
 </script>
 
 <!-- jQuery -->
-
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/jquery/jquery-3.3.1.js"></script>
 <script src="<?php echo base_url(); ?>assets/dashboard/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap/dist/js/bootstrap.min.js"></script>

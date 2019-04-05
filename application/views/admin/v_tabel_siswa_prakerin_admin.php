@@ -9,6 +9,8 @@
             <div class="clearfix">
             </div>
           </div>
+          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/export_data_prakerin"><i class='glyphicon glyphicon-share'></i> Export Data</a></button>
+          <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -77,8 +79,7 @@
 <?php endforeach;?>
               </tbody>
             </table>
-
-
+            </div>
           </div>
         </div>
       </div>

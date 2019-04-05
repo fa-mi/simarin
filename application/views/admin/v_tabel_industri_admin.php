@@ -5,11 +5,12 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Data Siswa</h2>
+            <h2>Data Industri</h2>
             <div class="clearfix">
             </div>
           </div>
           <button class='btn btn-md btn-info'><a href="<?php echo site_url(); ?>c_admin/v_tambah_industri"><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Industri</a></button>
+          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/export_data_industri"><i class='glyphicon glyphicon-share'></i> Export Data</a></button>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>

@@ -39,6 +39,27 @@ class C_admin extends CI_Controller
 		$this->load->view('admin/v_tabel_industri_admin',$data);
 		$this->load->view('admin/footer');
   }
+  function export_data_industri()
+  {
+    $data['data']=$this->m_industri->list_industri();
+    $this->load->view('admin/header');
+    $this->load->view('admin/v_export_data_industri',$data);
+    $this->load->view('admin/footer');
+  }
+  function export_data_siswa()
+  {
+    $data['data']= $this->m_siswa->data_siswa_admin();
+    $this->load->view('admin/header');
+    $this->load->view('admin/v_export_data_siswa',$data);
+    $this->load->view('admin/footer');
+  }
+  function export_data_prakerin()
+  {
+    $data['data']= $this->m_prakerin->data_siswa_prakerin_admin();
+    $this->load->view('admin/header');
+    $this->load->view('admin/v_export_data_prakerin',$data);
+    $this->load->view('admin/footer');
+  }
   function tabel_siswa()
   {
     $data['data']= $this->m_siswa->data_siswa_admin();
