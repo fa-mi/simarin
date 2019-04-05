@@ -10,7 +10,7 @@
             </div>
           </div>
           <button class='btn btn-md btn-info'><a href="<?php echo site_url(); ?>c_admin/v_tambah_industri"><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Industri</a></button>
-          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/export_data_industri"><i class='glyphicon glyphicon-share'></i> Export Data</a></button>
+          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/pdf"><i class='glyphicon glyphicon-share'></i> Export Data</a></button>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
@@ -18,8 +18,6 @@
                   <th>ID</th>
                   <th>Jurusan</th>
                   <th>Industri</th>
-                  <th>Status</th>
-                  <th>Jumlah Siswa Diterima</th>
                   <th>Jumlah Siswa Mendaftar</th>
                   <th>Edit</th>
 
@@ -33,16 +31,6 @@
                   <td><span class='span-jurusan caption' data-id='$industri[id_industri]'>$industri[id_industri]</span> </td>
                       <td><span class='span-jurusan caption' data-id='$industri[id_industri]'>$industri[jurusan]</span> </td>
                       <td><span class='span-industri caption' data-id='$industri[id_industri]'>$industri[industri]</span></td>
-                      <td>";
-                      if ($industri['siswa_mendaftar'] < $industri['jumlah_siswa']) {
-                      echo "<button type='button' class='btn btn-success btn-sm' data-id='$industri[id_industri]'>Tersedia</button>";
-                      }
-                      else {
-                      echo "<button type='button' class='btn btn-danger btn-sm' data-id='$industri[id_industri]'>Sudah Penuh</button>";
-                      }
-                      echo "
-                      </td>
-                      <td><span class='span-industri caption' data-id='$industri[id_industri]'>$industri[jumlah_siswa]</span></td>
                       <td><span class='span-industri caption' data-id='$industri[id_industri]'>$industri[siswa_mendaftar]</span></td>
                       <td>
                       <button class='btn btn-xs btn-info' data-id='$industri[id_industri]' data-toggle='modal' data-target='.modal-info-$industri[id_industri]'><i class='glyphicon glyphicon-zoom-in'></i> Info </button>
@@ -81,8 +69,6 @@
                                            <input type='text' name='id_industri' id='id_industri' class='form-control' value=$industri[id_industri] readonly>
                                            <label>Nama Industri</label>
                                            <input type='text' name='industri' id='industri' class='form-control' value=$industri[industri] required>
-                                           <label>Jumlah Siswa</label>
-                                           <input type='text' name='jumlah_siswa' id='jumlah_siswa' class='form-control' value=$industri[jumlah_siswa] required>
                                            </div>
                                            <div class='modal-footer'>
                                                 <input type='hidden' name='user_id' id='user_id' />

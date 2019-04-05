@@ -46,6 +46,21 @@ class C_admin extends CI_Controller
     $this->load->view('admin/v_export_data_industri',$data);
     $this->load->view('admin/footer');
   }
+  public function pdf()
+	{
+		$this->load->library('pdfgenerator');
+
+		$data['users']=array(
+			array('firstname'=>'Agung','lastname'=>'Setiawan','email'=>'ag@setiawan.com'),
+			array('firstname'=>'Hauril','lastname'=>'Maulida Nisfar','email'=>'hm@setiawan.com'),
+			array('firstname'=>'Akhtar','lastname'=>'Setiawan','email'=>'akh@setiawan.com'),
+			array('firstname'=>'Gitarja','lastname'=>'Setiawan','email'=>'git@setiawan.com')
+		);
+
+	    $html = $this->load->view('table_report', $data);
+
+	    $this->pdfgenerator->generate($html,'contoh');
+	}
   function export_data_siswa()
   {
     $data['data']= $this->m_siswa->data_siswa_admin();
