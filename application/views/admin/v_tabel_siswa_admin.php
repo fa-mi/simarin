@@ -37,7 +37,7 @@
                   $id_jurusan = $siswa['id_jurusan'];
                   $ttl = $siswa['ttl'];
                   $kelamin = $siswa['kelamin'];
-                  $password = $siswa['password'];
+                  $tgl_deadline = $siswa['tanggal_deadline'];
                  ?>
 
                   <tr data-id='<?php echo $nis; ?>'>
@@ -50,8 +50,13 @@
                         <i class='glyphicon glyphicon-info-sign'></i> Info</button>
                       <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='#modal-update-<?php echo $nis; ?>'>
                         <i class='glyphicon glyphicon-edit'></i> Update</a></button>
-                      <button class='btn btn-xs btn-danger hapus-siswa' data-id='<?php echo $nis; ?>'>
-                        <i class='glyphicon glyphicon-trash'></i> Hapus</button>
+                        <?php if ($tgl_deadline == 'kosong'): ?>
+                          <button class='btn btn-xs btn-success' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='#modal-tgl-<?php echo $nis; ?>'>
+                            <i class='glyphicon glyphicon-calendar'></i> Tanggal Deadline</button>
+                            <button class='btn btn-xs btn-danger hapus-siswa' data-id='<?php echo $nis; ?>'>
+                              <i class='glyphicon glyphicon-trash'></i> Hapus</button>
+                             <?php else: ?>
+                        <?php endif; ?>
                       </td>
 
                       <div class='modal fade modal-info-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
@@ -64,6 +69,14 @@
                               <h4 class='modal-title' id='myModalLabel2'>Detail Siswa</h4>
                             </div>
                             <div class='modal-body'>
+                              <p>Tanggal Deadline Pendaftaran :
+                                <?php if($tgl_deadline == 'kosong') {
+                                  echo "-";
+                                }
+                                else {
+                                  echo $tgl_deadline;
+                                } ?>
+                              </p>
                               <p>TTL : <?php echo $ttl; ?> </p>
                               <p>Agama : <?php echo $agama; ?> </p>
                               <p>Kelamin :
@@ -149,6 +162,28 @@
                                   </form>
                              </div>
                         </div>
+                        <div id="modal-tgl-<?php echo $nis; ?>" class="modal fade">
+                              <div class="modal-dialog">
+                                   <form method="post" action="<?php echo base_url(); ?>c_admin/set_tgl_deadline">
+                                        <div class="modal-content">
+                                             <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                  <h4 class="modal-title">Update Siswa</h4>
+                                             </div>
+                                             <div class="modal-body">
+                                                  <label>Tanggal Deadline</label>
+                                                  <input type="date" name="tanggal_deadline" id="tanggal_deadline" class="form-control"
+                                                  required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
+                                             </div>
+                                             <div class="modal-footer">
+                                                  <input type="hidden" name="user_id" id="user_id" />
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                  <input type="submit" name="action" id="action" class="btn btn-success" value="Update" />
+                                             </div>
+                                        </div>
+                                   </form>
+                              </div>
+                         </div>
                        <?php endforeach;?>
                       </tr>
 <?php endforeach;?>
@@ -160,10 +195,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="alert alert-info alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-    </button>
-    <strong>Data siswa yang sudah mendaftar prakerin tidak bisa dihapus !</strong>
   </div>
 </div>

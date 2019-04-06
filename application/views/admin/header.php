@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIMARIN V1.0</title>
+    <title>SIMARIN V1.1</title>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/icons/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/sweetalert/sweetalert.css'); ?>">
@@ -85,7 +85,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url(); ?>c_admin" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN V1.0</span></a>
+              <a href="<?php echo site_url(); ?>c_admin" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN V1.1</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -112,18 +112,17 @@
                   <li><a href="<?php echo site_url(); ?>c_admin"><i class="fa fa-home"></i> Dashboard <span class="fa fa-chevron-right"></span></a>
                   </li>
 
-                  <li><a><i class="fa fa-user"></i> Menu Siswa <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Menu Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa">Tabel Siswa</a></li>
                       <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa_prakerin">Tabel Siswa Prakerin</a></li>
-                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_penjajakan_siswa">Tabel Penjajakan Siswa</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-building"></i> Menu Industri <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_industri">Tabel Industri</a></li>
-                    </ul>
+                  <li><a href="<?php echo site_url(); ?>c_admin/tabel_pengurus"><i class="fa fa-user"></i> Tabel Pengurus <span class="fa fa-chevron-right"></span></a>
                   </li>
+                  <li><a href="<?php echo site_url(); ?>c_admin/tabel_industri"><i class="fa fa-building"></i> Tabel Industri <span class="fa fa-chevron-right"></span></a>
+                  </li>
+
                   <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo site_url(); ?>c_admin/data_chart">Data Industri</a></li>

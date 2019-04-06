@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  *
  */
@@ -13,6 +13,8 @@ class C_admin extends CI_Controller
     $this->load->model('m_prakerin');
     $this->load->model('m_jurusan');
     $this->load->model('m_siswa');
+    $this->load->library('pdf');
+
 
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url().'c_login/v_login_admin?pesan=belumlogin');
@@ -42,31 +44,18 @@ class C_admin extends CI_Controller
   function export_data_industri()
   {
     $data['data']=$this->m_industri->list_industri();
-    $this->load->view('admin/header');
-    $this->load->view('admin/v_export_data_industri',$data);
-    $this->load->view('admin/footer');
+    $html = $this->load->view('admin/v_export_data_industri',$data, TRUE);
+    $this->pdf->loadHtml($html);
+    $this->pdf->render();
+    $this->pdf->stream("print".".pdf", array("Attachment"=>0));
   }
-  public function pdf()
-	{
-		$this->load->library('pdfgenerator');
-
-		$data['users']=array(
-			array('firstname'=>'Agung','lastname'=>'Setiawan','email'=>'ag@setiawan.com'),
-			array('firstname'=>'Hauril','lastname'=>'Maulida Nisfar','email'=>'hm@setiawan.com'),
-			array('firstname'=>'Akhtar','lastname'=>'Setiawan','email'=>'akh@setiawan.com'),
-			array('firstname'=>'Gitarja','lastname'=>'Setiawan','email'=>'git@setiawan.com')
-		);
-
-	    $html = $this->load->view('table_report', $data);
-
-	    $this->pdfgenerator->generate($html,'contoh');
-	}
   function export_data_siswa()
   {
-    $data['data']= $this->m_siswa->data_siswa_admin();
-    $this->load->view('admin/header');
-    $this->load->view('admin/v_export_data_siswa',$data);
-    $this->load->view('admin/footer');
+      $data['data']= $this->m_siswa->data_siswa_admin();
+    $html = $this->load->view('admin/v_export_data_siswa',$data, TRUE);
+    $this->pdf->loadHtml($html);
+    $this->pdf->render();
+    $this->pdf->stream("print".".pdf", array("Attachment"=>0));
   }
   function export_data_prakerin()
   {
@@ -80,13 +69,6 @@ class C_admin extends CI_Controller
     $data['data']= $this->m_siswa->data_siswa_admin();
     $this->load->view('admin/header');
     $this->load->view('admin/v_tabel_siswa_admin',$data);
-    $this->load->view('admin/footer');
-  }
-  function tabel_penjajakan_siswa()
-  {
-    $data['data']= $this->m_penjajakan->data_penjajakan_admin();
-    $this->load->view('admin/header');
-    $this->load->view('admin/v_tabel_penjajakan_admin',$data);
     $this->load->view('admin/footer');
   }
   function tabel_siswa_prakerin()

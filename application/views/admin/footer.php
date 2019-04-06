@@ -22,29 +22,9 @@ function setInputFilter(textbox, inputFilter) {
     });
   });
 }
-setInputFilter(document.getElementById("nis"), function(value) {
-  return /^\d*$/.test(value); });
-setInputFilter(document.getElementById("nama_depan"), function(value) {
-  return /^\D*$/.test(value); });
-setInputFilter(document.getElementById("nama_belakang"), function(value) {
-  return /^\D*$/.test(value); });
-setInputFilter(document.getElementById("agama"), function(value) {
-  return /^\D*$/.test(value); });
-setInputFilter(document.getElementById("tempat_lahir"), function(value) {
-  return /^\D*$/.test(value); });
-setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
-  return /^\d*$/.test(value); });
 
 
 
-  function isInputNumber(evt) {
-    var char = String.fromCharCode(evt.which);
-    if (!(/[0-9]/.test(char))) {
-      evt.preventDefault();
-
-    }
-
-  }
   function isInputChar(evt) {
     var char = String.fromCharCode(evt.which);
     if (!(/[a-z]/[A-Z]/.test(char))) {
@@ -70,10 +50,21 @@ function setInputFilter(textbox, inputFilter) {
     });
   });
 }
+
+setInputFilter(document.getElementById("nis"), function(value) {
+  return /^\d*$/.test(value); });
+setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
+  return /^\d*$/.test(value); });
+setInputFilter(document.getElementById("agama"), function(value) {
+  return /^\D*$/.test(value); });
+setInputFilter(document.getElementById("nama_depan"), function(value) {
+  return /^\D*$/.test(value); });
+setInputFilter(document.getElementById("nama_belakang"), function(value) {
+  return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("nama_industri"), function(value) {
   return /^\D*$/.test(value); });
-setInputFilter(document.getElementById("jumlah"), function(value) {
-  return /^\d*$/.test(value); });
+setInputFilter(document.getElementById("tempat_lahir"), function(value) {
+  return /^\D*$/.test(value); });
 
   function isInputNumber(evt) {
     var char = String.fromCharCode(evt.which);
@@ -146,6 +137,8 @@ $(document).on("click",".hapus-siswa",function(){
     location.reload();
  });
 });
+
+
 
 $(document).on("click",".administrasi-siswa",function(){
  var id=$(this).attr("data-id");

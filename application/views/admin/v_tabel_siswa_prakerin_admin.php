@@ -18,7 +18,6 @@
                   <th>Jurusan</th>
                   <th>Nama</th>
                   <th>Industri</th>
-                  <th>Waktu Pendaftaran</th>
                   <th>Aktif</th>
                   <th>Edit</th>
 
@@ -33,7 +32,6 @@
                      <td><span class='span-nama caption' data-id='$data[nis]'>$data[jurusan]</span> </td>
                      <td><span class='span-email caption' data-id='$data[nis]'>$data[nama]</span></td>
                      <td><span class='span-email caption' data-id='$data[nis]'>$data[industri]</span></td>
-                     <td><span class='span-email caption' data-id='$data[nis]'>$data[waktu_pendaftaran]</span></td>
                      <td>";
                      if ($data['aktif'] == 0) {
                        echo "<button type='button' class='btn btn-warning btn-sm' data-id='$data[nis]'>Belum aktif</button>";
@@ -66,7 +64,6 @@
                            </div>
                            <div class='modal-body'>
                              <p>Keterangan Industri : $data[keterangan]<p>
-                             <p>Waktu Prakerin : $data[waktu_prakerin] </p>
                              <p> Nama Wali : $data[nama_wali]</p>
                              <p> Status Wali : $data[status]</p>
                              <p> No. Telp Wali : $data[no_telp]</p>
