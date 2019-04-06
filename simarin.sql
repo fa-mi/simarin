@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 17, 2019 at 11:18 AM
+-- Generation Time: Apr 06, 2019 at 07:07 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -26,6 +26,11 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aktifasi_siswa` (IN `in_nis` VARCHAR(50))  NO SQL
+BEGIN
+UPDATE prakerin SET prakerin.is_aktif = 1 WHERE prakerin.nis = in_nis;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `batal_konfirmasi` (IN `in_nis` INT)  NO SQL
 BEGIN
 UPDATE siswa SET siswa.status = 0 WHERE siswa.nis = in_nis;
@@ -34,8 +39,8 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `batal_siswa` (IN `in_nis` VARCHAR(50))  NO SQL
 BEGIN
 DELETE FROM wali WHERE wali.nis = in_nis;
+DELETE FROM penjajakan WHERE penjajakan.nis = in_nis;
 DELETE FROM prakerin WHERE prakerin.nis = in_nis;
-UPDATE siswa SET is_validasi = 0 WHERE siswa.nis = in_nis;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `data_dashboard_admin` ()  NO SQL
@@ -45,40 +50,70 @@ SELECT COUNT(siswa.nis) AS jumlah_siswa_konfirmasi FROM siswa WHERE siswa.status
 SELECT COUNT(siswa.nis) AS jumlah_siswa_belum_konfirmasi FROM siswa WHERE siswa.status = 0;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `data_industri_jurusan` ()  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `data_industri_jurusan` (IN `in_id_jurusan` INT)  NO SQL
 BEGIN
-SELECT jurusan.jurusan, COUNT(industri.id_industri) as jumlah FROM jurusan LEFT JOIN industri
-ON jurusan.id_jurusan = industri.id_jurusan
-GROUP BY jurusan.jurusan ASC;
+SELECT * FROM industri WHERE industri.id_jurusan = in_id_jurusan;
+
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `data_siswa_guru` (IN `in_nip` VARCHAR(50), IN `in_nama` VARCHAR(50), IN `in_nis` VARCHAR(50))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `data_penjajakan_admin` ()  NO SQL
 BEGIN
-SELECT siswa.nis,CONCAT(siswa.nama_depan," ",siswa.nama_belakang) AS nama,jurusan.jurusan,industri.industri,siswa.is_validasi as validasi,siswa.is_aktif as aktif
+SELECT * FROM penjajakan;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `data_siswa_admin` ()  NO SQL
+BEGIN
+SELECT siswa.nis, CONCAT(siswa.nama_depan," ",siswa.nama_belakang) AS nama, jurusan.jurusan, siswa.kelamin, siswa.alamat, CONCAT (siswa.tempat_lahir," ",siswa.tanggal_lahir) as ttl, siswa.tahun_ajaran, siswa.agama,siswa.nama_depan,siswa.nama_belakang, siswa.id_jurusan, siswa.tempat_lahir, siswa.tanggal_lahir, siswa.password
 FROM siswa
-LEFT JOIN prakerin
+INNER JOIN
+jurusan
+ON siswa.id_jurusan = jurusan.id_jurusan;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `data_siswa_prakerin` ()  NO SQL
+BEGIN
+select siswa.nis, CONCAT(siswa.nama_depan," ",siswa.nama_belakang) as nama, jurusan.jurusan, siswa.tahun_ajaran, prakerin.keterangan,ifnull(industri.industri,'-') AS industri, prakerin.waktu_pendaftaran, prakerin.is_validasi as validasi,prakerin.is_aktif as aktif,ifnull(prakerin.waktu_prakerin,'-') AS waktu_prakerin, wali.nama AS nama_wali, wali.no_telp, wali.status, siswa.kelamin
+FROM prakerin
+INNER JOIN siswa
 ON siswa.nis = prakerin.nis
-LEFT JOIN jurusan
+INNER JOIN jurusan
 ON jurusan.id_jurusan = prakerin.id_jurusan
 LEFT JOIN industri
-ON industri.id_industri = prakerin.id_industri
-WHERE prakerin.nip = in_nip AND siswa.nama_depan LIKE in_nama AND siswa.nis LIKE in_nis;
+ON prakerin.id_industri = industri.id_industri
+INNER JOIN wali
+ON wali.nis = prakerin.nis;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_jurusan` (IN `in_id` INT)  NO SQL
+BEGIN
+SELECT jurusan FROM jurusan WHERE jurusan.id_jurusan = in_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `hapus_industri` (IN `in_id_industri` INT)  NO SQL
 BEGIN
-UPDATE siswa SET siswa.id_industri = null WHERE siswa.id_industri = id;
-DELETE FROM industri WHERE industri.id_industri = id;
+DELETE FROM industri WHERE industri.id_industri = in_id_industri;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `list_industri_jurusan` (IN `in_id_jurusan` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `hapus_siswa` (IN `in_nis` VARCHAR(50))  NO SQL
 BEGIN
-SELECT industri.id_industri,jurusan.jurusan,industri.industri
-FROM industri
+DELETE FROM siswa WHERE siswa.nis = in_nis;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_backup_industri` ()  NO SQL
+BEGIN
+SELECT * FROM backup_industri;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_industri` ()  NO SQL
+BEGIN
+select industri.id_industri,industri.industri, jurusan.jurusan,COUNT(prakerin.nis) AS siswa_mendaftar
+from industri
 INNER JOIN jurusan
-ON jurusan.id_jurusan = industri.id_jurusan
-WHERE jurusan.id_jurusan = in_id_jurusan
-GROUP BY industri.id_industri,industri.industri,jurusan.jurusan;
+ON industri.id_jurusan = jurusan.id_jurusan
+LEFT JOIN prakerin
+ON industri.id_industri = prakerin.id_industri
+GROUP BY industri.id_industri;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `list_jurusan` ()  NO SQL
@@ -88,52 +123,59 @@ select * FROM jurusan;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `list_semua_industri` ()  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `tambah_data_prakerin` (IN `in_nis` VARCHAR(50), IN `in_id_jurusan` INT, IN `in_keterangan` VARCHAR(50), IN `in_nama` VARCHAR(50), IN `in_telp` VARCHAR(50), IN `in_status` VARCHAR(50), IN `in_id_industri` INT)  NO SQL
 BEGIN
-SELECT industri.id_industri,jurusan.jurusan,industri.industri
-FROM industri
-INNER JOIN jurusan
-ON jurusan.id_jurusan = industri.id_jurusan;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `list_siswa_belum_konfirmasi` ()  NO SQL
-BEGIN
-SELECT siswa.nis,jurusan.jurusan,siswa.nama,siswa.email,siswa.kelas,industri.industri,siswa.is_validasi
-FROM siswa
-INNER JOIN jurusan
-ON siswa.id_jurusan = jurusan.id_jurusan
-INNER JOIN industri
-ON siswa.id_industri = industri.id_industri
-WHERE siswa.is_validasi = 0;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `list_siswa_sudah_konfirmasi` ()  NO SQL
-BEGIN
-SELECT siswa.nis,jurusan.jurusan,siswa.nama,siswa.email,siswa.kelas,industri.industri,siswa.is_validasi
-FROM siswa
-INNER JOIN jurusan
-ON siswa.id_jurusan = jurusan.id_jurusan
-INNER JOIN industri
-ON siswa.id_industri = industri.id_industri
-WHERE siswa.is_validasi = 1;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `tambah_data_prakerin` (IN `in_nis` VARCHAR(50), IN `in_nip` VARCHAR(50), IN `in_id_jurusan` INT, IN `in_keterangan` VARCHAR(50), IN `in_nama` VARCHAR(50), IN `in_telp` VARCHAR(50), IN `in_status` VARCHAR(50), IN `in_id_industri` INT)  NO SQL
-BEGIN
-INSERT INTO prakerin (nis,nip,id_industri,id_jurusan,keterangan) VALUES (in_nis,in_nip,in_id_industri,in_id_jurusan,in_keterangan);
+INSERT INTO prakerin (nis,id_industri,id_jurusan,keterangan) VALUES (in_nis,in_id_industri,in_id_jurusan,in_keterangan);
 INSERT INTO wali(nis,nama,no_telp,status) 
 VALUES(in_nis,in_nama,in_telp,in_status);
+INSERT INTO penjajakan (penjajakan.nis,penjajakan.administrasi,penjajakan.nilai,penjajakan.peminjaman_buku) VALUES (in_nis,0,0,0);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `tambah_data_prakerin_null` (IN `in_nis` VARCHAR(50), IN `in_id_jurusan` INT, IN `in_keterangan` VARCHAR(50), IN `in_nama` VARCHAR(50), IN `in_telp` VARCHAR(50), IN `in_status` VARCHAR(50))  NO SQL
+BEGIN
+INSERT INTO prakerin (nis,id_jurusan,keterangan) VALUES (in_nis,in_id_jurusan,in_keterangan);
+INSERT INTO wali(nis,nama,no_telp,status) 
+VALUES(in_nis,in_nama,in_telp,in_status);
+INSERT INTO penjajakan (penjajakan.nis,penjajakan.administrasi,penjajakan.nilai,penjajakan.peminjaman_buku) VALUES (in_nis,0,0,0);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `tambah_industri` (IN `in_id_jurusan` INT(10), IN `in_industri` VARCHAR(50), IN `in_jumlah` INT(10))  NO SQL
 BEGIN
 
-INSERT INTO industri(id_jurusan,industri,jumlah_siswa,status) VALUES (in_id_jurusan,in_industri,jumlah_siswa,'0');
+INSERT INTO industri(id_jurusan,industri,jumlah_siswa,status) VALUES (in_id_jurusan,in_industri,in_jumlah,0);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `tes` ()  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `tambah_siswa` (IN `in_nis` VARCHAR(50), IN `in_nama_depan` VARCHAR(50), IN `in_nama_belakang` VARCHAR(50), IN `in_id_jurusan` INT, IN `in_tempat_lahir` VARCHAR(10), IN `in_tanggal_lahir` DATE, IN `in_alamat` VARCHAR(100), IN `in_agama` VARCHAR(10), IN `in_kelamin` BOOLEAN, IN `in_tahun_ajaran` INT)  NO SQL
 BEGIN
-UPDATE siswa SET siswa.status = 1;
+INSERT INTO siswa
+(siswa.nis,siswa.id_jurusan,siswa.nama_depan,
+ siswa.nama_belakang, siswa.password, siswa.kelamin,
+ siswa.agama, siswa.alamat, siswa.tempat_lahir, siswa.tanggal_lahir,
+ siswa.tahun_ajaran) 
+ VALUES 
+(in_nis,in_id_jurusan,in_nama_depan,
+ in_nama_belakang, md5(in_nis), in_kelamin,
+ in_agama, in_alamat, in_tempat_lahir, in_tanggal_lahir,
+ in_tahun_ajaran);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ubah_data_industri` (IN `in_id_industri` INT, IN `in_industri` VARCHAR(10), IN `in_jumlah` INT)  NO SQL
+BEGIN
+UPDATE industri SET industri.industri = in_industri, industri.jumlah_siswa = in_jumlah WHERE industri.id_industri = in_id_industri;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ubah_data_siswa` (IN `in_nis` VARCHAR(50), IN `in_nama_depan` VARCHAR(50), IN `in_nama_belakang` VARCHAR(50), IN `in_tempat_lahir` VARCHAR(10), IN `in_tanggal_lahir` DATE, IN `in_kelamin` BOOLEAN, IN `in_alamat` VARCHAR(100), IN `in_agama` VARCHAR(50), IN `in_tahun_ajaran` INT)  NO SQL
+BEGIN
+UPDATE siswa 
+SET siswa.nama_depan = in_nama_depan,
+	siswa.nama_belakang = in_nama_belakang,
+    siswa.tempat_lahir = in_tempat_lahir,
+    siswa.tanggal_lahir = in_tanggal_lahir,
+    siswa.kelamin = in_kelamin,
+    siswa.alamat = in_alamat,
+    siswa.tahun_ajaran = in_tahun_ajaran,
+    siswa.agama = in_agama
+    WHERE siswa.nis = in_nis;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ubah_password_admin` (IN `in_id` INT, IN `in_password` VARCHAR(50))  NO SQL
@@ -147,9 +189,9 @@ BEGIN
 UPDATE siswa SET siswa.password = in_password WHERE siswa.nis = in_nis;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `validasi_siswa` (IN `in_nis` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `validasi_siswa` (IN `in_nis` VARCHAR(50))  NO SQL
 BEGIN
-UPDATE siswa SET siswa.is_validasi = 1 WHERE siswa.nis = in_nis;
+UPDATE prakerin SET prakerin.is_validasi = 1, prakerin.is_aktif  =0 WHERE prakerin.nis = in_nis;
 END$$
 
 DELIMITER ;
@@ -177,28 +219,6 @@ INSERT INTO `admin` (`id_admin`, `username`, `tipe_admin`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `guru`
---
-
-CREATE TABLE `guru` (
-  `nip` varchar(50) NOT NULL,
-  `id_jurusan` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `kelamin` tinyint(1) NOT NULL,
-  `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `guru`
---
-
-INSERT INTO `guru` (`nip`, `id_jurusan`, `nama`, `password`, `kelamin`, `status`) VALUES
-('555', 6, 'Hadi', '76671d4b83f6e6f953ea2dfb75ded921', 1, 'Guru Pembimbing');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `industri`
 --
 
@@ -206,19 +226,19 @@ CREATE TABLE `industri` (
   `id_industri` int(11) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
   `industri` varchar(50) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `jumlah_siswa` int(11) NOT NULL
+  `alamat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `industri`
 --
 
-INSERT INTO `industri` (`id_industri`, `id_jurusan`, `industri`, `status`, `jumlah_siswa`) VALUES
-(1, 6, 'Honda', 1, 5),
-(2, 6, 'Yamaha', 1, 5),
-(3, 7, 'Honda', 1, 3),
-(4, 7, 'Yamaha', 1, 3);
+INSERT INTO `industri` (`id_industri`, `id_jurusan`, `industri`, `alamat`) VALUES
+(1, 6, 'Honda', ''),
+(2, 6, 'Yamaha', ''),
+(3, 7, 'Honda', ''),
+(4, 7, 'Yamaha', ''),
+(11, 1, 'Telkom', '');
 
 -- --------------------------------------------------------
 
@@ -252,12 +272,25 @@ INSERT INTO `jurusan` (`id_jurusan`, `jurusan`) VALUES
 
 CREATE TABLE `prakerin` (
   `nis` varchar(50) NOT NULL,
-  `nip` varchar(50) NOT NULL,
   `id_industri` int(11) DEFAULT NULL,
   `id_jurusan` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
-  `waktu_pendaftaran` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `alamat_industri` varchar(50) NOT NULL,
+  `waktu_pendaftaran` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `waktu_prakerin` date DEFAULT NULL,
+  `is_validasi` tinyint(1) NOT NULL,
+  `is_aktif` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prakerin`
+--
+
+INSERT INTO `prakerin` (`nis`, `id_industri`, `id_jurusan`, `keterangan`, `alamat_industri`, `waktu_pendaftaran`, `waktu_prakerin`, `is_validasi`, `is_aktif`) VALUES
+('123', 1, 6, 'Industri MOU', '', '2019-03-13 03:31:05', NULL, 1, 1),
+('321', 2, 6, 'Industri MOU', '', '2019-03-20 10:14:14', NULL, 1, 0),
+('405', NULL, 6, 'pabrik', '', '2019-04-02 16:21:23', NULL, 0, 0),
+('3456', 2, 6, 'Industri MOU', '', '2019-04-04 03:40:18', NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -272,19 +305,23 @@ CREATE TABLE `siswa` (
   `nama_belakang` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `kelamin` tinyint(1) NOT NULL,
-  `tempat_lahir` varchar(50) NOT NULL,
+  `agama` varchar(10) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `tempat_lahir` varchar(10) NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `is_aktif` tinyint(1) NOT NULL,
-  `is_validasi` tinyint(1) NOT NULL
+  `tahun_ajaran` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`nis`, `id_jurusan`, `nama_depan`, `nama_belakang`, `password`, `kelamin`, `tempat_lahir`, `tanggal_lahir`, `is_aktif`, `is_validasi`) VALUES
-('123', 6, 'Fahmi', 'Aquinas', 'f11d50d63d3891a44c332e46d6d7d561', 1, 'jombang', '1996-09-06', 0, 0),
-('321', 6, 'Wita', 'Saraswati', '9757bb3cf28a5797e08ff7247bcc5ff0', 0, 'malang', '1997-10-05', 0, 0);
+INSERT INTO `siswa` (`nis`, `id_jurusan`, `nama_depan`, `nama_belakang`, `password`, `kelamin`, `agama`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `tahun_ajaran`) VALUES
+('123', 6, 'Fahmi', 'Aquinas', 'f11d50d63d3891a44c332e46d6d7d561', 1, 'Islam', 'Suhat', 'jombang', '1996-09-05', 2018),
+('1234', 6, 'Ilham', 'Ahmad', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'atheis', 'malang', 'jombang', '2019-03-15', 2019),
+('321', 6, 'Wita', 'Saraswati', '9757bb3cf28a5797e08ff7247bcc5ff0', 0, 'Islam', 'Perum Jati Negoro', 'malang', '1997-10-05', 2018),
+('3456', 6, 'Basuki', 'Rahmat', 'def7924e3199be5e18060bb3e1d547a7', 1, 'Islam', 'Kepanjen Malang', 'Malang', '2019-01-14', 2019),
+('405', 6, 'Yusuf', 'Kautsar', 'bbcbff5c1f1ded46c25d28119a85c6c2', 1, 'Islam', 'kepanjen 06', 'jombang', '2019-03-15', 2018);
 
 -- --------------------------------------------------------
 
@@ -300,6 +337,16 @@ CREATE TABLE `wali` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `wali`
+--
+
+INSERT INTO `wali` (`nis`, `nama`, `no_telp`, `status`) VALUES
+('3456', 'Prabowo', '032145678', 'ayah'),
+('123', 'Dewi Sri', '081330499953', 'ibu'),
+('321', 'Dewi Sri', '098731232131', 'ibu'),
+('405', 'Ilham Maulana ', '1', 'ayah');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -308,13 +355,6 @@ CREATE TABLE `wali` (
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
-
---
--- Indexes for table `guru`
---
-ALTER TABLE `guru`
-  ADD PRIMARY KEY (`nip`),
-  ADD KEY `id_jurusan` (`id_jurusan`);
 
 --
 -- Indexes for table `industri`
@@ -334,7 +374,6 @@ ALTER TABLE `jurusan`
 --
 ALTER TABLE `prakerin`
   ADD KEY `nis` (`nis`),
-  ADD KEY `nip` (`nip`),
   ADD KEY `id_industri` (`id_industri`),
   ADD KEY `id_jurusan` (`id_jurusan`);
 
@@ -366,7 +405,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `industri`
 --
 ALTER TABLE `industri`
-  MODIFY `id_industri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_industri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `jurusan`
@@ -379,12 +418,6 @@ ALTER TABLE `jurusan`
 --
 
 --
--- Constraints for table `guru`
---
-ALTER TABLE `guru`
-  ADD CONSTRAINT `guru_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
-
---
 -- Constraints for table `industri`
 --
 ALTER TABLE `industri`
@@ -395,7 +428,6 @@ ALTER TABLE `industri`
 --
 ALTER TABLE `prakerin`
   ADD CONSTRAINT `prakerin_ibfk_1` FOREIGN KEY (`nis`) REFERENCES `siswa` (`nis`),
-  ADD CONSTRAINT `prakerin_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`),
   ADD CONSTRAINT `prakerin_ibfk_3` FOREIGN KEY (`id_industri`) REFERENCES `industri` (`id_industri`),
   ADD CONSTRAINT `prakerin_ibfk_4` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
 
