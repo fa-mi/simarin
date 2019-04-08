@@ -9,10 +9,10 @@ class C_admin extends CI_Controller
 		parent::__construct();
     $this->load->model('m_admin');
     $this->load->model('m_industri');
-    $this->load->model('m_penjajakan');
     $this->load->model('m_prakerin');
     $this->load->model('m_jurusan');
     $this->load->model('m_siswa');
+    $this->load->model('m_tanggal');
     $this->load->library('pdf');
 
 
@@ -41,28 +41,13 @@ class C_admin extends CI_Controller
 		$this->load->view('admin/v_tabel_industri_admin',$data);
 		$this->load->view('admin/footer');
   }
-  function export_data_industri()
+  function print_data_siswa()
   {
-    $data['data']=$this->m_industri->list_industri();
-    $html = $this->load->view('admin/v_export_data_industri',$data, TRUE);
+    $data['data']= $this->m_siswa->data_siswa_admin();
+    $html = $this->load->view('admin/v_print_data_siswa',$data, TRUE);
     $this->pdf->loadHtml($html);
     $this->pdf->render();
     $this->pdf->stream("print".".pdf", array("Attachment"=>0));
-  }
-  function export_data_siswa()
-  {
-      $data['data']= $this->m_siswa->data_siswa_admin();
-    $html = $this->load->view('admin/v_export_data_siswa',$data, TRUE);
-    $this->pdf->loadHtml($html);
-    $this->pdf->render();
-    $this->pdf->stream("print".".pdf", array("Attachment"=>0));
-  }
-  function export_data_prakerin()
-  {
-    $data['data']= $this->m_prakerin->data_siswa_prakerin_admin();
-    $this->load->view('admin/header');
-    $this->load->view('admin/v_export_data_prakerin',$data);
-    $this->load->view('admin/footer');
   }
   function tabel_siswa()
   {
@@ -183,7 +168,15 @@ class C_admin extends CI_Controller
       redirect(base_url().'C_admin/v_tambah_siswa?pesan=ok');
     }
   }
+  function set_tgl_deadline()
+  {
+        $nis = $this->input->post("nis");
+        $tgl_deadline = $this->input->post("tanggal_deadline");
+        $data = array('tanggal_deadline' => $tgl_deadline,'nis' => $nis);
+        $this->m_tanggal->set_tgl_deadline($data);
+        redirect(base_url().'C_admin/tabel_siswa');
 
+  }
   function v_tambah_industri()
   {
     $data['data']=$this->m_jurusan->list_jurusan();

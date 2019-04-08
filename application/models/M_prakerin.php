@@ -27,6 +27,11 @@ class M_prakerin extends CI_Model
     $query = $this->db->query("call data_siswa_prakerin()");
     return $query->result_array();
   }
+  public function data_siswa_prakerin($id)
+  {
+    $query = $this->db->query("call siswa_prakerin($id)");
+    return $query->result_array();
+  }
   public function batal_siswa($id){
 
     $query = $this->db->query("call batal_siswa($id)");
@@ -43,7 +48,7 @@ class M_prakerin extends CI_Model
     $id_industri = $data['id_industri'];
 
     if ($data['id_industri'] == null) {
-      $query = $this->db->query("call tambah_data_prakerin_null($nis,$id_jurusan,$keterangan,$nama_wali,$telp_wali,$status_wali)");
+      $query = $this->db->query("call tambah_data_prakerin($nis,$id_jurusan,$keterangan,$nama_wali,$telp_wali,$status_wali,null)");
     }
     else {
 

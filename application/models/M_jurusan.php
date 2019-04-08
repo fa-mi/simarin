@@ -29,7 +29,7 @@ class M_jurusan extends CI_Model
   }
   public function list_jurusan(){
 
-    $query = $this->db->query("call list_jurusan()");
+    $query = $this->db->query("call data_jurusan()");
     return $query->result_array();
   }
 }

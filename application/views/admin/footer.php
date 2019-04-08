@@ -24,6 +24,8 @@ function setInputFilter(textbox, inputFilter) {
 }
 
 
+setInputFilter(document.getElementById("nip"), function(value) {
+return /^\d*$/.test(value); });
 
   function isInputChar(evt) {
     var char = String.fromCharCode(evt.which);
@@ -76,6 +78,40 @@ setInputFilter(document.getElementById("tempat_lahir"), function(value) {
   }
 
 </script>
+<script type="text/javascript">
+function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      }
+    });
+  });
+}
+
+setInputFilter(document.getElementById("nip"), function(value) {
+  return /^\d*$/.test(value); });
+setInputFilter(document.getElementById("status"), function(value) {
+  return /^\D*$/.test(value); });
+setInputFilter(document.getElementById("nama_pengurus"), function(value) {
+  return /^\D*$/.test(value); });
+
+
+  function isInputNumber(evt) {
+    var char = String.fromCharCode(evt.which);
+    if (!(/[0-9]/.test(char))) {
+      evt.preventDefault();
+
+    }
+
+  }
+
+</script>
 
 <script type="text/javascript">
 
@@ -87,7 +123,7 @@ $.ajaxSetup({
  dataType: "json"
 })
 
-$(document).on("click",".aktifasi",function(){
+$(document).on("click",".konfirmasi-siswa",function(){
  var id=$(this).attr("data-id");
  swal({
    title:"Konfirmasi",
@@ -95,6 +131,33 @@ $(document).on("click",".aktifasi",function(){
    type: "warning",
    showCancelButton: true,
    confirmButtonText: "Konfirmasi",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/konfirmasi_siswa'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+
+       });
+
+     }
+    });
+    location.reload();
+ });
+
+});
+
+$(document).on("click",".aktifasi-siswa",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Aktifasi",
+   text:"Yakin akan aktifasi siswa ini?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "Aktifasi",
    closeOnConfirm: true,
  },
    function(){
@@ -137,98 +200,14 @@ $(document).on("click",".hapus-siswa",function(){
     location.reload();
  });
 });
-
-
-
-$(document).on("click",".administrasi-siswa",function(){
- var id=$(this).attr("data-id");
- swal({
-   title:"Konfirmasi Siswa",
-   text:"Yakin akan konfirmasi data siswa ini?",
-   type: "warning",
-   showCancelButton: true,
-   confirmButtonText: "Konfirmasi",
-   closeOnConfirm: true,
- },
-   function(){
-    $.ajax({
-     url:"<?php echo base_url('c_admin/administrasi_siswa'); ?>",
-     data:{id:id},
-     success: function(){
-       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
-         $(this).remove();
-       });
-     }
-    });
-    location.reload();
- });
-});
-$(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'print',
-                messageTop: 'This print was produced using the Print button for DataTables'
-            }
-        ]
-    } );
-} );
-$(document).on("click",".nilai-siswa",function(){
- var id=$(this).attr("data-id");
- swal({
-   title:"Konfirmasi Siswa",
-   text:"Yakin akan konfirmasi data siswa ini?",
-   type: "warning",
-   showCancelButton: true,
-   confirmButtonText: "Konfirmasi",
-   closeOnConfirm: true,
- },
-   function(){
-    $.ajax({
-     url:"<?php echo base_url('c_admin/nilai_siswa'); ?>",
-     data:{id:id},
-     success: function(){
-       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
-         $(this).remove();
-       });
-     }
-    });
-    location.reload();
- });
-});
-$(document).on("click",".pinjam-siswa",function(){
- var id=$(this).attr("data-id");
- swal({
-   title:"Konfirmasi Siswa",
-   text:"Yakin akan konfirmasi data siswa ini?",
-   type: "warning",
-   showCancelButton: true,
-   confirmButtonText: "Konfirmasi",
-   closeOnConfirm: true,
- },
-   function(){
-    $.ajax({
-     url:"<?php echo base_url('c_admin/administrasi_siswa'); ?>",
-     data:{id:id},
-     success: function(){
-       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
-         $(this).remove();
-       });
-     }
-    });
-    location.reload();
- });
-});
-
-$(document).on("click",".batal_siswa",function(){
+$(document).on("click",".batal-siswa",function(){
  var id=$(this).attr("data-id");
  swal({
    title:"Batalkan Siswa",
    text:"Yakin akan menghapus data siswa ini?",
    type: "warning",
    showCancelButton: true,
-   confirmButtonText: "hapus",
+   confirmButtonText: "batal",
    closeOnConfirm: true,
  },
    function(){

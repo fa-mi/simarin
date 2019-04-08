@@ -33,7 +33,7 @@
                             <span class="step_no">2</span>
                             <span class="step_descr">
                                               Step 2<br />
-                                              <small>Pendataan oleh admin</small>
+                                              <small>Pendataan oleh admin </small>
                                           </span>
                           </a>
                         </li>
@@ -42,7 +42,7 @@
                             <span class="step_no">3</span>
                             <span class="step_descr">
                                               Step 3<br />
-                                              <small>Pembekalan calon siswa-siwi Prakerin</small>
+                                              <small>Melakukan penjajakan</small>
                                           </span>
                           </a>
                         </li>
@@ -51,7 +51,7 @@
                             <span class="step_no">4</span>
                             <span class="step_descr">
                                               Step 4<br />
-                                              <small>Siswa/siswi melaksanakan kegiatan PRAKERIN</small>
+                                              <small>Melaksanakan kegiatan PRAKERIN</small>
                                           </span>
                           </a>
                         </li>
@@ -66,14 +66,14 @@
                       <div id="step-2">
                         <h2 class="StepTitle">Step 2</h2>
                         <p>
-                          Pendataan terkait pendaftaran Prakerin oleh admin.
+                          Pendataan terkait pendaftaran Prakerin oleh admin. Siswa/siswi menyerahkan formulir yang telah dicetak.
                         </p>
                       </div>
                       <div id="step-3">
                         <h2 class="StepTitle">Step 3</h2>
                         <p>
-                          Siswa/siswi wajib mengikuti pembekalan terkait Prakerin yang diselenggarakan oleh pihak sekolah.
-                          <b>Terdapat absensi dari tiap pembekalan yang ada.</b>
+                          Siswa/siswi wajib melakukan penjajakan oleh masing-masing siswa/siswi dengan mendapatkan tanda tangan oleh pihak yang bersangkutan.
+                        Setelah itu, diserahkan kepada admin.</b>
                         </p>
                       </div>
                       <div id="step-4">

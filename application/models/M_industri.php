@@ -36,11 +36,10 @@ class M_industri extends CI_Model
   }
   public function hapus_industri($id){
     $query = $this->db->query("call hapus_industri($id)");
-    return $query->result_array();
   }
   public function list_industri(){
 
-    $query = $this->db->query("call list_industri()");
+    $query = $this->db->query("call data_industri()");
     return $query->result_array();
   }
 }

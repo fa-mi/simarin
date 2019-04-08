@@ -7,6 +7,11 @@
           </button>
           <strong>Selamat Datang di Sistem Informasi Manajemen Praktek Kerja Industri</strong>
         </div>
+        <div class="alert alert-info alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+          </button>
+          <strong>Formulir Prakerin Dapat Diunduh Pada Menu Status Prakerin</strong>
+        </div>
       </div>
     </div>
   </div>

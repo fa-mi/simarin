@@ -58,27 +58,27 @@
 	  <table>
 	  	<thead>
 	  		<tr>
-	  			<th class="normal">Username</th>
-	  			<th class="normal">Password</th>
+	  			<th class="normal">Nama Lengkap</th>
 	  			<th class="normal">Jurusan</th>
-	  			<th class="short">Nama Lengkap</th>
+	  			<th class="short">Username</th>
+	  			<th class="short">Password</th>
           <th class="short">Tanggal Deadline</th>
 	  		</tr>
 	  	</thead>
 	  	<tbody>
 	  		<?php foreach($data as $siswa):
           if ($siswa['tanggal_deadline'] != 'kosong') {
-            $tgl_deadline = date("d, m Y", strtotime($siswa['tanggal_deadline']));
+            $tgl_deadline = date("d-m-Y", strtotime($siswa['tanggal_deadline']));
           }
           else {
             $tgl_deadline = "-";
           }
           ?>
 	  		  <tr>
-	  			<td><?php echo $siswa['nis']; ?></td>
-	  			<td><?php echo $siswa['nis']; ?></td>
-          <td><?php echo $siswa['jurusan']; ?></td>
-          <td><?php echo $siswa['nama']; ?></td>
+	  			<td><?php echo $siswa['nama']; ?></td>
+	  			<td><?php echo $siswa['jurusan']; ?></td>
+          <td><?php echo $siswa['nis']; ?></td>
+          <td><?php echo $siswa['nis']; ?></td>
           <td><?php echo $tgl_deadline; ?></td>
 	  		  </tr>
 	  		<?php endforeach; ?>
@@ -92,9 +92,9 @@
    <br>
    <div style="float:right">Malang,
      <br>
-     <br>Wail Kepala Humas<br><br><br><br><br>
+     <br>Wakil Kepala Humas<br><br><br><br><br>
      -----------------------------------------<br>
-     Kusdarmadi
+
      <br>
      <br></div>
 </body>

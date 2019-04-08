@@ -10,7 +10,7 @@
             </div>
           </div>
           <button class='btn btn-md btn-info'><a href="<?php echo site_url(); ?>c_admin/v_tambah_siswa"><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Siswa</a></button>
-          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/export_data_siswa"><i class='glyphicon glyphicon-share'></i> Export Data</a></button>
+          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/print_data_siswa"><i class='glyphicon glyphicon-print'></i> Print Data</a></button>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
@@ -29,15 +29,15 @@
                   $nis = $siswa['nis'];
                   $nama= $siswa['nama'];
                   $jurusan= $siswa['jurusan'];
-                  $agama= $siswa['agama'];
                   $tahun_ajaran= $siswa['tahun_ajaran'];
                   $alamat = $siswa['alamat'];
                   $nama_depan = $siswa['nama_depan'];
                   $nama_belakang = $siswa['nama_belakang'];
                   $id_jurusan = $siswa['id_jurusan'];
-                  $ttl = $siswa['ttl'];
+                  $tempat_lahir = $siswa['tempat_lahir'];
+                  $tanggal_lahir = date("d-m-Y", strtotime($siswa['tanggal_lahir']));
                   $kelamin = $siswa['kelamin'];
-                  $tgl_deadline = $siswa['tanggal_deadline'];
+                  $tgl_deadline = date("d-m-Y", strtotime($siswa['tanggal_deadline']));
                  ?>
 
                   <tr data-id='<?php echo $nis; ?>'>
@@ -50,11 +50,11 @@
                         <i class='glyphicon glyphicon-info-sign'></i> Info</button>
                       <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='#modal-update-<?php echo $nis; ?>'>
                         <i class='glyphicon glyphicon-edit'></i> Update</a></button>
+                        <button class='btn btn-xs btn-danger hapus-siswa' data-id='<?php echo $nis; ?>'>
+                          <i class='glyphicon glyphicon-trash'></i> Hapus</button>
                         <?php if ($tgl_deadline == 'kosong'): ?>
                           <button class='btn btn-xs btn-success' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='#modal-tgl-<?php echo $nis; ?>'>
                             <i class='glyphicon glyphicon-calendar'></i> Tanggal Deadline</button>
-                            <button class='btn btn-xs btn-danger hapus-siswa' data-id='<?php echo $nis; ?>'>
-                              <i class='glyphicon glyphicon-trash'></i> Hapus</button>
                              <?php else: ?>
                         <?php endif; ?>
                       </td>
@@ -77,8 +77,8 @@
                                   echo $tgl_deadline;
                                 } ?>
                               </p>
-                              <p>TTL : <?php echo $ttl; ?> </p>
-                              <p>Agama : <?php echo $agama; ?> </p>
+                              <p>Tempat Lahir : <?php echo $tempat_lahir; ?> </p>
+                              <p>tanggal Lahir : <?php echo $tanggal_lahir; ?> </p>
                               <p>Kelamin :
                                 <?php if($kelamin == 1) {
                                   echo "Pria";
@@ -87,7 +87,7 @@
                                   echo "Wanita";
                                 } ?>
                               </p>
-                              <p>Alamat : <?php echo $alamat; ?> </p>
+                              <p>Domisili : <?php echo $alamat; ?> </p>
                             </div>
                           </div>
                         </div>
@@ -99,14 +99,16 @@
                         $tanggal_lahir = $siswa['tanggal_lahir'];
                         $nama= $siswa['nama'];
                         $jurusan= $siswa['jurusan'];
-                        $agama= $siswa['agama'];
                         $tahun_ajaran= $siswa['tahun_ajaran'];
                         $alamat = $siswa['alamat'];
                         $nama_depan = $siswa['nama_depan'];
                         $nama_belakang = $siswa['nama_belakang'];
                         $id_jurusan = $siswa['id_jurusan'];
-                        $ttl = $siswa['ttl'];
+                        $tempat_lahir = $siswa['tempat_lahir'];
+                        $tanggal_lahir = $siswa['tanggal_lahir'];
                         $kelamin = $siswa['kelamin'];
+
+
                        ?>
                        <div id="modal-update-<?php echo $nis; ?>" class="modal fade">
                              <div class="modal-dialog">
@@ -148,10 +150,6 @@
                                                  <label>Tahun Ajaran</label>
                                                  <input type="text" name="tahun_ajaran" id="tahun_ajaran" class="form-control" value=<?php echo $tahun_ajaran; ?> onkeypress="isInputNumber(event)"
                                                  required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
-                                                 <label>Agama</label>
-                                                 <input type="text" name="agama" id="agama" class="form-control" value=<?php echo $agama; ?> onkeypress="isInputChar(event)"
-                                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
-
                                             </div>
                                             <div class="modal-footer">
                                                  <input type="hidden" name="user_id" id="user_id" />
@@ -171,6 +169,8 @@
                                                   <h4 class="modal-title">Update Siswa</h4>
                                              </div>
                                              <div class="modal-body">
+                                               <label>NIS</label>
+                                               <input type="text" name="nis" id="nis" class="form-control" value=<?php echo $nis; ?> readonly>
                                                   <label>Tanggal Deadline</label>
                                                   <input type="date" name="tanggal_deadline" id="tanggal_deadline" class="form-control"
                                                   required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">

@@ -11,6 +11,7 @@ class C_siswa extends CI_Controller
     $this->load->model('m_prakerin');
     $this->load->model('m_wali');
     $this->load->model('m_industri');
+    $this->load->library('pdf');
 
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url().'c_login?pesan=belumlogin');
@@ -22,6 +23,14 @@ class C_siswa extends CI_Controller
           $this->load->view('siswa/v_dashboard_siswa');
           $this->load->view('siswa/footer');
 
+  }
+  function print_formulir()
+  {
+    $data['data']=$this->m_prakerin->data_siswa_prakerin($this->session->userdata('nis'));
+    $html = $this->load->view('siswa/v_print_formulir',$data, TRUE);
+    $this->pdf->loadHtml($html);
+    $this->pdf->render();
+    $this->pdf->stream("print".".pdf", array("Attachment"=>0));
   }
   function informasi()
   {

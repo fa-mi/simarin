@@ -13,7 +13,11 @@
         <div class="x_title">
           <h2><i class="fa fa-bell"></i> Simarin<small>Status</small></h2>
           <div class="clearfix"></div>
-        </div>
+          <?php if ($this->session->userdata('progres') > 0) {
+            echo "<button class='btn btn-md btn-default'><a href='print_formulir'><i class='glyphicon glyphicon-print'></i> Print Formulir</a></button>
+            ";
+          } ?>
+</div>
         <div class="x_content">
           <div class="bs-example" data-example-id="simple-jumbotron">
             <div class="jumbotron">
@@ -21,14 +25,20 @@
                     echo '<h1>Belum Mendaftar!</h1>
                     <p>Anda belum mendaftar prakerin.</p>';
                     }
-                    elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 0 && $this->session->userdata('aktif') == 0) {
+                    elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 0 && $this->session->userdata('aktif') == null) {
                     echo '<h1>Sudah Mendaftar!</h1>
-                    <p>Menunggu Pendataan Oleh Pihak Sekolah</p>';
+                    <p>Menunggu pendataan oleh pihak sekolah</p>';
+
+                  }
+                  elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
+                          && $this->session->userdata('aktif') == null) {
+                            echo '<h1>Sudah Validasi Pihak Sekolah!</h1>
+                            <p>Melaksanakan penjajakan.</p>';
                   }
                   elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
                           && $this->session->userdata('aktif') == 0) {
-                            echo '<h1>Sudah Validasi Pihak Sekolah!</h1>
-                            <p>Melaksanakan pembekalan terkait PRAKERIN.</p>';
+                            echo '<h1>Sudah Penjajakan!</h1>
+                            <p>Mengikuti pembekalan yang diselenggarakan oleh pihak sekolah.</p>';
                   }
                   elseif ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1
                           && $this->session->userdata('aktif') == 1) {
@@ -83,6 +93,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

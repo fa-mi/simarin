@@ -2,7 +2,7 @@
 /**
  *
  */
-class M_penjajakan extends CI_Model
+class M_tanggal extends CI_Model
 {
 
   function edit_data($table,$where)
@@ -18,11 +18,15 @@ class M_penjajakan extends CI_Model
     $this->db->where($where);
     $this->delete($table);
   }
-function data_penjajakan_admin()
-{
-  $query = $this->db->query("call data_penjajakan_admin()");
-  return $query->result_array();
+  function set_tgl_deadline($data)
+  {
+    $nis = "'".$data['nis']."'";
+    $tgl_deadline = "'".$data['tanggal_deadline']."'";
+    $query = $this->db->query("call set_tgl_deadline($tgl_deadline,$nis)");
+  }
 }
-}
+
+
+
 
  ?>

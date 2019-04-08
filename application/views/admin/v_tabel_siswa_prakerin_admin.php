@@ -9,8 +9,7 @@
             <div class="clearfix">
             </div>
           </div>
-          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/export_data_prakerin"><i class='glyphicon glyphicon-share'></i> Export Data</a></button>
-          <div class="x_content">
+            <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -18,6 +17,7 @@
                   <th>Jurusan</th>
                   <th>Nama</th>
                   <th>Industri</th>
+                  <th>Konfirmasi</th>
                   <th>Aktif</th>
                   <th>Edit</th>
 
@@ -33,25 +33,24 @@
                      <td><span class='span-email caption' data-id='$data[nis]'>$data[nama]</span></td>
                      <td><span class='span-email caption' data-id='$data[nis]'>$data[industri]</span></td>
                      <td>";
+                     if ($data['validasi'] == 0) {
+                       echo "<button type='button' class='btn btn-danger btn-sm konfirmasi-siswa' data-id='$data[nis]'>Belum Konfirmasi</button>";
+                     }
+                     else {
+                       echo "<button type='button' class='btn btn-success btn-sm' data-id='$data[nis]'>Sudah Konfirmasi</button></td>";
+                     }
                      if ($data['aktif'] == 0) {
-                       echo "<button type='button' class='btn btn-warning btn-sm' data-id='$data[nis]'>Belum aktif</button>";
+                       echo "<td><button type='button' class='btn btn-danger btn-sm aktifasi-siswa' data-id='$data[nis]'>Belum Aktif</button>";
                      }
                      else {
-                       echo "<button type='button' class='btn btn-success btn-sm' data-id='$data[nis]'>aktif</button>";
-                     }
-                     echo "</td>
-                     <td>
-                     <button class='btn btn-xs btn-default' data-id='$data[nis]' data-toggle='modal' data-target='.modal-info-$data[nis]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
-                     ";
-                     if ($data['aktif'] == 1) {
-                       echo "";
-                     }
-                     else {
-                       echo "<button class='btn btn-xs btn-info konfirmasi' data-id='$data[nis]'><i class='glyphicon glyphicon-ok-sign'></i> Aktifasi</button>
-                       <button class='btn btn-xs btn-danger batal_siswa' data-id='$data[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>";
+                       echo "<button type='button' class='btn btn-success btn-sm' data-id='$data[nis]'>Sudah Aktif</button></td>";
                      }
                      echo "
-                     </td>";
+                     <td>
+                     <button class='btn btn-xs btn-default' data-id='$data[nis]' data-toggle='modal' data-target='.modal-info-$data[nis]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
+                     <button class='btn btn-xs btn-info' data-id='$data[nis]'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>
+                     <button class='btn btn-xs btn-danger batal-siswa' data-id='$data[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
+                     </td> ";
                      echo "
                      <div class='modal fade modal-info-$data[nis]' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
