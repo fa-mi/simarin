@@ -32,6 +32,9 @@
    $status_wali = $siswa['status'];
    $kelamin = $siswa['kelamin'];
    $no_telp = $siswa['no_telp'];
+   if ($industri == 'Lainnya') {
+     $industri = $keterangan;
+   }
  ?>
  <div align="center">
  <table cellpadding="5" cellspacing="1" border="0">

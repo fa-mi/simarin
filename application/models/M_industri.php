@@ -13,11 +13,6 @@ class M_industri extends CI_Model
   {
     return $this->db->get($table);
   }
-  function delete_data($table,$where)
-  {
-    $this->db->where($where);
-    $this->delete($table);
-  }
   function ubah_data_industri($data)
   {
     $industri = "'".$data['industri']."'";
@@ -36,6 +31,7 @@ class M_industri extends CI_Model
   }
   public function hapus_industri($id){
     $query = $this->db->query("call hapus_industri($id)");
+    return $query->result_array();
   }
   public function list_industri(){
 

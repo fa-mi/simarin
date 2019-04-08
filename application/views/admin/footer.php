@@ -23,47 +23,13 @@ function setInputFilter(textbox, inputFilter) {
   });
 }
 
-
-setInputFilter(document.getElementById("nip"), function(value) {
-return /^\d*$/.test(value); });
-
-  function isInputChar(evt) {
-    var char = String.fromCharCode(evt.which);
-    if (!(/[a-z]/[A-Z]/.test(char))) {
-      evt.preventDefault();
-
-    }
-
-  }
-
-</script>
-<script type="text/javascript">
-function setInputFilter(textbox, inputFilter) {
-  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
-    textbox.addEventListener(event, function() {
-      if (inputFilter(this.value)) {
-        this.oldValue = this.value;
-        this.oldSelectionStart = this.selectionStart;
-        this.oldSelectionEnd = this.selectionEnd;
-      } else if (this.hasOwnProperty("oldValue")) {
-        this.value = this.oldValue;
-        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-      }
-    });
-  });
-}
-
 setInputFilter(document.getElementById("nis"), function(value) {
   return /^\d*$/.test(value); });
 setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
   return /^\d*$/.test(value); });
-setInputFilter(document.getElementById("agama"), function(value) {
-  return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("nama_depan"), function(value) {
   return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("nama_belakang"), function(value) {
-  return /^\D*$/.test(value); });
-setInputFilter(document.getElementById("nama_industri"), function(value) {
   return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("tempat_lahir"), function(value) {
   return /^\D*$/.test(value); });
@@ -150,6 +116,7 @@ $(document).on("click",".konfirmasi-siswa",function(){
 
 });
 
+
 $(document).on("click",".aktifasi-siswa",function(){
  var id=$(this).attr("data-id");
  swal({
@@ -204,7 +171,7 @@ $(document).on("click",".batal-siswa",function(){
  var id=$(this).attr("data-id");
  swal({
    title:"Batalkan Siswa",
-   text:"Yakin akan menghapus data siswa ini?",
+   text:"Yakin akan membatalkan siswa ini?",
    type: "warning",
    showCancelButton: true,
    confirmButtonText: "batal",

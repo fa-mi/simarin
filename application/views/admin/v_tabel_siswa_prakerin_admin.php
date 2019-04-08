@@ -48,10 +48,15 @@
                      echo "
                      <td>
                      <button class='btn btn-xs btn-default' data-id='$data[nis]' data-toggle='modal' data-target='.modal-info-$data[nis]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
-                     <button class='btn btn-xs btn-info' data-id='$data[nis]'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>
-                     <button class='btn btn-xs btn-danger batal-siswa' data-id='$data[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
-                     </td> ";
+                     <button class='btn btn-xs btn-danger batal-siswa' data-id='$data[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>";
+                     if ($data['validasi'] == 0) {
+                       echo "";
+                     }
+                     else {
+                       echo "<button class='btn btn-xs btn-info' data-id='$data[nis]' data-toggle='modal' data-target='.modal-print-$data[nis]'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>";
+                     }
                      echo "
+                     </td>
                      <div class='modal fade modal-info-$data[nis]' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
                          <div class='modal-content'>
@@ -70,6 +75,29 @@
                          </div>
                        </div>
                      </div>
+                     <div class='modal fade modal-print-$data[nis]' tabindex='-1' role='dialog' aria-hidden='true'>
+                       <div class='modal-dialog modal-sm'>
+                       <form method='post' action='print_penjajakan'>
+                         <div class='modal-content'>
+                           <div class='modal-header'>
+                             <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
+                             </button>
+                             <h4 class='modal-title' id='myModalLabel2'>Print Penjakakan Siswa</h4>
+                           </div>
+                           <div class='modal-body'>
+                           <label>NIS</label>
+                           <input type='text' name='nis' id='nis' class='form-control' value=$data[nis] readonly>
+                           </div>
+                           <div class='modal-footer'>
+                                <input type='hidden' name='user_id' id='user_id' />
+                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                                <input type='submit' name='action' id='action' class='btn btn-success' value='Print' />
+                           </div>
+                         </div>
+                         </form>
+                       </div>
+                     </div>
+
                      </tr>";
                      ?>
 <?php endforeach;?>

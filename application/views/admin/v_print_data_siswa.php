@@ -6,12 +6,12 @@
     #outtable{
       padding: 20px;
       border:1px solid #e3e3e3;
-      width:680px;
+      width:700px;
       border-radius: 5px;
     }
 
     .short{
-      width: 50px;
+      width: 75px;
     }
 
     .normal{

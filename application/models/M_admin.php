@@ -19,22 +19,6 @@ class M_admin extends CI_Model
     $password = "'".$password."'";
     $query = $this->db->query("call ubah_password_admin($id,$password)");
   }
-  function ubah_data_siswa($data)
-  {
-    $nis = "'".$data['nis']."'";
-    $nama_depan = "'".$data['nama_depan']."'";
-    $nama_belakang = "'".$data['nama_belakang']."'";
-    $tempat_lahir = "'".$data['tempat_lahir']."'";
-    $agama = "'".$data['agama']."'";
-    $alamat = "'".$data['alamat']."'";
-    $tanggal_lahir = "'".$data['tanggal_lahir']."'";
-    $query = $this->db->query("call ubah_data_siswa($nis,$nama_depan,$nama_belakang,$tempat_lahir,$tanggal_lahir,$data[jenis_kelamin],$alamat,$agama,$data[tahun_ajaran])");
-  }
-  function delete_data($table,$where)
-  {
-    $this->db->where($where);
-    $this->delete($table);
-  }
   public function data_dashboard_admin(){
 
     $query1 = $this->db->query("SELECT COUNT(DISTINCT(industri.industri)) AS jumlah_industri FROM industri");

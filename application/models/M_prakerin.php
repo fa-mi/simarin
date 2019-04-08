@@ -13,13 +13,16 @@ class M_prakerin extends CI_Model
   {
     return $this->db->get($table);
   }
-  function delete_data($table,$where)
-  {
-    $this->db->where($where);
-    $this->delete($table);
-  }
   public function aktifasi_siswa($id){
     $query = $this->db->query("call aktifasi_siswa($id)");
+    return $query->result_array();
+  }
+  public function konfirmasi_siswa($id){
+    $query = $this->db->query("call konfirmasi_siswa($id)");
+    return $query->result_array();
+  }
+  public function print_penjajakan($id){
+    $query = $this->db->query("call print_penjajakan($id)");
     return $query->result_array();
   }
   public function data_siswa_prakerin_admin()

@@ -49,6 +49,15 @@ class C_admin extends CI_Controller
     $this->pdf->render();
     $this->pdf->stream("print".".pdf", array("Attachment"=>0));
   }
+  function print_penjajakan()
+  {
+    $nis = $this->input->post("nis");
+    $data['data']= $this->m_prakerin->print_penjajakan($nis);
+    $html = $this->load->view('admin/v_print_penjajakan',$data, TRUE);
+    $this->pdf->loadHtml($html);
+    $this->pdf->render();
+    $this->pdf->stream("print".".pdf", array("Attachment"=>0));
+  }
   function tabel_siswa()
   {
     $data['data']= $this->m_siswa->data_siswa_admin();
@@ -73,6 +82,12 @@ class C_admin extends CI_Controller
   {
     $id= $this->input->post("id");
     $this->m_prakerin->batal_siswa($id);
+    echo "{}";
+  }
+  function konfirmasi_siswa()
+  {
+    $id= $this->input->post("id");
+    $this->m_prakerin->konfirmasi_siswa($id);
     echo "{}";
   }
   function ubah_data_siswa()

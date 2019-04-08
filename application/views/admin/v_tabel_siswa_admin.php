@@ -31,13 +31,15 @@
                   $jurusan= $siswa['jurusan'];
                   $tahun_ajaran= $siswa['tahun_ajaran'];
                   $alamat = $siswa['alamat'];
-                  $nama_depan = $siswa['nama_depan'];
-                  $nama_belakang = $siswa['nama_belakang'];
-                  $id_jurusan = $siswa['id_jurusan'];
                   $tempat_lahir = $siswa['tempat_lahir'];
                   $tanggal_lahir = date("d-m-Y", strtotime($siswa['tanggal_lahir']));
                   $kelamin = $siswa['kelamin'];
-                  $tgl_deadline = date("d-m-Y", strtotime($siswa['tanggal_deadline']));
+                  if ($siswa['tanggal_deadline'] != 'kosong') {
+                    $tgl_deadline = date("d-m-Y", strtotime($siswa['tanggal_deadline']));
+                  }
+                  else {
+                    $tgl_deadline = "-";
+                  }
                  ?>
 
                   <tr data-id='<?php echo $nis; ?>'>
@@ -52,7 +54,7 @@
                         <i class='glyphicon glyphicon-edit'></i> Update</a></button>
                         <button class='btn btn-xs btn-danger hapus-siswa' data-id='<?php echo $nis; ?>'>
                           <i class='glyphicon glyphicon-trash'></i> Hapus</button>
-                        <?php if ($tgl_deadline == 'kosong'): ?>
+                        <?php if ($tgl_deadline == '-'): ?>
                           <button class='btn btn-xs btn-success' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='#modal-tgl-<?php echo $nis; ?>'>
                             <i class='glyphicon glyphicon-calendar'></i> Tanggal Deadline</button>
                              <?php else: ?>
@@ -103,7 +105,6 @@
                         $alamat = $siswa['alamat'];
                         $nama_depan = $siswa['nama_depan'];
                         $nama_belakang = $siswa['nama_belakang'];
-                        $id_jurusan = $siswa['id_jurusan'];
                         $tempat_lahir = $siswa['tempat_lahir'];
                         $tanggal_lahir = $siswa['tanggal_lahir'];
                         $kelamin = $siswa['kelamin'];
