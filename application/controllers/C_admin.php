@@ -29,6 +29,15 @@ class C_admin extends CI_Controller
           $this->load->view('admin/footer');
 
   }
+  function tanggal_selesai()
+  {
+    $nis= $this->input->post("nis");
+    $tanggal_selesai= $this->input->post("tanggal_selesai");
+    $data = array('tanggal_selesai' => $tanggal_selesai,'nis' => $nis);
+    $this->m_tanggal->set_tgl_selesai($data);
+    redirect(base_url().'C_admin/tabel_prakerin');
+
+  }
   function data_chart(){
     $this->load->view('admin/header');
     $this->load->view('admin/v_chart_data');
@@ -88,6 +97,12 @@ class C_admin extends CI_Controller
   {
     $id= $this->input->post("id");
     $this->m_prakerin->konfirmasi_siswa($id);
+    echo "{}";
+  }
+  function penjajakan_siswa()
+  {
+    $id= $this->input->post("id");
+    $this->m_prakerin->penjajakan_siswa($id);
     echo "{}";
   }
   function ubah_data_siswa()

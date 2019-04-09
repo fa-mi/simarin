@@ -23,64 +23,65 @@
                 </tr>
               </thead>
               <tbody>
-                <?php
+<?php
+                foreach ($data as $data):
 
-                foreach ($data as $industri) {
-                  echo "<tr data-id='$industri[id_industri]'>
-                  <td><span class='span-jurusan caption' data-id='$industri[id_industri]'>$industri[id_industri]</span> </td>
-                      <td><span class='span-jurusan caption' data-id='$industri[id_industri]'>$industri[jurusan]</span> </td>
-                      <td><span class='span-industri caption' data-id='$industri[id_industri]'>$industri[industri]</span></td>
-                      <td><span class='span-industri caption' data-id='$industri[id_industri]'>$industri[siswa_mendaftar]</span></td>
-                      <td>
-                      <button class='btn btn-xs btn-info' data-id='$industri[id_industri]' data-toggle='modal' data-target='.modal-info-$industri[id_industri]'><i class='glyphicon glyphicon-zoom-in'></i> Info </button>
-                      <button class='btn btn-xs btn-warning' data-id='$industri[id_industri]' data-toggle='modal' data-target='#modal-update-$industri[id_industri]'><i class='glyphicon glyphicon-edit'></i> Edit</button>
+                 echo "<tr data-id='$data[id_industri]'>
+                     <td><span class='span-nama caption' data-id='$data[id_industri]'>$data[id_industri]</span> </td>
+                     <td><span class='span-nama caption' data-id='$data[id_industri]'>$data[jurusan]</span> </td>
+                     <td><span class='span-email caption' data-id='$data[id_industri]'>$data[industri]</span></td>
+                     <td><span class='span-email caption' data-id='$data[id_industri]'>$data[siswa_mendaftar]</span></td>
+                     <td>
+                     <button class='btn btn-xs btn-default' data-id='$data[id_industri]' data-toggle='modal' data-target='.modal-info-$data[id_industri]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
+                     <button class='btn btn-xs btn-warning' data-id='$data[id_industri]' data-toggle='modal' data-target='.modal-update-$data[id_industri]'><i class='glyphicon glyphicon-edit'></i> Edit</button>
                       ";
-                      if ($industri['siswa_mendaftar'] == 0) {
-                        echo "  <button class='btn btn-xs btn-danger hapus-industri' data-id='$industri[id_industri]'><i class='glyphicon glyphicon-remove'></i> Hapus</button>";
+                      if ($data['siswa_mendaftar'] == 0) {
+                        echo "<button class='btn btn-xs btn-danger hapus-industri' data-id='$data[id_industri]'><i class='glyphicon glyphicon-trash'></i> Hapus</button>";
                       }
-                    else {
                       echo "
-                      </td>
-                      </tr><div class='modal fade modal-info-$industri[id_industri]' tabindex='-1' role='dialog' aria-hidden='true'>
-                        <div class='modal-dialog modal-sm'>
-                          <div class='modal-content'>
+                     </td>
+                     <div class='modal fade modal-info-$data[id_industri]' tabindex='-1' role='dialog' aria-hidden='true'>
+                       <div class='modal-dialog modal-sm'>
+                         <div class='modal-content'>
+                           <div class='modal-header'>
+                             <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
+                             </button>
+                             <h4 class='modal-title' id='myModalLabel2'>Info Industri</h4>
+                           </div>
+                           <div class='modal-body'>
+                           <p>Keterangan Industri : $data[industri]<p>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                     <div class='modal fade modal-update-$data[id_industri]' tabindex='-1' role='dialog' aria-hidden='true'>
+                       <div class='modal-dialog modal-sm'>
+                       <form method='post' action='ubah_data_industri'>
+                         <div class='modal-content'>
+                           <div class='modal-header'>
+                             <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
+                             </button>
+                             <h4 class='modal-title' id='myModalLabel2'>Update Data Industri</h4>
+                           </div>
+                           <div class='modal-body'>
+                           <label>Id Industri</label>
+                           <input type='text' name='id' id='id' class='form-control' value=$data[id_industri] readonly>
+                           <label>Industri</label>
+                           <input type='text' name='industri' id='industri' class='form-control' value=$data[industri]>
+                           </div>
+                           <div class='modal-footer'>
+                                <input type='hidden' name='user_id' id='user_id' />
+                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                                <input type='submit' name='action' id='action' class='btn btn-success' value='Update' />
+                           </div>
+                         </div>
+                         </form>
+                       </div>
+                     </div>
 
-                            <div class='modal-header'>
-                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
-                              </button>
-                              <h4 class='modal-title' id='myModalLabel2'>Detail Industri</h4>
-                            </div>
-                            <div class='modal-body'>
-                            </div>
-                          </div>
-                        </div>
-                      </div>";
-                      echo "<div id='modal-update-$industri[id_industri]' class='modal fade'>
-                            <div class='modal-dialog'>
-                                 <form method='post' action='ubah_data_industri'>
-                                      <div class='modal-content'>
-                                           <div class='modal-header'>
-                                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                                                <h4 class='modal-title'>Update Industri</h4>
-                                           </div>
-                                           <div class='modal-body'>
-                                           <label>ID Industri</label>
-                                           <input type='text' name='id_industri' id='id_industri' class='form-control' value=$industri[id_industri] readonly>
-                                           <label>Nama Industri</label>
-                                           <input type='text' name='industri' id='industri' class='form-control' value=$industri[industri] required>
-                                           </div>
-                                           <div class='modal-footer'>
-                                                <input type='hidden' name='user_id' id='user_id' />
-                                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                                                <input type='submit' name='action' id='action' class='btn btn-success' value='Update' />
-                                           </div>
-                                      </div>
-                                 </form>
-                            </div>
-                       </div>";
-                     }
-                }
-                 ?>
+                     </tr>";
+                     ?>
+<?php endforeach;?>
               </tbody>
             </table>
 

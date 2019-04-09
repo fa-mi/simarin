@@ -143,6 +143,32 @@ $(document).on("click",".aktifasi-siswa",function(){
  });
 
 });
+$(document).on("click",".penjajakan-siswa",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Penjajakan",
+   text:"Yakin akan konfirmasi siswa ini?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "konfirmasi",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/penjajakan_siswa'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+
+       });
+
+     }
+    });
+    location.reload();
+ });
+
+});
 
 $(document).on("click",".hapus-siswa",function(){
  var id=$(this).attr("data-id");

@@ -106,29 +106,6 @@ class C_siswa extends CI_Controller
     $this->load->view('siswa/footer');
   }
 
-  function ubah_password()
-  {
-    $password= $this->input->post('password');
-    $password2 = $this->input->post('password2');
-    $this->form_validation->set_rules('password','Password','trim|required');
-    $this->form_validation->set_rules('password2','Password2','trim|required');
-    if($this->form_validation->run() != false){
-      $where = array(
-        'nis' => $this->session->userdata('nis'),
-        'password' => md5($password),
-        'password2' => md5($password2)
-      );
-      if($where['password'] == $where['password2']){
-        $this->m_siswa->ubah_password_siswa($where['nis'],$where['password']);
-        $this->session->sess_destroy();
-        redirect(base_url().'c_login?pesan=login');
-
-    }else{
-      redirect(base_url().'c_siswa/v_ubah_password?pesan=gagal');
-    }
-  }
-
-}
   function logout(){
     $this->session->sess_destroy();
     redirect(base_url().'c_login?pesan=logout');

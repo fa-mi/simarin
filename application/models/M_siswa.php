@@ -13,13 +13,6 @@ class M_siswa extends CI_Model
   {
     return $this->db->get($table);
   }
-  function ubah_password_siswa($nis,$password)
-  {
-    $nis = "'".$nis."'";
-    $password = "'".$password."'";
-    $query = $this->db->query("call ubah_password_siswa($nis,$password)");
-  }
-
   public function hapus_siswa($id){
     $query = $this->db->query("call hapus_siswa($id)");
     return $query->result_array();

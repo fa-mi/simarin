@@ -94,7 +94,7 @@
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                  <button type="button" class="btn btn-primary">Cancel</button>
+                  <a href="<?php echo site_url(); ?>c_siswa"><button type="button" class="btn btn-primary">Cancel</button></a>
                   <button type="submit" class="btn btn-success">Daftar</button>
                 </div>
               </div>

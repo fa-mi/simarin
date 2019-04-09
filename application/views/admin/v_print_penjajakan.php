@@ -115,15 +115,15 @@ Cara Melakukan Penjajakan Prakerin adalah dengan meminta tanda tangan sebagaiman
  </div>
 <br>
 <div style="float:right">Malang,
-  <br>
-  <br>Koordinator Prakerin<br><br><br>
+  <br>Koordinator Prakerin<br><br><br><br><br>
   -----------------------------------------<br>
+  Kusdarmadi, S.Pd
 </div>
   <div style="float:left">Mengetahui
-    <br>Kepala Sekolah<br><br><br><br>
-    -----------------------------------------<br>
-
+    <br>Kepala Sekolah<br><br><br><br><br>
+    -----------------------------------------
     <br>
+    Drs. Arif Efendi
     <br></div>
 </td>
 </table>

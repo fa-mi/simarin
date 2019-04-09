@@ -15,11 +15,12 @@ class M_prakerin extends CI_Model
   }
   public function aktifasi_siswa($id){
     $query = $this->db->query("call aktifasi_siswa($id)");
-    return $query->result_array();
+  }
+  public function penjajakan_siswa($id){
+    $query = $this->db->query("call penjajakan_siswa($id)");
   }
   public function konfirmasi_siswa($id){
     $query = $this->db->query("call konfirmasi_siswa($id)");
-    return $query->result_array();
   }
   public function print_penjajakan($id){
     $query = $this->db->query("call print_penjajakan($id)");
@@ -38,7 +39,7 @@ class M_prakerin extends CI_Model
   public function batal_siswa($id){
 
     $query = $this->db->query("call batal_siswa($id)");
-    return $query->result_array();
+    return $query->row_array();
   }
   public function tambah_data_prakerin($data)
   {
