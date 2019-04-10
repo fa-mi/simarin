@@ -95,7 +95,7 @@
                         <a class="google-login" href="<?php echo site_url(); ?>c_login">Kembali <i class="ti-arrow-left"></i></a>
                     </div>
                     <div class="col-6">
-                        <button type="submit">Submit <i class="ti-arrow-right"></i></button>
+                        <button type="submit">Login <i class="ti-arrow-right"></i></button>
                     </div>
                 </div>
             </div>

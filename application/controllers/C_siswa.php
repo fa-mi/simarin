@@ -64,6 +64,7 @@ class C_siswa extends CI_Controller
     $status_wali = $this->input->post('status_wali');
     $telp_wali = $this->input->post('telp_wali');
     $pilihan_wali = $this->input->post('pilihan_wali');
+    $alamat = $this->input->post('alamat_industri');
 
     if ($id_industri == "lain") {
       $id_industri = null;
@@ -89,7 +90,7 @@ class C_siswa extends CI_Controller
       else {
         $input = array('nis' => $data['nis'] , 'id_jurusan' => $this->session->userdata('id_jurusan'),
         'id_industri' => $id_industri, 'nama_wali' => $nama_wali, 'status_wali' => $status_wali,
-        'telp_wali' => $telp_wali,'keterangan' => $keterangan);
+        'telp_wali' => $telp_wali,'keterangan' => $keterangan,'alamat' => $alamat);
         $this->m_prakerin->tambah_data_prakerin($input);
         $this->session->unset_userdata('progres');
         $progres = array('progres' => $ceks+1);

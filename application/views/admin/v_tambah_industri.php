@@ -37,6 +37,14 @@
                   oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                 </div>
               </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">Alamat Industri
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" name="alamat" class="optional form-control col-md-7 col-xs-12" required
+                  oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
+                </div>
+              </div>
               </div>
               <div class="ln_solid"></div>
               <?php

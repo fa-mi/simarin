@@ -74,6 +74,7 @@
                            </div>
                            <div class='modal-body'>
                              <p>Keterangan Industri : $data[keterangan]<p>
+                             <p>Alamat Industri : $data[alamat_industri]<p>
                              <p> Nama Wali : $data[nama_wali]</p>
                              <p> Status Wali : $data[status]</p>
                              <p> No. Telp Wali : $data[no_telp]</p>
@@ -125,7 +126,7 @@
                            <div class='modal-footer'>
                                 <input type='hidden' name='user_id' id='user_id' />
                                 <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                                <input type='submit' name='action' id='action' class='btn btn-success' value='Print' />
+                                <input type='submit' name='action' id='action' class='btn btn-success' value='Submit' />
                            </div>
                          </div>
                          </form>

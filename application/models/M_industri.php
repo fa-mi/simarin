@@ -17,8 +17,8 @@ class M_industri extends CI_Model
   {
     $industri = "'".$data['industri']."'";
     $id_industri = $data['id_industri'];
-    $jumlah = $data['jumlah'];
-    $query = $this->db->query("call ubah_data_industri($id_industri,$industri,$jumlah)");
+    $alamat = "'".$data['alamat']."'";
+    $query = $this->db->query("call ubah_data_industri($id_industri,$industri,$alamat)");
   }
   public function data_industri_jurusan($id){
 
@@ -27,7 +27,8 @@ class M_industri extends CI_Model
   }
   public function tambah_industri($data){
     $industri = "'".$data['industri']."'";
-    $query = $this->db->query("call tambah_industri($data[id_jurusan],$industri)");
+    $alamat = "'".$data['alamat']."'";
+    $query = $this->db->query("call tambah_industri($data[id_jurusan],$industri,$alamat)");
   }
   public function hapus_industri($id){
     $query = $this->db->query("call hapus_industri($id)");

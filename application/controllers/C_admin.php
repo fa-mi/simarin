@@ -35,7 +35,7 @@ class C_admin extends CI_Controller
     $tanggal_selesai= $this->input->post("tanggal_selesai");
     $data = array('tanggal_selesai' => $tanggal_selesai,'nis' => $nis);
     $this->m_tanggal->set_tgl_selesai($data);
-    redirect(base_url().'C_admin/tabel_prakerin');
+    redirect(base_url().'C_admin/tabel_siswa_prakerin');
 
   }
   function data_chart(){
@@ -125,10 +125,10 @@ class C_admin extends CI_Controller
   }
   function ubah_data_industri()
   {
-    $id_industri = $this->input->post("id_industri");
+    $id_industri = $this->input->post("id");
     $industri = $this->input->post("industri");
-    $jumlah = $this->input->post("jumlah_siswa");
-    $data = array('id_industri' => $id_industri, 'industri' => $industri, 'jumlah' => $jumlah);
+    $alamat = $this->input->post("alamat");
+    $data = array('id_industri' => $id_industri, 'industri' => $industri, 'alamat' => $alamat);
     $this->m_industri->ubah_data_industri($data);
     redirect(base_url().'C_admin/tabel_industri');
 
@@ -142,7 +142,7 @@ class C_admin extends CI_Controller
   {
     $id_jurusan = $this->input->post("id_jurusan");
     $industri = $this->input->post("nama_industri");
-    $jumlah = $this->input->post("jumlah");
+    $alamat = $this->input->post("alamat");
     $where = array(
       'industri' => $industri
     );
@@ -157,7 +157,7 @@ class C_admin extends CI_Controller
     else {
       $data = array('id_jurusan' => $id_jurusan,
               'industri' => $industri,
-              'jumlah' => $jumlah);
+              'alamat' => $alamat);
       $result = $this->m_industri->tambah_industri($data);
       redirect(base_url().'C_admin/v_tambah_industri?pesan=ok');
     }

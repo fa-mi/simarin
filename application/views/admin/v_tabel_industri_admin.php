@@ -50,6 +50,7 @@
                            </div>
                            <div class='modal-body'>
                            <p>Keterangan Industri : $data[industri]<p>
+                           <p>Alamat Industri : $data[alamat]<p>
                            </div>
                          </div>
                        </div>
@@ -68,6 +69,8 @@
                            <input type='text' name='id' id='id' class='form-control' value=$data[id_industri] readonly>
                            <label>Industri</label>
                            <input type='text' name='industri' id='industri' class='form-control' value=$data[industri]>
+                           <label>Alamat Industri</label>
+                           <input type='text' name='alamat' id='industri' class='form-control' value=$data[alamat]>
                            </div>
                            <div class='modal-footer'>
                                 <input type='hidden' name='user_id' id='user_id' />
