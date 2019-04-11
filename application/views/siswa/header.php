@@ -116,7 +116,7 @@
                   </li>
                   <li><a href="<?php echo site_url(); ?>c_siswa/informasi"><i class="fa fa-info-circle"></i> Tata Cara <span class="fa fa-chevron-right"></span></a>
                   </li>
-                  <li><a><i class="fa fa-tags"></i>Praktek Kerja Industri <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-tags"></i>Prakerin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo site_url(); ?>c_siswa/v_pendaftaran">Pendaftaran</a></li>
                       <li><a href="<?php echo site_url(); ?>c_siswa/status">Status</a></li>
