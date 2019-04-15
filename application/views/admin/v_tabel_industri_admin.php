@@ -33,7 +33,7 @@
                      <td><span class='span-email caption' data-id='$data[id_industri]'>$data[siswa_mendaftar]</span></td>
                      <td>
                      <button class='btn btn-xs btn-default' data-id='$data[id_industri]' data-toggle='modal' data-target='.modal-info-$data[id_industri]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
-                     <button class='btn btn-xs btn-warning' data-id='$data[id_industri]' data-toggle='modal' data-target='.modal-update-$data[id_industri]'><i class='glyphicon glyphicon-edit'></i> Edit</button>
+                     <button class='btn btn-xs btn-warning' data-id='$data[id_industri]' data-toggle='modal' data-target='.modal-update-$data[id_industri]'><i class='glyphicon glyphicon-edit'></i> Ubah</button>
                       ";
                       if ($data['siswa_mendaftar'] == 0) {
                         echo "<button class='btn btn-xs btn-danger hapus-industri' data-id='$data[id_industri]'><i class='glyphicon glyphicon-trash'></i> Hapus</button>";
