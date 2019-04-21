@@ -120,13 +120,6 @@
                   </li>
                   <li><a href="<?php echo site_url(); ?>c_admin/tabel_industri"><i class="fa fa-building"></i> Tabel Industri <span class="fa fa-chevron-right"></span></a>
                   </li>
-
-                  <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url(); ?>c_admin/data_chart">Data Industri</a></li>
-                      <li><a href="chartjs2.html">Data Siswa</a></li>
-                    </ul>
-                  </li>
                 </ul>
               </div>
 

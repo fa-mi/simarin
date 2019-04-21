@@ -38,11 +38,6 @@ class C_admin extends CI_Controller
     redirect(base_url().'C_admin/tabel_siswa_prakerin');
 
   }
-  function data_chart(){
-    $this->load->view('admin/header');
-    $this->load->view('admin/v_chart_data');
-    $this->load->view('admin/footer');
-  }
   function tabel_industri()
   {
     $data['data']=$this->m_industri->list_industri();

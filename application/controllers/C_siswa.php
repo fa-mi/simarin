@@ -11,6 +11,7 @@ class C_siswa extends CI_Controller
     $this->load->model('m_prakerin');
     $this->load->model('m_wali');
     $this->load->model('m_industri');
+    $this->load->model('m_tanggal');
     $this->load->library('pdf');
 
 		if($this->session->userdata('status') != "login"){
@@ -54,6 +55,8 @@ class C_siswa extends CI_Controller
   function pendaftaran()
   {
     $data = array('nis' => $this->session->userdata('nis'));
+    $t = $this->m_tanggal->waktu_server()->row();
+    $tanggal = $this->m_tanggal->edit_data('tanggal',array('nis'=>$this->session->userdata('nis')))->row();
     $datax = $this->m_prakerin->edit_data('prakerin',$data);
     $dx = $this->m_prakerin->edit_data('prakerin',$data)->row();
     $ceks = $datax->num_rows();
@@ -75,7 +78,7 @@ class C_siswa extends CI_Controller
       $status_wali = $keterangan_wali;
     }
      if ($ceks > 0) {
-      redirect(base_url().'c_siswa/v_pendaftaran?pesan=sudah');
+       redirect(base_url().'c_siswa/v_pendaftaran?pesan=sudah');
     }
     else {
       if ($wali->no_telp == $telp_wali) {
@@ -91,11 +94,18 @@ class C_siswa extends CI_Controller
         $input = array('nis' => $data['nis'] , 'id_jurusan' => $this->session->userdata('id_jurusan'),
         'id_industri' => $id_industri, 'nama_wali' => $nama_wali, 'status_wali' => $status_wali,
         'telp_wali' => $telp_wali,'keterangan' => $keterangan,'alamat' => $alamat);
-        $this->m_prakerin->tambah_data_prakerin($input);
-        $this->session->unset_userdata('progres');
-        $progres = array('progres' => $ceks+1);
-        $this->session->set_userdata($progres);
-        redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
+
+        if ($t->waktu >= $tanggal->tanggal_deadline) {
+          redirect(base_url().'c_siswa/v_pendaftaran?pesan=deadline');
+        }
+        else {
+          $this->m_prakerin->tambah_data_prakerin($input);
+          $this->session->unset_userdata('progres');
+          $progres = array('progres' => $ceks+1);
+          $this->session->set_userdata($progres);
+          redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
+        }
+
       }
     }
   }

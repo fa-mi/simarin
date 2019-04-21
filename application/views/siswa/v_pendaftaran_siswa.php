@@ -84,6 +84,8 @@
                   echo "<div class='alert alert-info'>Silahkan Pilih Status Wali!</div>";
                 }elseif ($_GET['pesan'] == "telp") {
                   echo "<div class='alert alert-warning'>No Telp Sudah Ada!</div>";
+                }elseif ($_GET['pesan'] == "deadline") {
+                  echo "<div class='alert alert-danger'>Anda Sudah Melewati Deadline Pendaftaran!</div>";
                 }
 
 

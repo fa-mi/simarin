@@ -18,6 +18,10 @@ class M_tanggal extends CI_Model
     $this->db->where($where);
     $this->delete($table);
   }
+  function waktu_server()
+  {
+    return $this->db->query("SELECT current_timestamp() as waktu");
+  }
   function set_tgl_deadline($data)
   {
     $nis = "'".$data['nis']."'";

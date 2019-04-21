@@ -22,10 +22,9 @@ class M_siswa extends CI_Model
     $nama_depan = "'".$data['nama_depan']."'";
     $nama_belakang = "'".$data['nama_belakang']."'";
     $tempat_lahir = "'".$data['tempat_lahir']."'";
-    $agama = "'".$data['agama']."'";
     $alamat = "'".$data['alamat']."'";
     $tanggal_lahir = "'".$data['tanggal_lahir']."'";
-    $query = $this->db->query("call tambah_siswa($nis,$nama_depan,$nama_belakang,$data[id_jurusan],$tempat_lahir,$tanggal_lahir,$alamat,$agama,$data[jenis_kelamin],$data[tahun_ajaran])");
+    $query = $this->db->query("call tambah_siswa($nis,$nama_depan,$nama_belakang,$data[id_jurusan],$tempat_lahir,$tanggal_lahir,$alamat,$data[jenis_kelamin],$data[tahun_ajaran])");
   }
   function ubah_data_siswa($data)
   {
@@ -36,7 +35,7 @@ class M_siswa extends CI_Model
     $agama = "'".$data['agama']."'";
     $alamat = "'".$data['alamat']."'";
     $tanggal_lahir = "'".$data['tanggal_lahir']."'";
-    $query = $this->db->query("call ubah_data_siswa($nis,$nama_depan,$nama_belakang,$tempat_lahir,$tanggal_lahir,$data[jenis_kelamin],$alamat,$agama,$data[tahun_ajaran])");
+    $query = $this->db->query("call ubah_data_siswa($nis,$nama_depan,$nama_belakang,$tempat_lahir,$tanggal_lahir,$data[jenis_kelamin],$alamat,$data[tahun_ajaran])");
   }
 
   public function data_siswa_admin()

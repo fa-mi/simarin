@@ -11,7 +11,7 @@ class C_login extends CI_Controller
 
     $this->load->model('m_siswa');
     $this->load->model('m_admin');
-    $this->load->model('m_waktu');
+    $this->load->model('m_tanggal');
     $this->load->model('m_prakerin');
 
   }
@@ -38,11 +38,12 @@ class C_login extends CI_Controller
     );
     $data = $this->m_siswa->edit_data('siswa',$where);
     $d = $this->m_siswa->edit_data('siswa',$where)->row();
-    $t = $this->m_waktu->waktu_server()->row();
+    $t = $this->m_tanggal->waktu_server()->row();
     $cek = $data->num_rows();
     $p = $this->m_siswa->edit_data('prakerin',array('nis'=>$where['nis']))->num_rows();
     $datax = $this->m_prakerin->edit_data('prakerin',array('nis'=>$where['nis']));
     $dx = $this->m_prakerin->edit_data('prakerin',array('nis'=>$where['nis']))->row();
+    $tanggal = $this->m_tanggal->edit_data('tanggal',array('nis'=>$where['nis']))->row();
     $ceks = $datax->num_rows();
 
     $progres = array('progres' => $ceks);
