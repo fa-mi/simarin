@@ -15,6 +15,13 @@
             <br />
             <form class="form-horizontal form-label-left" action="<?php echo base_url('c_siswa/pendaftaran'); ?>" method="post" name="form" >
               <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">No. Telpon :</label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <input type="tel" class="form-control" name="telp" placeholder="Nomor Telepon" id="phone" required
+                  oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Industri :</label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
                   <select class="form-control" name="industri" onchange="enabledisabletext()">
@@ -62,13 +69,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">No. Telpon Wali :</label>
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="tel" class="form-control" name="telp_wali" placeholder="Nomor Telepon Wali" id="phone" required
-                  oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
-                </div>
-              </div>
+
               <div class="form-group">
                 <div class="col-md-3 col-sm-9 col-xs-12 col-md-offset-3 col-sm-offset-3 ">
 

@@ -77,10 +77,6 @@ class C_login extends CI_Controller
     $this->load->view('v_login');
   }
 }
-function logout(){
-  $this->session->sess_destroy();
-  redirect(base_url().'C_login?pesan=logout');
-}
 
 function login_admin(){
 $username= $this->input->post('username');

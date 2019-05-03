@@ -144,17 +144,17 @@ class C_admin extends CI_Controller
     $d = $this->m_admin->edit_data('industri',$where);
     $cek = $d->num_rows();
     if ($id_jurusan == '0') {
-    redirect(base_url().'C_admin/v_tambah_industri?pesan=salah');
+    redirect(base_url().'C_admin/form_tambah_industri?pesan=salah');
     }
     if ($cek > 0) {
-      redirect(base_url().'C_admin/v_tambah_industri?pesan=gagal');
+      redirect(base_url().'C_admin/form_tambah_industri?pesan=gagal');
     }
     else {
       $data = array('id_jurusan' => $id_jurusan,
               'industri' => $industri,
               'alamat' => $alamat);
       $result = $this->m_industri->tambah_industri($data);
-      redirect(base_url().'C_admin/v_tambah_industri?pesan=ok');
+      redirect(base_url().'C_admin/form_tambah_industri?pesan=ok');
     }
   }
   function hapus_siswa()
@@ -178,10 +178,10 @@ class C_admin extends CI_Controller
     $d = $this->m_admin->edit_data('siswa',array('nis' => $nis ));
     $cek = $d->num_rows();
     if ($id_jurusan == 0) {
-      redirect(base_url().'C_admin/v_tambah_siswa?pesan=salah');
+      redirect(base_url().'C_admin/form_tambah_siswa?pesan=salah');
     }
     if ($cek > 0) {
-      redirect(base_url().'C_admin/v_tambah_siswa?pesan=gagal');
+      redirect(base_url().'C_admin/form_tambah_siswa?pesan=gagal');
     }
     else {
       $data = array('nis' => $nis,
@@ -190,7 +190,7 @@ class C_admin extends CI_Controller
               'agama' => $agama, 'alamat' => $alamat, 'tahun_ajaran' => $tahun_ajaran,
             );
             $this->m_siswa->tambah_siswa($data);
-      redirect(base_url().'C_admin/v_tambah_siswa?pesan=ok');
+      redirect(base_url().'C_admin/form_tambah_siswa?pesan=ok');
     }
   }
   function set_tgl_deadline()
@@ -202,14 +202,14 @@ class C_admin extends CI_Controller
         redirect(base_url().'C_admin/tabel_siswa');
 
   }
-  function v_tambah_industri()
+  function form_tambah_industri()
   {
     $data['data']=$this->m_jurusan->list_jurusan();
     $this->load->view('admin/header');
     $this->load->view('admin/v_tambah_industri',$data);
     $this->load->view('admin/footer');
   }
-  function v_tambah_siswa()
+  function form_tambah_siswa()
   {
     $data['data']=$this->m_jurusan->list_jurusan();
     $this->load->view('admin/header');

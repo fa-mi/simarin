@@ -73,11 +73,11 @@
                              <h4 class='modal-title' id='myModalLabel2'>Info Siswa</h4>
                            </div>
                            <div class='modal-body'>
+                           <p> No. Telp : $data[no_telp]</p>
                              <p>Keterangan Industri : $data[keterangan]<p>
                              <p>Alamat Industri : $data[alamat_industri]<p>
                              <p> Nama Wali : $data[nama_wali]</p>
                              <p> Status Wali : $data[status]</p>
-                             <p> No. Telp Wali : $data[no_telp]</p>
                              <p> Tanggal Pendaftaran : $data[tanggal_pendaftaran]</p>
                              <p> Tanggal Aktif : $data[tanggal_aktif]</p>
                              <p> Tanggal Selesai : $data[tanggal_selesai]</p>

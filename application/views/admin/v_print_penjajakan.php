@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Data Prakerin Siswa</title>
+  <title>Penjajakan Siswa</title>
   <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/icons/favicon.png"/>
   <style type="text/css">
     #outtable{
       padding: 3px;
-      border:5px solid #e3e3e3;
+      border:5px solid #808080;
       width:700px;
       border-radius: 3px;
     }
@@ -31,7 +31,7 @@
     }
 
     tbody td{
-      border-top: 1px solid #e3e3e3;
+      border-top: 1px solid #808080;
       padding: 5px;
     }
   </style>

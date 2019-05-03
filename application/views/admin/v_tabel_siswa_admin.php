@@ -9,7 +9,7 @@
             <div class="clearfix">
             </div>
           </div>
-          <button class='btn btn-md btn-info'><a href="<?php echo site_url(); ?>c_admin/v_tambah_siswa"><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Siswa</a></button>
+          <button class='btn btn-md btn-info'><a href="<?php echo site_url(); ?>c_admin/form_tambah_siswa"><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Siswa</a></button>
           <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/print_data_siswa"><i class='glyphicon glyphicon-print'></i> Cetak Data</a></button>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -167,7 +167,7 @@
                                         <div class="modal-content">
                                              <div class="modal-header">
                                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                  <h4 class="modal-title">Update Siswa</h4>
+                                                  <h4 class="modal-title">Tanggal Deadline</h4>
                                              </div>
                                              <div class="modal-body">
                                                <label>NIS</label>
@@ -179,7 +179,7 @@
                                              <div class="modal-footer">
                                                   <input type="hidden" name="user_id" id="user_id" />
                                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                  <input type="submit" name="action" id="action" class="btn btn-success" value="Update" />
+                                                  <input type="submit" name="action" id="action" class="btn btn-success" value="Submit" />
                                              </div>
                                         </div>
                                    </form>

@@ -46,6 +46,10 @@
        <td>Nama</td>
        <td>: <?php echo $nama ?></td>
 </tr>
+<tr class="prtext">
+  <td>No.Telpon</td>
+  <td>: <?php echo $no_telp ?></td>
+</tr>
        <tr class="prtext">
          <td>Jurusan</td>
          <td>: <?php echo $jurusan ?></td>
@@ -74,10 +78,6 @@
        <tr class="prtext">
          <td>Status Wali Murid</td>
          <td>: <?php echo $status_wali ?></td>
-       </tr>
-       <tr class="prtext">
-         <td>No.Telpon Wali Murid</td>
-         <td>: <?php echo $no_telp ?></td>
        </tr>
        <tr class="prtext">
          <td>Rencana Tempat Prakerin</td>

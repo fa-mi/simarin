@@ -60,8 +60,8 @@
 	  		<tr>
 	  			<th class="normal">Nama Lengkap</th>
 	  			<th class="normal">Jurusan</th>
+          <th class="normal">Tahun Ajaran</th>
 	  			<th class="short">Username</th>
-	  			<th class="short">Password</th>
           <th class="short">Tanggal Deadline</th>
 	  		</tr>
 	  	</thead>
@@ -77,7 +77,7 @@
 	  		  <tr>
 	  			<td><?php echo $siswa['nama']; ?></td>
 	  			<td><?php echo $siswa['jurusan']; ?></td>
-          <td><?php echo $siswa['nis']; ?></td>
+          <td><?php echo $siswa['tahun_ajaran']; ?></td>
           <td><?php echo $siswa['nis']; ?></td>
           <td><?php echo $tgl_deadline; ?></td>
 	  		  </tr>
@@ -87,7 +87,7 @@
 	 </div>
    <br>
    <div>
-     <strong>* Mohon Untuk Segera Mendaftar Pada Tanggal yang Tertera</strong>
+     <strong>* Mohon Untuk Segera Mendaftar Sebelum Pada Tanggal Deadline yang Tertera</strong>
    </div>
    <br>
    <div style="float:right">Malang,

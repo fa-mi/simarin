@@ -60,12 +60,13 @@ class C_siswa extends CI_Controller
     $datax = $this->m_prakerin->edit_data('prakerin',$data);
     $dx = $this->m_prakerin->edit_data('prakerin',$data)->row();
     $ceks = $datax->num_rows();
-    $wali = $this->m_wali->get_data('wali')->row();
+
+    $siswa = $this->m_siswa->get_data('siswa')->row();
     $id_industri = $this->input->post('industri');
     $keterangan =  $this->input->post('keterangan');
     $nama_wali = $this->input->post('nama_wali');
     $status_wali = $this->input->post('status_wali');
-    $telp_wali = $this->input->post('telp_wali');
+    $telp = $this->input->post('telp');
     $pilihan_wali = $this->input->post('pilihan_wali');
     $alamat = $this->input->post('alamat_industri');
 
@@ -81,7 +82,7 @@ class C_siswa extends CI_Controller
        redirect(base_url().'c_siswa/v_pendaftaran?pesan=sudah');
     }
     else {
-      if ($wali->no_telp == $telp_wali) {
+      if ($siswa->no_telp == $telp) {
         redirect(base_url().'c_siswa/v_pendaftaran?pesan=telp');
       }
        elseif ($id_industri == "menu" ) {
@@ -93,7 +94,7 @@ class C_siswa extends CI_Controller
       else {
         $input = array('nis' => $data['nis'] , 'id_jurusan' => $this->session->userdata('id_jurusan'),
         'id_industri' => $id_industri, 'nama_wali' => $nama_wali, 'status_wali' => $status_wali,
-        'telp_wali' => $telp_wali,'keterangan' => $keterangan,'alamat' => $alamat);
+        'telp' => $telp,'keterangan' => $keterangan,'alamat' => $alamat);
 
         if ($t->waktu >= $tanggal->tanggal_deadline) {
           redirect(base_url().'c_siswa/v_pendaftaran?pesan=deadline');
@@ -109,14 +110,6 @@ class C_siswa extends CI_Controller
       }
     }
   }
-
-  function v_ubah_password()
-  {
-    $this->load->view('siswa/header');
-    $this->load->view('siswa/v_ubah_password_siswa');
-    $this->load->view('siswa/footer');
-  }
-
   function logout(){
     $this->session->sess_destroy();
     redirect(base_url().'c_login?pesan=logout');
