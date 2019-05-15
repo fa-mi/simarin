@@ -146,16 +146,12 @@ class C_admin extends CI_Controller
     if ($id_jurusan == '0') {
     redirect(base_url().'C_admin/form_tambah_industri?pesan=salah');
     }
-    if ($cek > 0) {
-      redirect(base_url().'C_admin/form_tambah_industri?pesan=gagal');
-    }
-    else {
+
       $data = array('id_jurusan' => $id_jurusan,
               'industri' => $industri,
               'alamat' => $alamat);
       $result = $this->m_industri->tambah_industri($data);
       redirect(base_url().'C_admin/form_tambah_industri?pesan=ok');
-    }
   }
   function hapus_siswa()
   {

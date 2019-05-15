@@ -19,9 +19,15 @@ class C_siswa extends CI_Controller
 		}
 	}
   function index(){
-
+          $data=$this->m_tanggal->tanggal_batas();
+          if ($data['tanggal_batas'] > 0) {
+            $data['tanggal_batas'] = 'Kurang '.$data['tanggal_batas'].' Hari';
+          }
+          else {
+            $data['tanggal_batas'] = 'Sudah Berakhir';
+          }
           $this->load->view('siswa/header');
-          $this->load->view('siswa/v_dashboard_siswa');
+          $this->load->view('siswa/v_dashboard_siswa',$data);
           $this->load->view('siswa/footer');
 
   }
@@ -91,22 +97,18 @@ class C_siswa extends CI_Controller
       elseif ($status_wali == "menu_wali" ) {
        redirect(base_url().'c_siswa/v_pendaftaran?pesan=salahpilihwali');
      }
+     elseif ($t->waktu >= $tanggal->tanggal_deadline) {
+       redirect(base_url().'c_siswa/v_pendaftaran?pesan=deadline');
+     }
       else {
         $input = array('nis' => $data['nis'] , 'id_jurusan' => $this->session->userdata('id_jurusan'),
         'id_industri' => $id_industri, 'nama_wali' => $nama_wali, 'status_wali' => $status_wali,
-        'telp' => $telp,'keterangan' => $keterangan,'alamat' => $alamat);
-
-        if ($t->waktu >= $tanggal->tanggal_deadline) {
-          redirect(base_url().'c_siswa/v_pendaftaran?pesan=deadline');
-        }
-        else {
+        'telp' => $telp,'keterangan' => $keterangan,'alamat' => $alamat);    
           $this->m_prakerin->tambah_data_prakerin($input);
           $this->session->unset_userdata('progres');
           $progres = array('progres' => $ceks+1);
           $this->session->set_userdata($progres);
           redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
-        }
-
       }
     }
   }

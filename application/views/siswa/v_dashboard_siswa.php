@@ -12,6 +12,11 @@
           </button>
           <strong>Formulir Prakerin Dapat Diunduh Pada Menu Status Prakerin</strong>
         </div>
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+          </button>
+          <strong> Deadline Pendaftaran <?php echo $tanggal_batas; ?></strong>
+        </div>
       </div>
     </div>
   </div>

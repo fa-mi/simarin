@@ -26,12 +26,12 @@
 
     thead th{
       text-align: left;
-      padding: 10px;
+      padding: 7px;
     }
 
     tbody td{
       border-top: 1px solid #e3e3e3;
-      padding: 10px;
+      padding: 7px;
     }
 
     tbody tr:nth-child(even){
