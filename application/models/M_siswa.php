@@ -17,6 +17,10 @@ class M_siswa extends CI_Model
     $query = $this->db->query("call hapus_siswa($id)");
     return $query->result_array();
   }
+  public function telp_siswa(){
+    $query = $this->db->query("SELECT no_telp FROM siswa");
+    return $query->result();
+  }
   public function tambah_siswa($data){
     $nis = "'".$data['nis']."'";
     $nama_depan = "'".$data['nama_depan']."'";

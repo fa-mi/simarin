@@ -49,14 +49,13 @@
                              <h4 class='modal-title' id='myModalLabel2'>Info Industri</h4>
                            </div>
                            <div class='modal-body'>
-                           <p>Keterangan Industri : $data[industri]<p>
                            <p>Alamat Industri : $data[alamat]<p>
                            </div>
                          </div>
                        </div>
                      </div>
                      <div class='modal fade modal-update-$data[id_industri]' tabindex='-1' role='dialog' aria-hidden='true'>
-                       <div class='modal-dialog modal-sm'>
+                       <div class='modal-dialog'>
                        <form method='post' action='ubah_data_industri'>
                          <div class='modal-content'>
                            <div class='modal-header'>
@@ -68,9 +67,9 @@
                            <label>Id Industri</label>
                            <input type='text' name='id' id='id' class='form-control' value=$data[id_industri] readonly>
                            <label>Industri</label>
-                           <input type='text' name='industri' id='industri' class='form-control' value=$data[industri]>
+                           <input type='text' name='industri' id='industri' class='form-control'>
                            <label>Alamat Industri</label>
-                           <input type='text' name='alamat' id='industri' class='form-control' value=$data[alamat]>
+                           <input type='text' name='alamat' id='industri' class='form-control'>
                            </div>
                            <div class='modal-footer'>
                                 <input type='hidden' name='user_id' id='user_id' />

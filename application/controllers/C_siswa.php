@@ -67,7 +67,8 @@ class C_siswa extends CI_Controller
     $dx = $this->m_prakerin->edit_data('prakerin',$data)->row();
     $ceks = $datax->num_rows();
 
-    $siswa = $this->m_siswa->get_data('siswa')->row();
+    $telp_siswa = $this->m_siswa->telp_siswa();
+    $lim_siswa = count($telp_siswa);
     $id_industri = $this->input->post('industri');
     $keterangan =  $this->input->post('keterangan');
     $nama_wali = $this->input->post('nama_wali');
@@ -88,10 +89,12 @@ class C_siswa extends CI_Controller
        redirect(base_url().'c_siswa/v_pendaftaran?pesan=sudah');
     }
     else {
-      if ($siswa->no_telp == $telp) {
-        redirect(base_url().'c_siswa/v_pendaftaran?pesan=telp');
+      for ($i=0; $i < $lim_siswa; $i++) {
+        if ($telp_siswa[$i]->no_telp == $telp) {
+          redirect(base_url().'c_siswa/v_pendaftaran?pesan=telp');
+        }
       }
-       elseif ($id_industri == "menu" ) {
+      if ($id_industri == "menu" ) {
         redirect(base_url().'c_siswa/v_pendaftaran?pesan=salahpilihindustri');
       }
       elseif ($status_wali == "menu_wali" ) {
@@ -103,7 +106,7 @@ class C_siswa extends CI_Controller
       else {
         $input = array('nis' => $data['nis'] , 'id_jurusan' => $this->session->userdata('id_jurusan'),
         'id_industri' => $id_industri, 'nama_wali' => $nama_wali, 'status_wali' => $status_wali,
-        'telp' => $telp,'keterangan' => $keterangan,'alamat' => $alamat);    
+        'telp' => $telp,'keterangan' => $keterangan,'alamat' => $alamat);
           $this->m_prakerin->tambah_data_prakerin($input);
           $this->session->unset_userdata('progres');
           $progres = array('progres' => $ceks+1);

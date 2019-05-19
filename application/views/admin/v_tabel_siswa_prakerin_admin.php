@@ -37,9 +37,9 @@
                        echo "<button type='button' class='btn btn-danger btn-sm konfirmasi-siswa' data-id='$data[nis]'>Belum Konfirmasi</button>";
                      }
                      else if ($data['validasi'] !=0 && $data['aktif'] == null) {
-                       echo "<button type='button' class='btn btn-warning btn-sm penjajakan-siswa' data-id='$data[nis]'>Belum Penjajakan</button>";
+                       echo "<button type='button' class='btn btn-warning btn-sm penjajakan-siswa' data-id='$data[nis]'>Konfirmasi Penjajakan</button>";
                      }else {
-                       echo "<button type='button' class='btn btn-success' data-id='$data[nis]'>Konfirmasi</button>";
+                       echo "<button type='button' class='btn btn-success' data-id='$data[nis]'>Sudah Konfirmasi</button>";
                      }
                      echo "</td>
                      <td>";
