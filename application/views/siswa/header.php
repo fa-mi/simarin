@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIMARIN V1.0</title>
+    <title>SIMARIN V1.1</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/sweetalert/sweetalert.css'); ?>">
     <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
@@ -92,7 +92,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url(); ?>c_siswa" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN V1.0</span></a>
+              <a href="<?php echo site_url(); ?>c_siswa" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN V1.1</span></a>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->

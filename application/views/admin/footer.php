@@ -44,40 +44,7 @@ setInputFilter(document.getElementById("tempat_lahir"), function(value) {
   }
 
 </script>
-<script type="text/javascript">
-function setInputFilter(textbox, inputFilter) {
-  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
-    textbox.addEventListener(event, function() {
-      if (inputFilter(this.value)) {
-        this.oldValue = this.value;
-        this.oldSelectionStart = this.selectionStart;
-        this.oldSelectionEnd = this.selectionEnd;
-      } else if (this.hasOwnProperty("oldValue")) {
-        this.value = this.oldValue;
-        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-      }
-    });
-  });
-}
 
-setInputFilter(document.getElementById("nip"), function(value) {
-  return /^\d*$/.test(value); });
-setInputFilter(document.getElementById("status"), function(value) {
-  return /^\D*$/.test(value); });
-setInputFilter(document.getElementById("nama_pengurus"), function(value) {
-  return /^\D*$/.test(value); });
-
-
-  function isInputNumber(evt) {
-    var char = String.fromCharCode(evt.which);
-    if (!(/[0-9]/.test(char))) {
-      evt.preventDefault();
-
-    }
-
-  }
-
-</script>
 
 <script type="text/javascript">
 

@@ -123,7 +123,16 @@ class C_admin extends CI_Controller
     $id_industri = $this->input->post("id");
     $industri = $this->input->post("industri");
     $alamat = $this->input->post("alamat");
-    $data = array('id_industri' => $id_industri, 'industri' => $industri, 'alamat' => $alamat);
+    $telp = $this->input->post("telp");
+    $telp_industri = $this->m_industri->telp_industri();
+    $lim_industri = count($telp_industri);
+
+    for ($i=0; $i < $lim_industri; $i++) {
+      if ($telp_industri[$i]->no_telp == $telp) {
+        redirect(base_url().'C_admin/tabel_industri?pesan=telp');
+      }
+    }
+    $data = array('id_industri' => $id_industri, 'industri' => $industri, 'alamat' => $alamat, 'telp' => $telp);
     $this->m_industri->ubah_data_industri($data);
     redirect(base_url().'C_admin/tabel_industri');
 
@@ -138,18 +147,29 @@ class C_admin extends CI_Controller
     $id_jurusan = $this->input->post("id_jurusan");
     $industri = $this->input->post("nama_industri");
     $alamat = $this->input->post("alamat");
-    $where = array(
-      'industri' => $industri
-    );
-    $d = $this->m_admin->edit_data('industri',$where);
-    $cek = $d->num_rows();
+    $telp = $this->input->post("telp");
+    $telp_industri = $this->m_industri->telp_industri();
+    $lim_industri = count($telp_industri);
+
+    if ($telp != '') {
+      for ($i=0; $i < $lim_industri; $i++) {
+        if ($telp_industri[$i]->no_telp == $telp) {
+          redirect(base_url().'C_admin/form_tambah_industri?pesan=telp');
+        }
+      }
+    }
+
+
+
     if ($id_jurusan == '0') {
     redirect(base_url().'C_admin/form_tambah_industri?pesan=salah');
     }
 
       $data = array('id_jurusan' => $id_jurusan,
               'industri' => $industri,
-              'alamat' => $alamat);
+              'alamat' => $alamat,
+              'no_telp' => $telp);
+
       $result = $this->m_industri->tambah_industri($data);
       redirect(base_url().'C_admin/form_tambah_industri?pesan=ok');
   }
