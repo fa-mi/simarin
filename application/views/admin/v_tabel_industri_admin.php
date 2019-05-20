@@ -55,8 +55,6 @@
 <?php
                       if ($siswa_mendaftar == 0): ?>
                         <button class='btn btn-xs btn-danger hapus-industri' data-id='<?php echo $id_industri; ?>'><i class='glyphicon glyphicon-trash'></i> Hapus</button>
-
-                    <?php else: ?>
                     <?php endif; ?>
                      </td>
                      <div class='modal fade modal-info-<?php echo $id_industri; ?>' tabindex='-1' role='dialog' aria-hidden='true'>

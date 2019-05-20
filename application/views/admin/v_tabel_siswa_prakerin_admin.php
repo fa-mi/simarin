@@ -26,44 +26,56 @@
               <tbody>
                 <?php
                 foreach ($data as $data):
+                  $nis = $data['nis'];
+                  $nama= $data['nama'];
+                  $jurusan= $data['jurusan'];
+                  $industri= $data['industri'];
+                  $validasi = $data['validasi'];
+                  $aktif = $data['aktif'];
+                  $no_telp = $data['no_telp'];
+                  $kelamin = $data['kelamin'];
+                  $keterangan = $data['keterangan'];
+                  $alamat_industri = $data['alamat_industri'];
+                  $nama_wali = $data['nama_wali'];
+                  $status = $data['status'];
+                  $tgl_pendaftaran = $data['tanggal_pendaftaran'];
+                  $tgl_aktif = $data['tanggal_aktif'];
+                  $tgl_selesai = $data['tanggal_selesai'];
 
-                 echo "<tr data-id='$data[nis]'>
-                     <td><span class='span-nama caption' data-id='$data[nis]'>$data[nis]</span> </td>
-                     <td><span class='span-nama caption' data-id='$data[nis]'>$data[jurusan]</span> </td>
-                     <td><span class='span-email caption' data-id='$data[nis]'>$data[nama]</span></td>
-                     <td><span class='span-email caption' data-id='$data[nis]'>$data[industri]</span></td>
-                     <td>";
-                     if ($data['validasi'] == 0) {
-                       echo "<button type='button' class='btn btn-danger btn-sm konfirmasi-siswa' data-id='$data[nis]'>Belum Konfirmasi</button>";
-                     }
-                     else if ($data['validasi'] !=0 && $data['aktif'] == null) {
-                       echo "<button type='button' class='btn btn-warning btn-sm penjajakan-siswa' data-id='$data[nis]'>Konfirmasi Penjajakan</button>";
-                     }else {
-                       echo "<button type='button' class='btn btn-success' data-id='$data[nis]'>Sudah Konfirmasi</button>";
-                     }
-                     echo "</td>
-                     <td>";
-                     if ($data['aktif'] != 1) {
-                       echo "<button type='button' class='btn btn-danger btn-sm aktifasi-siswa' data-id='$data[nis]'>Belum Aktif</button>";
-                     }
-                     else {
-                       echo "<button type='button' class='btn btn-success btn-sm' data-id='$data[nis]'>Sudah Aktif</button>";
-                     }
-                     echo "
+?>
+                 <tr data-id='<?php echo $nis; ?>'>
+                     <td><span class='span-nama caption' data-id='<?php echo $nis; ?>'><?php echo $nis; ?></span> </td>
+                     <td><span class='span-nama caption' data-id='<?php echo $nis; ?>'><?php echo $jurusan; ?></span> </td>
+                     <td><span class='span-email caption' data-id='<?php echo $nis; ?>'><?php echo $nama; ?></span></td>
+                     <td><span class='span-email caption' data-id='<?php echo $nis; ?>'><?php echo $industri; ?></span></td>
+                     <td>
+                       <?php if ($validasi == 0): ?>
+                         <button type='button' class='btn btn-danger btn-sm konfirmasi-siswa' data-id='<?php echo $nis; ?>'>Belum Konfirmasi</button>
+                       <?php elseif ($validasi !=0 && $aktif == null): ?>
+                         <button type='button' class='btn btn-warning btn-sm penjajakan-siswa' data-id='<?php echo $nis; ?>'>Konfirmasi Penjajakan</button>
+                       <?php else:  ?>
+                         <button type='button' class='btn btn-success' data-id='<?php echo $nis; ?>'>Sudah Konfirmasi</button>
+                         <?php endif; ?>
                      </td>
                      <td>
-                     <button class='btn btn-xs btn-default' data-id='$data[nis]' data-toggle='modal' data-target='.modal-info-$data[nis]'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
-                     <button class='btn btn-xs btn-danger batal-siswa' data-id='$data[nis]'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>";
-                     if ($data['validasi'] == 0) {
-                       echo "";
-                     }
-                     else {
-                       echo "<button class='btn btn-xs btn-info' data-id='$data[nis]' data-toggle='modal' data-target='.modal-print-$data[nis]'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>";
-                     }
-                     echo "
-                     <button class='btn btn-xs btn-warning' data-id='$data[nis]' data-toggle='modal' data-target='.modal-tanggal_selesai-$data[nis]'><i class='glyphicon glyphicon-calendar'></i> Set Tanggal Selesai</button>
+                       <?php if ($aktif != 1 && $tgl_selesai == '-'): ?>
+                       <button type='button' class='btn btn-danger btn-sm' data-id='<?php echo $nis; ?>' disabled>Belum Aktif</button>
+                     <?php elseif ($aktif != 1): ?>
+                       <button type='button' class='btn btn-danger btn-sm aktifasi-siswa' data-id='<?php echo $nis; ?>'>Belum Aktif</button>
+                     <?php else:  ?>
+                       <button type='button' class='btn btn-success btn-sm' data-id='<?php echo $nis; ?>'>Sudah Aktif</button>
+                       <?php endif; ?>
                      </td>
-                     <div class='modal fade modal-info-$data[nis]' tabindex='-1' role='dialog' aria-hidden='true'>
+                     <td>
+
+                     <button class='btn btn-xs btn-default' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-info-<?php echo $nis; ?>'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
+                     <?php if ($validasi != 0 && $aktif != 1 ): ?>
+                       <button class='btn btn-xs btn-info' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-print-<?php echo $nis; ?>'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>
+                       <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-tanggal_selesai-<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Set Tanggal Selesai</button>
+                       <button class='btn btn-xs btn-danger batal-siswa' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
+                       <?php endif; ?>
+                     </td>
+                     <div class='modal fade modal-info-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
                          <div class='modal-content'>
 
@@ -73,19 +85,19 @@
                              <h4 class='modal-title' id='myModalLabel2'>Info Siswa</h4>
                            </div>
                            <div class='modal-body'>
-                           <p> No. Telp : $data[no_telp]</p>
-                             <p>Keterangan Industri : $data[keterangan]<p>
-                             <p>Alamat Industri : $data[alamat_industri]<p>
-                             <p> Nama Wali : $data[nama_wali]</p>
-                             <p> Status Wali : $data[status]</p>
-                             <p> Tanggal Pendaftaran : $data[tanggal_pendaftaran]</p>
-                             <p> Tanggal Aktif : $data[tanggal_aktif]</p>
-                             <p> Tanggal Selesai : $data[tanggal_selesai]</p>
+                           <p> No. Telp : <?php echo $no_telp; ?></p>
+                             <p>Keterangan Industri : <?php echo $keterangan; ?><p>
+                             <p>Alamat Industri : <?php echo $alamat_industri; ?><p>
+                             <p> Nama Wali : <?php echo $nama_wali; ?></p>
+                             <p> Status Wali : <?php echo $status; ?></p>
+                             <p> Tanggal Pendaftaran : <?php echo $tgl_pendaftaran; ?></p>
+                             <p> Tanggal Aktif : <?php echo $tgl_aktif; ?></p>
+                             <p> Tanggal Selesai : <?php echo $tgl_selesai; ?></p>
                            </div>
                          </div>
                        </div>
                      </div>
-                     <div class='modal fade modal-print-$data[nis]' tabindex='-1' role='dialog' aria-hidden='true'>
+                     <div class='modal fade modal-print-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
                        <form method='post' action='print_penjajakan'>
                          <div class='modal-content'>
@@ -96,7 +108,7 @@
                            </div>
                            <div class='modal-body'>
                            <label>NIS</label>
-                           <input type='text' name='nis' id='nis' class='form-control' value=$data[nis] readonly>
+                           <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
                            </div>
                            <div class='modal-footer'>
                                 <input type='hidden' name='user_id' id='user_id' />
@@ -107,7 +119,7 @@
                          </form>
                        </div>
                      </div>
-                     <div class='modal fade modal-tanggal_selesai-$data[nis]' tabindex='-1' role='dialog' aria-hidden='true'>
+                     <div class='modal fade modal-tanggal_selesai-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
                        <form method='post' action='tanggal_selesai'>
                          <div class='modal-content'>
@@ -118,9 +130,9 @@
                            </div>
                            <div class='modal-body'>
                            <label>NIS</label>
-                           <input type='text' name='nis' id='nis' class='form-control' value=$data[nis] readonly>
+                           <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
                            <label>Tanggal Selesai Prakerin</label>
-                           <input type='date' name='tanggal_selesai' id='tanggal_selesai' class='form-control' value=$data[nis] onkeypress='isInputChar(event)'
+                           <input type='date' name='tanggal_selesai' id='tanggal_selesai' class='form-control' value=<?php echo $nis; ?> onkeypress='isInputChar(event)'
                            required oninvalid='this.setCustomValidity('Data Tidak Boleh Kosong !')' oninput='setCustomValidity('')'>
                            </div>
                            <div class='modal-footer'>
@@ -133,9 +145,8 @@
                        </div>
                      </div>
 
-                     </tr>";
-                     ?>
-<?php endforeach;?>
+                     </tr>
+<?php endforeach; ?>
               </tbody>
             </table>
             </div>

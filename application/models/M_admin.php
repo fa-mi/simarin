@@ -24,7 +24,7 @@ class M_admin extends CI_Model
     $query1 = $this->db->query("SELECT COUNT(DISTINCT(industri.industri)) AS jumlah_industri FROM industri");
     $query2 = $this->db->query("SELECT COUNT(siswa.nis) AS jumlah_siswa FROM siswa");
     $query3 = $this->db->query("SELECT COUNT(siswa.nis) AS jumlah_siswa_daftar_prakerin FROM siswa INNER JOIN prakerin on prakerin.nis = siswa.nis");
-    $query4 = $this->db->query("SELECT COUNT(siswa.nis) AS jumlah_siswa_aktif_prakerin FROM siswa INNER JOIN prakerin on prakerin.nis = siswa.nis where prakerin.is_aktif = 1");
+    $query4 = $this->db->query("SELECT COUNT(bc_siswa.nis) AS jumlah_siswa_prakerin FROM bc_siswa INNER JOIN prakerin on prakerin.nis = bc_siswa.nis where prakerin.is_aktif = 1");
     $result1 = $query1->row_array();
     $result2 = $query2->row_array();
     $result3 = $query3->row_array();
