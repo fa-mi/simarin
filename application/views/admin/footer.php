@@ -211,18 +211,10 @@ $(document).on("click",".belum-tanggal",function(){
   timer: 1500
  },
    function(){
-    $.ajax({
-     url:"<?php echo base_url('c_admin/hapus_industri'); ?>",
-     data:{id:id},
-     success: function(){
-       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
-         $(this).remove();
-       });
-     }
-    });
     location.reload();
  });
 });
+
 
 $(document).on("click",".hapus-industri",function(){
  var id=$(this).attr("data-id");

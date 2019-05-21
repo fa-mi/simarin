@@ -69,10 +69,11 @@
                      <td>
 
                      <button class='btn btn-xs btn-default' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-info-<?php echo $nis; ?>'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
-                     <?php if ($validasi != 0 && $aktif != 1 ): ?>
+                     <?php if ($validasi != 0 && ($aktif == 0 || $aktif == null) ): ?>
                        <button class='btn btn-xs btn-info' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-print-<?php echo $nis; ?>'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>
                        <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-tanggal_selesai-<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Tanggal Selesai</button>
                        <button class='btn btn-xs btn-danger batal-siswa' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
+                     <?php elseif ($aktif == 1): ?>
                        <?php endif; ?>
                      </td>
                      <div class='modal fade modal-info-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>

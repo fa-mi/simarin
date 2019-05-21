@@ -88,6 +88,17 @@
      </div>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div style="float:right">Malang,
   <br>
   <br>Ketua Jurusan<br><br><br><br><br>

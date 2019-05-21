@@ -58,27 +58,32 @@
 	  <table>
 	  	<thead>
 	  		<tr>
+          <th class="short">Username</th>
 	  			<th class="normal">Nama Lengkap</th>
 	  			<th class="normal">Jurusan</th>
           <th class="normal">Tahun Ajaran</th>
-	  			<th class="short">Username</th>
           <th class="short">Tanggal Deadline</th>
 	  		</tr>
 	  	</thead>
 	  	<tbody>
-	  		<?php foreach($data as $siswa):
+        <?php
+        foreach ($data as $siswa):
+          $nis = $siswa['nis'];
+          $nama= $siswa['nama'];
+          $jurusan= $siswa['jurusan'];
+          $tahun_ajaran= $siswa['tahun_ajaran'];
           if ($siswa['tanggal_deadline'] != 'kosong') {
             $tgl_deadline = date("d-m-Y", strtotime($siswa['tanggal_deadline']));
           }
           else {
             $tgl_deadline = "-";
           }
-          ?>
+         ?>
 	  		  <tr>
-	  			<td><?php echo $siswa['nama']; ?></td>
-	  			<td><?php echo $siswa['jurusan']; ?></td>
-          <td><?php echo $siswa['tahun_ajaran']; ?></td>
-          <td><?php echo $siswa['nis']; ?></td>
+          <td><?php echo $nis; ?></span></td>
+	  			<td><?php echo $nama; ?></td>
+	  			<td><?php echo $jurusan; ?></td>
+          <td><?php echo $tahun_ajaran; ?></td>
           <td><?php echo $tgl_deadline; ?></td>
 	  		  </tr>
 	  		<?php endforeach; ?>
@@ -90,12 +95,16 @@
      <strong>* Mohon Untuk Segera Mendaftar Sebelum Pada Tanggal Deadline yang Tertera</strong>
    </div>
    <br>
-   <div style="float:right">Malang,
-     <br>
-     <br>Wakil Kepala Humas<br><br><br><br><br>
-     -----------------------------------------<br>
+   <table align="right">
+       <td>
+         <div><strong>Malang,
+           <br>
+           <br>Wakil Kepala Humas<br><br><br><br><br>
+           -----------------------------------------<br>
+           <br>
+           <br></strong></div>
+       </td>
+     </table>
 
-     <br>
-     <br></div>
 </body>
 </html>

@@ -51,6 +51,15 @@
                             <span class="step_no">4</span>
                             <span class="step_descr">
                                               Step 4<br />
+                                              <small>Melakukan pembekalan</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-5">
+                            <span class="step_no">5</span>
+                            <span class="step_descr">
+                                              Step 5<br />
                                               <small>Melaksanakan kegiatan PRAKERIN</small>
                                           </span>
                           </a>
@@ -78,6 +87,12 @@
                       </div>
                       <div id="step-4">
                         <h2 class="StepTitle">Step 4</h2>
+                        <p>
+                          Siswa/siswi wajib mengikuti pembekalan terkait pelaksanaan Praktek Kerja Industri.</b>
+                        </p>
+                      </div>
+                      <div id="step-5">
+                        <h2 class="StepTitle">Step 5</h2>
                         <p>
                           Siswa/siswi melaksanakan kegiatan Praktek Kerja Industri
                           di Industri dengan <b>baik, semangat, patuh, berwibawa, dan menjaga nama baik sekolah SMK Muhammadiyah 1 Malang</b>
