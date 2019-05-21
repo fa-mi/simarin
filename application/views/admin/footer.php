@@ -33,6 +33,8 @@ setInputFilter(document.getElementById("nama_belakang"), function(value) {
   return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("tempat_lahir"), function(value) {
   return /^\D*$/.test(value); });
+setInputFilter(document.getElementById("domisili"), function(value) {
+  return /^\D*$/.test(value); });
 
   function isInputNumber(evt) {
     var char = String.fromCharCode(evt.which);
@@ -142,9 +144,11 @@ $(document).on("click",".hapus-siswa",function(){
  swal({
    title:"Hapus Siswa",
    text:"Yakin akan menghapus data siswa ini?",
-   type: "warning",
+   type: "error",
    showCancelButton: true,
    confirmButtonText: "hapus",
+   confirmButtonColor: '#FF5733',
+   cancelButtonText: "kembali",
    closeOnConfirm: true,
  },
    function(){
@@ -165,9 +169,11 @@ $(document).on("click",".batal-siswa",function(){
  swal({
    title:"Batalkan Siswa",
    text:"Yakin akan membatalkan siswa ini?",
-   type: "warning",
+   type: "error",
    showCancelButton: true,
    confirmButtonText: "batal",
+   confirmButtonColor: '#FF5733',
+   cancelButtonText: "kembali",
    closeOnConfirm: true,
  },
    function(){
@@ -184,14 +190,50 @@ $(document).on("click",".batal-siswa",function(){
  });
 });
 
+$(document).on("click",".sudah-konfirmasi",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Konfirmasi",
+   text:"Siswa ini sudah Terkonfirmasi Penjajakan Siswa",
+   type: "success",
+   showConfirmButton: false,
+  timer: 1500
+ });
+});
+
+$(document).on("click",".belum-tanggal",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Pesan",
+   text:"Silahkan Menentukan Tanggal Selesai Prakerin Terlebih Dahulu !",
+   type: "error",
+   showConfirmButton: false,
+  timer: 1500
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/hapus_industri'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+       });
+     }
+    });
+    location.reload();
+ });
+});
+
 $(document).on("click",".hapus-industri",function(){
  var id=$(this).attr("data-id");
  swal({
    title:"Hapus industri",
    text:"Yakin akan menghapus data industri ini?",
-   type: "warning",
+   type: "error",
    showCancelButton: true,
    confirmButtonText: "hapus",
+   confirmButtonColor: '#FF5733',
+   cancelButtonText: "kembali",
    closeOnConfirm: true,
  },
    function(){

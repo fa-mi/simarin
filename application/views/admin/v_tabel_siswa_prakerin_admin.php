@@ -54,12 +54,12 @@
                        <?php elseif ($validasi !=0 && $aktif == null): ?>
                          <button type='button' class='btn btn-warning btn-sm penjajakan-siswa' data-id='<?php echo $nis; ?>'>Konfirmasi Penjajakan</button>
                        <?php else:  ?>
-                         <button type='button' class='btn btn-success' data-id='<?php echo $nis; ?>'>Sudah Konfirmasi</button>
+                         <button type='button' class='btn btn-success sudah-konfirmasi' data-id='<?php echo $nis; ?>'>Sudah Konfirmasi</button>
                          <?php endif; ?>
                      </td>
                      <td>
                        <?php if ($aktif != 1 && $tgl_selesai == '-'): ?>
-                       <button type='button' class='btn btn-danger btn-sm' data-id='<?php echo $nis; ?>' disabled>Belum Aktif</button>
+                       <button type='button' class='btn btn-danger btn-sm belum-tanggal' data-id='<?php echo $nis; ?>'>Belum Aktif</button>
                      <?php elseif ($aktif != 1): ?>
                        <button type='button' class='btn btn-danger btn-sm aktifasi-siswa' data-id='<?php echo $nis; ?>'>Belum Aktif</button>
                      <?php else:  ?>
@@ -71,7 +71,7 @@
                      <button class='btn btn-xs btn-default' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-info-<?php echo $nis; ?>'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
                      <?php if ($validasi != 0 && $aktif != 1 ): ?>
                        <button class='btn btn-xs btn-info' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-print-<?php echo $nis; ?>'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>
-                       <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-tanggal_selesai-<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Set Tanggal Selesai</button>
+                       <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-tanggal_selesai-<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Tanggal Selesai</button>
                        <button class='btn btn-xs btn-danger batal-siswa' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
                        <?php endif; ?>
                      </td>

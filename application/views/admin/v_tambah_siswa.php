@@ -52,7 +52,7 @@
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Tempat Lahir
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tempat_lahir">Tempat Lahir
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="text" name="tempat_lahir" id="tempat_lahir" class="optional form-control col-md-7 col-xs-12" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')"
@@ -60,7 +60,7 @@
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Tanggal Lahir
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_lahir">Tanggal Lahir
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="optional form-control col-md-7 col-xs-12" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')"
@@ -81,14 +81,14 @@
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Domisili
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="domisili">Domisili
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" name="alamat" required="required" class="form-control col-md-7 col-xs-12" oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
+                  <input type="text" name="alamat" required="required" id="domisili" class="form-control col-md-7 col-xs-12" oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah">Tahun Ajaran
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tahun_ajaran">Tahun Ajaran
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="text" id="tahun_ajaran" name="tahun_ajaran" required="required" class="form-control col-md-7 col-xs-12" oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
