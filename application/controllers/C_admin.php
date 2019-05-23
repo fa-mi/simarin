@@ -29,7 +29,7 @@ class C_admin extends CI_Controller
           $this->load->view('admin/footer');
 
   }
-  function tanggal_selesai()
+  function set_tanggal_selesai()
   {
     $nis= $this->input->post("nis");
     $tanggal_selesai= $this->input->post("tanggal_selesai");
@@ -191,7 +191,7 @@ class C_admin extends CI_Controller
     $agama = $this->input->post("agama");
     $alamat = $this->input->post("alamat");
     $tahun_ajaran = $this->input->post("tahun_ajaran");
-    $d = $this->m_admin->edit_data('bc_siswa',array('nis' => $nis ));
+    $d = $this->m_siswa->get_data_where('bc_siswa',array('nis' => $nis ));
     $cek = $d->num_rows();
     if ($id_jurusan == 0) {
       redirect(base_url().'C_admin/form_tambah_siswa?pesan=salah');

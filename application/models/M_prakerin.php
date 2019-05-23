@@ -56,7 +56,6 @@ class M_prakerin extends CI_Model
       $query = $this->db->query("call tambah_data_prakerin($nis,$id_jurusan,$keterangan,$nama_wali,$telp,$status_wali,null,$alamat)");
     }
     else {
-
       $query = $this->db->query("call tambah_data_prakerin($nis,$id_jurusan,'Industri MOU',$nama_wali,$telp,$status_wali,$id_industri,'Industri MOU')");
     }
   }

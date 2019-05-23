@@ -67,13 +67,11 @@
                        <?php endif; ?>
                      </td>
                      <td>
-
-                     <button class='btn btn-xs btn-default' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-info-<?php echo $nis; ?>'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
+                       <button class='btn btn-xs btn-default' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-info-<?php echo $nis; ?>'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
+                       <button class='btn btn-xs btn-danger batal-siswa' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
                      <?php if ($validasi != 0 && ($aktif == 0 || $aktif == null) ): ?>
                        <button class='btn btn-xs btn-info' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-print-<?php echo $nis; ?>'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>
                        <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-tanggal_selesai-<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Tanggal Selesai</button>
-                       <button class='btn btn-xs btn-danger batal-siswa' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
-                     <?php elseif ($aktif == 1): ?>
                        <?php endif; ?>
                      </td>
                      <div class='modal fade modal-info-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
@@ -122,7 +120,7 @@
                      </div>
                      <div class='modal fade modal-tanggal_selesai-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
-                       <form method='post' action='tanggal_selesai'>
+                       <form method='post' action='set_tanggal_selesai'>
                          <div class='modal-content'>
                            <div class='modal-header'>
                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
@@ -138,7 +136,6 @@
                            </div>
                            <div class='modal-footer'>
                                 <input type='hidden' name='user_id' id='user_id' />
-                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
                                 <input type='submit' name='action' id='action' class='btn btn-success' value='Submit' />
                            </div>
                          </div>

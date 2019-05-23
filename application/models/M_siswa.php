@@ -5,7 +5,7 @@
 class M_siswa extends CI_Model
 {
 
-  function edit_data($table,$where)
+  function get_data_where($table,$where)
   {
     return $this->db->get_where($table,$where);
   }
@@ -36,7 +36,6 @@ class M_siswa extends CI_Model
     $nama_depan = "'".$data['nama_depan']."'";
     $nama_belakang = "'".$data['nama_belakang']."'";
     $tempat_lahir = "'".$data['tempat_lahir']."'";
-    $agama = "'".$data['agama']."'";
     $alamat = "'".$data['alamat']."'";
     $tanggal_lahir = "'".$data['tanggal_lahir']."'";
     $query = $this->db->query("call ubah_data_siswa($nis,$nama_depan,$nama_belakang,$tempat_lahir,$tanggal_lahir,$data[jenis_kelamin],$alamat,$data[tahun_ajaran])");

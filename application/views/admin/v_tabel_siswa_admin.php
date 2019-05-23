@@ -178,7 +178,6 @@
                                              </div>
                                              <div class="modal-footer">
                                                   <input type="hidden" name="user_id" id="user_id" />
-                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                   <input type="submit" name="action" id="action" class="btn btn-success" value="Submit" />
                                              </div>
                                         </div>
