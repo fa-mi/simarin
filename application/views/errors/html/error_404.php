@@ -15,7 +15,7 @@ $ci->load->helper('url');
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>SIMARIN</title>
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/icons/favicon.png"/>
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.jpg"/>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
