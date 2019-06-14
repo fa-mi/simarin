@@ -65,8 +65,9 @@
         <span class="symbol-input100">
           <i class="fa fa-lock" aria-hidden="true"></i>
         </span>
+				<?php echo form_error('password'); ?>
       </div>
-			<?php echo form_error('password'); ?>
+
 
       <div class="container-login100-form-btn">
         <button class="login100-form-btn">
