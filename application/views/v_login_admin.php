@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>SIMARIN V1.1</title>
+    <title>SIMARIN V2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="login-form-body">
-                  <div class="wrap-input100 validate-input" data-validate = "Contoh Username : 54321">
+                  <div class="wrap-input100 validate-input" data-validate = "Contoh Username : admin">
                     <input class="input100" type="text" name="username" placeholder="Username">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">

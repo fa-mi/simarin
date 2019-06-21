@@ -13,10 +13,6 @@ class M_jurusan extends CI_Model
   {
     return $this->db->get($table);
   }
-  function waktu_server()
-  {
-    return $this->db->query("SELECT current_timestamp() as waktu");
-  }
   function data_jurusan($id)
   {
     $query =  $this->db->query("SELECT jurusan FROM jurusan where jurusan.id_jurusan = $id");
@@ -33,8 +29,5 @@ class M_jurusan extends CI_Model
     return $query->result_array();
   }
 }
-
-
-
 
  ?>
