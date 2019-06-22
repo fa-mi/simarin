@@ -98,7 +98,7 @@
                      </div>
                      <div class='modal fade modal-print-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
-                       <form method='post' action='print_penjajakan'>
+                       <form method='post' action='print_penjajakan' target="_blank">
                          <div class='modal-content'>
                            <div class='modal-header'>
                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>

@@ -10,7 +10,7 @@
             </div>
           </div>
           <button class='btn btn-md btn-info'><a href="<?php echo site_url(); ?>c_admin/form_tambah_siswa"><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Siswa</a></button>
-          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/print_data_siswa"><i class='glyphicon glyphicon-print'></i> Cetak Data</a></button>
+          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/print_data_siswa" target="_blank"><i class='glyphicon glyphicon-print'></i> Cetak Data</a></button>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
