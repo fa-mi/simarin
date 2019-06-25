@@ -215,6 +215,20 @@ $(document).on("click",".belum-tanggal",function(){
  });
 });
 
+$(document).on("click",".belum-penjajakan",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Pesan",
+   text:"Silahkan Melakukan Penjajakan Terlebih Dahulu !",
+   type: "error",
+   showConfirmButton: false,
+  timer: 1500
+ },
+   function(){
+    location.reload();
+ });
+});
+
 
 $(document).on("click",".hapus-industri",function(){
  var id=$(this).attr("data-id");

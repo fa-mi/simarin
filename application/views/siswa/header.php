@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/sweetalert/sweetalert.css'); ?>">
     <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/sweetalert/sweetalert.min.js'); ?>"></script>
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.jpg"/>
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.png"/>
     <!-- Bootstrap -->
     <link href="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -92,7 +92,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url(); ?>c_siswa" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN V1.1</span></a>
+              <a href="<?php echo site_url(); ?>c_siswa" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN V2</span></a>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->

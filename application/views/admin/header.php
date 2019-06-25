@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SIMARIN V2</title>
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.jpg"/>
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.png"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/sweetalert/sweetalert.css'); ?>">
     <script src="<?php echo base_url(); ?>assets/dashboard/vendors/Chart.js/dist/Chart.min.js"></script>
@@ -85,7 +85,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url(); ?>c_admin" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN V1.1</span></a>
+              <a href="<?php echo site_url(); ?>c_admin" class="site_title"><i class="	fa fa-life-saver"></i> <span>SIMARIN V2</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -114,7 +114,12 @@
 
                   <li><a><i class="fa fa-users"></i> Menu Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa">Tabel Siswa</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa">Tabel Siswa <?php
+                      if ($this->session->userdata('notif') > 0) {
+                        echo "<span class='label label-danger pull-right'>Tanggal Masih Kosong";
+                         echo $this->session->userdata('notif');
+                         echo "</span>";
+                      }?></a></li>
                       <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa_prakerin">Tabel Siswa Prakerin</a></li>
                     </ul>
                   </li>

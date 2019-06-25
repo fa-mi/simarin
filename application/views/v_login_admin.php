@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/responsive.css">
     <!-- modernizr css -->
     <script src="<?php echo base_url(); ?>assets/js/vendor/modernizr-2.8.3.min.js"></script>
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.jpg"/>
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.png"/>
   <!--===============================================================================================-->
   	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/vendor/bootstrap/css/bootstrap.min.css">
   <!--===============================================================================================-->

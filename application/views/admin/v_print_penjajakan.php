@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Penjajakan Siswa</title>
-  <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/icons/favicon.png"/>
+  <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.png"/>
   <style type="text/css">
     #outtable{
       padding: 3px;
@@ -26,7 +26,7 @@
     }
 
     thead th{
-      text-align: left;
+      text-align: center;
       padding: 5px;
     }
 
@@ -41,7 +41,7 @@
     <td class="prtext">
       <table cellpadding="0" cellspacing="0" border="0">
         <td valign="top" width="90">
-          <img width="85" src="assets/images/smk.jpg"></td>
+          <img width="85" src="assets/images/smk.png"></td>
           <td class="prsmall" valign="top" width="410" align = center>
             SMK MUHAMMADIYAH 1 MALANG
             <br>-----------------------------------------------------------------------------------------------------

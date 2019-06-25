@@ -22,7 +22,9 @@ class C_admin extends CI_Controller
 	}
 
   function index(){
-
+    $notif_tgl = $this->m_tanggal->notif_tanggal()->row();
+    $notif = array('notif' => $notif_tgl->tgl);
+   $this->session->set_userdata($notif);
           $data['data']= $this->m_admin->data_dashboard_admin();
           $this->load->view('admin/header');
           $this->load->view('admin/v_dashboard_admin',$data);

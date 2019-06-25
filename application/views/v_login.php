@@ -8,7 +8,7 @@
 
 
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.jpg"/>
+	<link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/images/smk.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -30,7 +30,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="<?php echo base_url(); ?>assets/images/smk.jpg" alt="IMG">
+					<img src="<?php echo base_url(); ?>assets/images/smk.png" alt="IMG">
 				</div>
 
 

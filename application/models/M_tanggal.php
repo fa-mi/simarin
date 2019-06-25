@@ -39,6 +39,10 @@ class M_tanggal extends CI_Model
       $query = $this->db->query("SELECT (tanggal.tanggal_deadline - CURRENT_DATE) AS tanggal_batas FROM tanggal");
       return $query->row_array();
   }
+  function notif_tanggal()
+  {
+    return $this->db->query("SELECT COUNT(bc_siswa.nis) as tgl FROM bc_siswa LEFT JOIN tanggal ON tanggal.nis = bc_siswa.nis WHERE tanggal.nis IS NULL");
+  }
 }
 
 

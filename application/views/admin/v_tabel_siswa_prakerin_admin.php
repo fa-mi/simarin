@@ -71,7 +71,11 @@
                        <button class='btn btn-xs btn-danger batal-siswa' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
                      <?php if ($validasi != 0 && ($aktif == 0 || $aktif == null) ): ?>
                        <button class='btn btn-xs btn-info' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-print-<?php echo $nis; ?>'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>
+                     <?php if ($validasi !=0 && $aktif == null): ?>
+                         <button class='btn btn-xs btn-warning belum-penjajakan' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Tanggal Selesai</button>
+                       <?php else: ?>
                        <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-tanggal_selesai-<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Tanggal Selesai</button>
+                       <?php endif; ?>
                        <?php endif; ?>
                      </td>
                      <div class='modal fade modal-info-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
