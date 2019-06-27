@@ -19,7 +19,7 @@ class C_siswa extends CI_Controller
 		}
 	}
   function index(){
-          $data=$this->m_tanggal->tanggal_batas();
+          $data=$this->m_tanggal->tanggal_batas($this->session->userdata('nis'));
           if ($data['tanggal_batas'] > 0) {
             $data['tanggal_batas'] = 'Kurang '.$data['tanggal_batas'].' Hari';
           }

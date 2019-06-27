@@ -34,9 +34,10 @@ class M_tanggal extends CI_Model
     $tanggal_selesai = "'".$data['tanggal_selesai']."'";
     $query = $this->db->query("call set_tgl_selesai($tanggal_selesai,$nis)");
   }
-  function tanggal_batas()
+  function tanggal_batas($nis)
   {
-      $query = $this->db->query("SELECT (tanggal.tanggal_deadline - CURRENT_DATE) AS tanggal_batas FROM tanggal");
+    $nis = "'".$nis."'";
+      $query = $this->db->query("SELECT (tanggal.tanggal_deadline - CURRENT_DATE) AS tanggal_batas FROM tanggal WHERE tanggal.nis = $nis");
       return $query->row_array();
   }
   function notif_tanggal()
