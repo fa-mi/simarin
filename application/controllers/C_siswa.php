@@ -31,7 +31,41 @@ class C_siswa extends CI_Controller
           $this->load->view('siswa/footer');
 
   }
-  function print_formulir()
+  function email($nis)
+  {
+    $config = [
+               'mailtype'  => 'html',
+               'charset'   => 'utf-8',
+               'protocol'  => 'smtp',
+               'smtp_host' => 'ssl://smtp.gmail.com',
+               'smtp_user' => 'fahmi.aquinas@gmail.com',
+               'smtp_pass' => 'persembahan00',
+               'smtp_port' => 465,
+               'crlf'      => "\r\n",
+               'newline'   => "\r\n"
+           ];
+           $this->load->library('email', $config);
+           $this->email->from('smkmuh1malang@gmail.com', 'SMK Muhammadiyah 1 Malang');
+           $this->email->to('fahmi.aquinas@gmail.com');
+           $this->email->subject('Pendaftaran Siswa Prakerin');
+           $this->email->message("Siswa dengan NIS $nis telah mendaftar Prakerin ke dalam sistem.
+           <br><br> Klik <strong><a href='http://localhost:8888/simarin/' target='_blank' rel='noopener'>disini</a></strong>
+           untuk konfirmasi.");
+           if ($this->email->send()) {
+            echo 'Sukses! email berhasil dikirim.';
+        } else {
+            echo 'Error! email tidak dapat dikirim.';
+        }
+  }
+  function print_formulir_penjajakan()
+  {
+    $data['data']= $this->m_prakerin->print_penjajakan($this->session->userdata('nis'));
+    $html = $this->load->view('siswa/v_print_penjajakan',$data, TRUE);
+    $this->pdf->loadHtml($html);
+    $this->pdf->render();
+    $this->pdf->stream("print".".pdf", array("Attachment"=>0));
+  }
+  function print_formulir_pendaftaran()
   {
     $data['data']=$this->m_prakerin->data_siswa_prakerin($this->session->userdata('nis'));
     $html = $this->load->view('siswa/v_print_formulir',$data, TRUE);
@@ -111,6 +145,7 @@ class C_siswa extends CI_Controller
           $this->session->unset_userdata('progres');
           $progres = array('progres' => $ceks+1);
           $this->session->set_userdata($progres);
+          $this->email($input['nis']);
           redirect(base_url().'c_siswa/v_pendaftaran?pesan=berhasil');
       }
     }

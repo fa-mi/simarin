@@ -97,11 +97,11 @@
               <?php
               if(isset($_GET['pesan'])){
               if($_GET['pesan'] == "gagal"){
-              echo "<div class='col-md-3 col-md-offset-3 alert alert-danger'>NIS siswa sudah ada !</div>";
+              echo "<div class='col-md-3 col-md-offset-3 col-xs-12 alert alert-danger'>NIS siswa sudah ada !</div>";
               }else if($_GET['pesan'] == "ok"){
-              echo "<div class='col-md-3 col-md-offset-3 alert alert-success'>Data Berhasil Diinputkan !</div>";
+              echo "<div class='col-md-3 col-md-offset-3 col-xs-12 alert alert-success'>Data Berhasil Diinputkan !</div>";
             }else if($_GET['pesan'] == "salah"){
-              echo "<div class='col-md-3 col-md-offset-3 alert alert-warning'>Input Jurusan Salah !</div>";
+              echo "<div class='col-md-3 col-md-offset-3 col-xs-12 alert alert-warning'>Input Jurusan Salah !</div>";
               }
               }
               ?>

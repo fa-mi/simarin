@@ -22,6 +22,7 @@ class C_admin extends CI_Controller
 	}
 
   function index(){
+
     $notif_tgl = $this->m_tanggal->notif_tanggal()->row();
     $notif = array('notif' => $notif_tgl->tgl);
    $this->session->set_userdata($notif);
@@ -31,15 +32,53 @@ class C_admin extends CI_Controller
           $this->load->view('admin/footer');
 
   }
+
   function set_tanggal_selesai()
   {
     $nis= $this->input->post("nis");
     $tanggal_selesai= $this->input->post("tanggal_selesai");
     $data = array('tanggal_selesai' => $tanggal_selesai,'nis' => $nis);
     $this->m_tanggal->set_tgl_selesai($data);
+    $cek = $this->m_tanggal->tanggal_over_selesai($nis);
+  if ($cek['pesan'] == 'over') {
+      redirect(base_url().'C_admin/tabel_siswa_prakerin?pesan=over');
+  }
+  else if ($cek['pesan'] == 'salah') {
+    redirect(base_url().'C_admin/tabel_siswa_prakerin?pesan=salah');
+  }else {
     redirect(base_url().'C_admin/tabel_siswa_prakerin');
+}
+  }
+  function set_tgl_deadline()
+  {
+        $nis = $this->input->post("nis");
+        $tgl_deadline = $this->input->post("tanggal_deadline");
+        $data = array('tanggal_deadline' => $tgl_deadline,'nis' => $nis);
+        $this->m_tanggal->set_tgl_deadline($data);
+        $cek = $this->m_tanggal->tanggal_over_deadline($nis);
+      if ($cek['pesan'] == 'over') {
+          redirect(base_url().'C_admin/tabel_siswa?pesan=over');
+      }
+      else if ($cek['pesan'] == 'salah') {
+        redirect(base_url().'C_admin/tabel_siswa?pesan=salah');
+      }else {
+        redirect(base_url().'C_admin/tabel_siswa');
+    }
 
   }
+  function default_tanggal_deadline()
+  {
+  $nis= $this->input->post("nis");
+  $this->m_tanggal->default_tanggal_deadline($nis);
+  redirect(base_url().'C_admin/tabel_siswa');
+  }
+  function default_tanggal_selesai()
+  {
+  $nis= $this->input->post("nis");
+  $this->m_tanggal->default_tanggal_selesai($nis);
+  redirect(base_url().'C_admin/tabel_siswa_prakerin');
+  }
+
   function tabel_industri()
   {
     $data['data']=$this->m_industri->list_industri();
@@ -78,6 +117,13 @@ class C_admin extends CI_Controller
     $this->load->view('admin/v_tabel_siswa_prakerin_admin',$data);
     $this->load->view('admin/footer');
   }
+  function tabel_siswa_batal_prakerin()
+  {
+    $data['data']= $this->m_prakerin->data_siswa_batal_prakerin_admin();
+    $this->load->view('admin/header');
+    $this->load->view('admin/v_tabel_siswa_batal_prakerin_admin',$data);
+    $this->load->view('admin/footer');
+  }
   function aktifasi_siswa()
   {
     $id= $this->input->post("id");
@@ -86,9 +132,10 @@ class C_admin extends CI_Controller
   }
   function batal_siswa()
   {
-    $id= $this->input->post("id");
-    $this->m_prakerin->batal_siswa($id);
-    echo "{}";
+    $nis= $this->input->post("nis");
+    $keterangan = $this->input->post("keterangan_batal");
+    $this->m_prakerin->batal_siswa($nis,$keterangan);
+    redirect(base_url().'C_admin/tabel_siswa_prakerin');
   }
   function konfirmasi_siswa()
   {
@@ -160,9 +207,6 @@ class C_admin extends CI_Controller
         }
       }
     }
-
-
-
     if ($id_jurusan == '0') {
     redirect(base_url().'C_admin/form_tambah_industri?pesan=salah');
     }
@@ -193,7 +237,7 @@ class C_admin extends CI_Controller
     $agama = $this->input->post("agama");
     $alamat = $this->input->post("alamat");
     $tahun_ajaran = $this->input->post("tahun_ajaran");
-    $d = $this->m_siswa->get_data_where('bc_siswa',array('nis' => $nis ));
+    $d = $this->m_siswa->get_data_where('siswa',array('nis' => $nis ));
     $cek = $d->num_rows();
     if ($id_jurusan == 0) {
       redirect(base_url().'C_admin/form_tambah_siswa?pesan=salah');
@@ -211,15 +255,7 @@ class C_admin extends CI_Controller
       redirect(base_url().'C_admin/form_tambah_siswa?pesan=ok');
     }
   }
-  function set_tgl_deadline()
-  {
-        $nis = $this->input->post("nis");
-        $tgl_deadline = $this->input->post("tanggal_deadline");
-        $data = array('tanggal_deadline' => $tgl_deadline,'nis' => $nis);
-        $this->m_tanggal->set_tgl_deadline($data);
-        redirect(base_url().'C_admin/tabel_siswa');
 
-  }
   function form_tambah_industri()
   {
     $data['data']=$this->m_jurusan->list_jurusan();

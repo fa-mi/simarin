@@ -48,6 +48,7 @@ setInputFilter(document.getElementById("domisili"), function(value) {
 </script>
 
 
+
 <script type="text/javascript">
 
 $(function(){
@@ -164,31 +165,7 @@ $(document).on("click",".hapus-siswa",function(){
     location.reload();
  });
 });
-$(document).on("click",".batal-siswa",function(){
- var id=$(this).attr("data-id");
- swal({
-   title:"Batalkan Siswa",
-   text:"Yakin akan membatalkan siswa ini?",
-   type: "error",
-   showCancelButton: true,
-   confirmButtonText: "batal",
-   confirmButtonColor: '#FF5733',
-   cancelButtonText: "kembali",
-   closeOnConfirm: true,
- },
-   function(){
-    $.ajax({
-     url:"<?php echo base_url('c_admin/batal_siswa'); ?>",
-     data:{id:id},
-     success: function(){
-       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
-         $(this).remove();
-       });
-     }
-    });
-    location.reload();
- });
-});
+
 
 $(document).on("click",".sudah-konfirmasi",function(){
  var id=$(this).attr("data-id");

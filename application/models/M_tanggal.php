@@ -34,15 +34,37 @@ class M_tanggal extends CI_Model
     $tanggal_selesai = "'".$data['tanggal_selesai']."'";
     $query = $this->db->query("call set_tgl_selesai($tanggal_selesai,$nis)");
   }
+  function default_tanggal_selesai($data)
+  {
+    $nis = "'".$data."'";
+    $query = $this->db->query("UPDATE tanggal SET tanggal.tanggal_selesai = NULL WHERE tanggal.nis = $nis ");
+  }
+  function default_tanggal_deadline($data)
+  {
+    $nis = "'".$data."'";
+    $query = $this->db->query("UPDATE tanggal SET tanggal.tanggal_deadline = NULL WHERE tanggal.nis = $nis ");
+  }
   function tanggal_batas($nis)
   {
     $nis = "'".$nis."'";
-      $query = $this->db->query("SELECT (tanggal.tanggal_deadline - CURRENT_DATE) AS tanggal_batas FROM tanggal WHERE tanggal.nis = $nis");
+      $query = $this->db->query("SELECT DATEDIFF(tanggal.tanggal_deadline+1, CURRENT_DATE) AS tanggal_batas FROM tanggal WHERE tanggal.nis = $nis");
+      return $query->row_array();
+  }
+  function tanggal_over_selesai($nis)
+  {
+    $nis = "'".$nis."'";
+      $query = $this->db->query("call tanggal_over_selesai($nis)");
+      return $query->row_array();
+  }
+  function tanggal_over_deadline($nis)
+  {
+    $nis = "'".$nis."'";
+      $query = $this->db->query("call tanggal_over_deadline($nis)");
       return $query->row_array();
   }
   function notif_tanggal()
   {
-    return $this->db->query("SELECT COUNT(bc_siswa.nis) as tgl FROM bc_siswa LEFT JOIN tanggal ON tanggal.nis = bc_siswa.nis WHERE tanggal.nis IS NULL");
+    return $this->db->query("SELECT COUNT(siswa.nis) as tgl FROM siswa LEFT JOIN tanggal ON tanggal.nis = siswa.nis WHERE tanggal.nis IS NULL");
   }
 }
 

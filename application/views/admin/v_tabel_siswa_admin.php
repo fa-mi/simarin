@@ -60,6 +60,19 @@
                              <?php else: ?>
                         <?php endif; ?>
                       </td>
+                      <?php
+                  if(isset($_GET['pesan'])){
+                    if($_GET['pesan'] == "over"){
+                      echo "<script type='text/javascript'>$(window).load(function(){
+                      $('#modal-over-";?><?php echo $nis; ?><?php echo "').modal('show');
+                      });</script>";
+                    }else if($_GET['pesan'] == "salah"){
+                      echo "<script type='text/javascript'>$(window).load(function(){
+                      $('#modal-alert-";?><?php echo $nis; ?><?php echo "').modal('show');
+                      });</script>";
+                    }
+                  }
+              ?>
 
                       <div class='modal fade modal-info-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                         <div class='modal-dialog modal-sm'>
@@ -160,6 +173,48 @@
                                        </div>
                                   </form>
                              </div>
+                        </div>
+                        <div id="modal-over-<?php echo $nis; ?>" class='modal fade modal-alert-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
+                          <div class='modal-dialog modal-sm'>
+                            <form method='post' action='default_tanggal_deadline'>
+                            <div class='modal-content'>
+                              <div class='modal-header'>
+                                <h4 class='modal-title'>Warning</h4>
+                              </div>
+                              <div class='modal-body'>
+                                <label>NIS</label>
+                                <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
+                                <br>
+                              <label>Tanggal Deadline Melebihi Tanggal yang Diharuskan, Apakah Anda Yakin?</label>
+                              </div>
+                              <div class='modal-footer'>
+                                   <input type='submit' name='action' id='action' class='btn btn-default' value='Ubah' />
+                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
+                              </div>
+                            </div>
+                           </form>
+                          </div>
+                        </div>
+
+                        <div id="modal-alert-<?php echo $nis; ?>" class='modal fade modal-alert-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
+                          <div class='modal-dialog modal-sm'>
+                            <form method='post' action='default_tanggal_deadline'>
+                            <div class='modal-content'>
+                              <div class='modal-header'>
+                                <h4 class='modal-title'>Warning</h4>
+                              </div>
+                              <div class='modal-body'>
+                                <label>NIS</label>
+                                <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
+                                <br>
+                              <label>Tanggal Deadline Salah Silahkan Ubah Kembali !</label>
+                              </div>
+                              <div class='modal-footer'>
+                                   <input type='submit' name='action' id='action' class='btn btn-default' value='Ubah' />
+                              </div>
+                            </div>
+                           </form>
+                          </div>
                         </div>
                         <div id="modal-tgl-<?php echo $nis; ?>" class="modal fade">
                               <div class="modal-dialog">

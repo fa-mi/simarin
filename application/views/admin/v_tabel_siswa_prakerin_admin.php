@@ -68,16 +68,26 @@
                      </td>
                      <td>
                        <button class='btn btn-xs btn-default' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-info-<?php echo $nis; ?>'><i class='glyphicon glyphicon-info-sign'></i> Info</button>
-                       <button class='btn btn-xs btn-danger batal-siswa' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
-                     <?php if ($validasi != 0 && ($aktif == 0 || $aktif == null) ): ?>
-                       <button class='btn btn-xs btn-info' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-print-<?php echo $nis; ?>'><i class='glyphicon glyphicon-print'></i> Print Penjakakan</button>
+                       <button class='btn btn-xs btn-danger' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-batal-<?php echo $nis; ?>'><i class='glyphicon glyphicon-remove-sign'></i> Batalkan</button>
                      <?php if ($validasi !=0 && $aktif == null): ?>
                          <button class='btn btn-xs btn-warning belum-penjajakan' data-id='<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Tanggal Selesai</button>
-                       <?php else: ?>
+                       <?php elseif ($validasi == 1): ?>
                        <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='.modal-tanggal_selesai-<?php echo $nis; ?>'><i class='glyphicon glyphicon-calendar'></i> Tanggal Selesai</button>
                        <?php endif; ?>
-                       <?php endif; ?>
                      </td>
+                     <?php
+                 if(isset($_GET['pesan'])){
+                   if($_GET['pesan'] == "over"){
+                     echo "<script type='text/javascript'>$(window).load(function(){
+                     $('#modal-over-";?><?php echo $nis; ?><?php echo "').modal('show');
+                     });</script>";
+                   }else if($_GET['pesan'] == "salah"){
+                     echo "<script type='text/javascript'>$(window).load(function(){
+                     $('#modal-alert-";?><?php echo $nis; ?><?php echo "').modal('show');
+                     });</script>";
+                   }
+                 }
+             ?>
                      <div class='modal fade modal-info-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
                          <div class='modal-content'>
@@ -85,7 +95,7 @@
                            <div class='modal-header'>
                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
                              </button>
-                             <h4 class='modal-title' id='myModalLabel2'>Info Siswa</h4>
+                             <h4 class='modal-title'>Info Siswa</h4>
                            </div>
                            <div class='modal-body'>
                            <p> No. Telp : <?php echo $no_telp; ?></p>
@@ -100,28 +110,75 @@
                          </div>
                        </div>
                      </div>
-                     <div class='modal fade modal-print-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
+
+                     <div id="modal-over-<?php echo $nis; ?>" class='modal fade modal-alert-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
                        <div class='modal-dialog modal-sm'>
-                       <form method='post' action='print_penjajakan' target="_blank">
+                         <form method='post' action='default_tanggal_selesai'>
+                         <div class='modal-content'>
+                           <div class='modal-header'>
+                             <h4 class='modal-title'>Warning</h4>
+                           </div>
+                           <div class='modal-body'>
+                             <label>NIS</label>
+                             <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
+                             <br>
+                           <label>Tanggal Selesai Melebihi Tanggal yang Diharuskan, Apakah Anda Yakin?</label>
+                           </div>
+                           <div class='modal-footer'>
+                                <input type='submit' name='action' id='action' class='btn btn-default' value='Ubah' />
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
+                           </div>
+                         </div>
+                        </form>
+                       </div>
+                     </div>
+
+                     <div id="modal-batal-<?php echo $nis; ?>" class='modal fade modal-batal-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
+                       <div class='modal-dialog modal-sm'>
+                         <form method='post' action='batal_siswa'>
                          <div class='modal-content'>
                            <div class='modal-header'>
                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
                              </button>
-                             <h4 class='modal-title' id='myModalLabel2'>Print Penjakakan Siswa</h4>
+                             <h4 class='modal-title'>Warning</h4>
                            </div>
                            <div class='modal-body'>
-                           <label>NIS</label>
-                           <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
+                             <label>NIS</label>
+                             <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
+                             <br>
+                           <label>Anda Membatalkan Siswa Ini Dikarenakan</label>
+                           <input type='text' name='keterangan_batal' id='nis' class='form-control' onkeypress="isInputChar(event)"
+                           required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                            </div>
                            <div class='modal-footer'>
-                                <input type='hidden' name='user_id' id='user_id' />
-                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                                <input type='submit' name='action' id='action' class='btn btn-success' value='Print' />
+                                <input type='submit' name='action' id='action' class='btn btn-danger' value='Batal' />
                            </div>
                          </div>
-                         </form>
+                        </form>
                        </div>
                      </div>
+
+                     <div id="modal-alert-<?php echo $nis; ?>" class='modal fade modal-alert-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
+                       <div class='modal-dialog modal-sm'>
+                         <form method='post' action='default_tanggal_selesai'>
+                         <div class='modal-content'>
+                           <div class='modal-header'>
+                             <h4 class='modal-title'>Warning</h4>
+                           </div>
+                           <div class='modal-body'>
+                             <label>NIS</label>
+                             <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
+                             <br>
+                           <label>Tanggal Selesai Salah Silahkan Ubah Kembali !</label>
+                           </div>
+                           <div class='modal-footer'>
+                                <input type='submit' name='action' id='action' class='btn btn-default' value='Ubah' />
+                           </div>
+                         </div>
+                        </form>
+                       </div>
+                     </div>
+
                      <div class='modal fade modal-tanggal_selesai-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                        <div class='modal-dialog modal-sm'>
                        <form method='post' action='set_tanggal_selesai'>
@@ -129,7 +186,7 @@
                            <div class='modal-header'>
                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
                              </button>
-                             <h4 class='modal-title' id='myModalLabel2'>Tanggal Selesai Prakerin</h4>
+                             <h4 class='modal-title'>Tanggal Selesai Prakerin</h4>
                            </div>
                            <div class='modal-body'>
                            <label>NIS</label>
@@ -149,6 +206,7 @@
 
                      </tr>
 <?php endforeach; ?>
+
               </tbody>
             </table>
             </div>
@@ -157,4 +215,3 @@
       </div>
     </div>
   </div>
-</div>

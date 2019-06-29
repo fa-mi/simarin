@@ -114,13 +114,9 @@
 
                   <li><a><i class="fa fa-users"></i> Menu Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa">Tabel Siswa <?php
-                      if ($this->session->userdata('notif') > 0) {
-                        echo "<span class='label label-danger pull-right'>Tanggal Masih Kosong";
-                         echo $this->session->userdata('notif');
-                         echo "</span>";
-                      }?></a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa">Tabel Siswa</a></li>
                       <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa_prakerin">Tabel Siswa Prakerin</a></li>
+                      <li><a href="<?php echo site_url(); ?>c_admin/tabel_siswa_batal_prakerin">Tabel Siswa Batal Prakerin</a></li>
                     </ul>
                   </li>
                   <li><a href="<?php echo site_url(); ?>c_admin/tabel_industri"><i class="fa fa-building"></i> Tabel Industri <span class="fa fa-chevron-right"></span></a>

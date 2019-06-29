@@ -31,15 +31,20 @@ class M_prakerin extends CI_Model
     $query = $this->db->query("call data_siswa_prakerin()");
     return $query->result_array();
   }
+  public function data_siswa_batal_prakerin_admin()
+  {
+    $query = $this->db->query("call data_siswa_batal_prakerin()");
+    return $query->result_array();
+  }
   public function data_siswa_prakerin($id)
   {
     $query = $this->db->query("call siswa_prakerin($id)");
     return $query->result_array();
   }
-  public function batal_siswa($id){
-
-    $query = $this->db->query("call batal_siswa($id)");
-    return $query->row_array();
+  public function batal_siswa($id,$keterangan){
+    $id = "'".$id."'";
+    $keterangan = "'".$keterangan."'";
+    $query = $this->db->query("call batal_siswa($id,$keterangan)");
   }
   public function tambah_data_prakerin($data)
   {

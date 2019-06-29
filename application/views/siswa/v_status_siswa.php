@@ -14,7 +14,11 @@
           <h2><i class="fa fa-bell"></i> Simarin<small>Status</small></h2>
           <div class="clearfix"></div>
           <?php if ($this->session->userdata('progres') > 0) {
-            echo "<button class='btn btn-md btn-default'><a href='print_formulir' target='_blank'><i class='glyphicon glyphicon-print'></i> Print Formulir</a></button>
+            echo "<button class='btn btn-md btn-default'><a href='print_formulir_pendaftaran' target='_blank'><i class='glyphicon glyphicon-print'></i> Print Formulir Pendaftaran</a></button>
+            ";
+          } ?>
+          <?php if ($this->session->userdata('progres') > 0 && $this->session->userdata('validasi') == 1) {
+            echo "<button class='btn btn-md btn-default'><a href='print_formulir_penjajakan' target='_blank'><i class='glyphicon glyphicon-print'></i> Print Formulir Penjajakan</a></button>
             ";
           } ?>
 </div>
