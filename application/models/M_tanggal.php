@@ -62,10 +62,6 @@ class M_tanggal extends CI_Model
       $query = $this->db->query("call tanggal_over_deadline($nis)");
       return $query->row_array();
   }
-  function notif_tanggal()
-  {
-    return $this->db->query("SELECT COUNT(siswa.nis) as tgl FROM siswa LEFT JOIN tanggal ON tanggal.nis = siswa.nis WHERE tanggal.nis IS NULL");
-  }
 }
 
 

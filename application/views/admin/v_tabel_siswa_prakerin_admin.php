@@ -116,7 +116,7 @@
                          <form method='post' action='default_tanggal_selesai'>
                          <div class='modal-content'>
                            <div class='modal-header'>
-                             <h4 class='modal-title'>Warning</h4>
+                             <h4 class='modal-title'>Peringatan</h4>
                            </div>
                            <div class='modal-body'>
                              <label>NIS</label>
@@ -140,13 +140,13 @@
                            <div class='modal-header'>
                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
                              </button>
-                             <h4 class='modal-title'>Warning</h4>
+                             <h4 class='modal-title'>Batal Prakerin</h4>
                            </div>
                            <div class='modal-body'>
                              <label>NIS</label>
                              <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
                              <br>
-                           <label>Anda Membatalkan Siswa Ini Dikarenakan</label>
+                           <label>Anda Membatalkan Siswa Ini Karena : </label>
                            <input type='text' name='keterangan_batal' id='nis' class='form-control' onkeypress="isInputChar(event)"
                            required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                            </div>
@@ -163,7 +163,7 @@
                          <form method='post' action='default_tanggal_selesai'>
                          <div class='modal-content'>
                            <div class='modal-header'>
-                             <h4 class='modal-title'>Warning</h4>
+                             <h4 class='modal-title'>Peringatan</h4>
                            </div>
                            <div class='modal-body'>
                              <label>NIS</label>
