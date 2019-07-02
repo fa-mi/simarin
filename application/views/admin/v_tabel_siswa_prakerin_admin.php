@@ -111,7 +111,7 @@
                        </div>
                      </div>
 
-                     <div id="modal-over-<?php echo $nis; ?>" class='modal fade modal-alert-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
+                     <div id="modal-over-<?php echo $nis; ?>" class='modal fade' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
                        <div class='modal-dialog modal-sm'>
                          <form method='post' action='default_tanggal_selesai'>
                          <div class='modal-content'>
@@ -158,7 +158,7 @@
                        </div>
                      </div>
 
-                     <div id="modal-alert-<?php echo $nis; ?>" class='modal fade modal-alert-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
+                     <div id="modal-alert-<?php echo $nis; ?>" class='modal fade' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
                        <div class='modal-dialog modal-sm'>
                          <form method='post' action='default_tanggal_selesai'>
                          <div class='modal-content'>
