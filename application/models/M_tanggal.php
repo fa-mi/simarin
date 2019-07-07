@@ -62,6 +62,12 @@ class M_tanggal extends CI_Model
       $query = $this->db->query("call tanggal_over_deadline($nis)");
       return $query->row_array();
   }
+  function tanggal_over_lahir($nis)
+  {
+    $nis = "'".$nis."'";
+      $query = $this->db->query("call tanggal_over_lahir($nis)");
+      return $query->row_array();
+  }
 }
 
 

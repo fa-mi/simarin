@@ -46,6 +46,13 @@ class M_siswa extends CI_Model
     $query = $this->db->query("call data_siswa_admin()");
     return $query->result_array();
   }
+  function delete_siswa($nis)
+  {
+    $nis = "'".$nis."'";
+    $query = $this->db->query("DELETE FROM tanggal WHERE tanggal.nis = $nis");
+    $query = $this->db->query("DELETE FROM siswa WHERE siswa.nis = $nis");
+  }
+
 }
 
 

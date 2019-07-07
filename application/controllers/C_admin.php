@@ -221,6 +221,14 @@ class C_admin extends CI_Controller
     $this->m_siswa->hapus_siswa($id);
     echo "{}";
   }
+  function hapus_siswa_lahir()
+  {
+    $id= $this->input->post("id");
+    $this->m_siswa->delete_siswa($id);
+    $this->session->unset_userdata('nis');
+    redirect(base_url().'C_admin/form_tambah_siswa');
+
+  }
   function tambah_siswa()
   {
     $nis = $this->input->post("nis");
@@ -248,9 +256,28 @@ class C_admin extends CI_Controller
               'agama' => $agama, 'alamat' => $alamat, 'tahun_ajaran' => $tahun_ajaran,
             );
             $this->m_siswa->tambah_siswa($data);
-      redirect(base_url().'C_admin/form_tambah_siswa?pesan=ok');
+            $cek_tgl = $this->m_tanggal->tanggal_over_lahir($nis);
+            if ($cek_tgl['pesan'] == 'tua') {
+              $ses_nis = array('nis' => $nis);
+              $this->session->set_userdata($ses_nis);
+              redirect(base_url().'C_admin/form_tambah_siswa?pesan=tua');
+            }
+            else if ($cek_tgl['pesan'] == 'muda') {
+              $ses_nis = array('nis' => $nis);
+              $this->session->set_userdata($ses_nis);
+              redirect(base_url().'C_admin/form_tambah_siswa?pesan=muda');
+            }
+            else if ($cek_tgl['pesan'] == 'over') {
+              $ses_nis = array('nis' => $nis);
+              $this->session->set_userdata($ses_nis);
+              redirect(base_url().'C_admin/form_tambah_siswa?pesan=over');
+            }
+            else {
+              redirect(base_url().'C_admin/form_tambah_siswa?pesan=ok');
+          }
     }
   }
+
 
   function form_tambah_industri()
   {

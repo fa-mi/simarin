@@ -95,31 +95,18 @@
                 </div>
               </div>
               <?php
-              if(isset($_GET['pesan'])){
-              if($_GET['pesan'] == "gagal"){
-              echo "<div class='col-md-3 col-md-offset-3 col-xs-12 alert alert-danger'>NIS siswa sudah ada !</div>";
-              }else if($_GET['pesan'] == "ok"){
-              echo "<div class='col-md-3 col-md-offset-3 col-xs-12 alert alert-success'>Data Berhasil Diinputkan !</div>";
-            }else if($_GET['pesan'] == "salah"){
-              echo "<div class='col-md-3 col-md-offset-3 col-xs-12 alert alert-warning'>Input Jurusan Salah !</div>";
-              }
-              else if($_GET['pesan'] == "tua"){
-                echo "<script type='text/javascript'>$(window).load(function(){
-                $('#modal-tua').modal('show');
-                });</script>";
-                }
-              else if($_GET['pesan'] == "muda"){
-                  echo "<script type='text/javascript'>$(window).load(function(){
-                  $('#modal-muda').modal('show');
-                  });</script>";
-                  }
-              else if($_GET['pesan'] == "over"){
-                    echo "<script type='text/javascript'>$(window).load(function(){
-                    $('#modal-over').modal('show');
-                    });</script>";
-                    }
-              }
-              ?>
+          if(isset($_GET['pesan'])){
+            if($_GET['pesan'] == "tua"){
+              echo "<script type='text/javascript'>$(window).load(function(){
+              $('#modal-tua-";?><?php echo $nis; ?><?php echo "').modal('show');
+              });</script>";
+            }else if($_GET['pesan'] == "muda"){
+              echo "<script type='text/javascript'>$(window).load(function(){
+              $('#modal-muda-";?><?php echo $nis; ?><?php echo "').modal('show');
+              });</script>";
+            }
+          }
+      ?>
               </div>
               <div class="ln_solid"></div>
               <div class="form-group">
@@ -130,72 +117,29 @@
               </div>
             </div>
             </form>
-            <div id="modal-tua" class='modal fade' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
-              <div class='modal-dialog modal-sm'>
-                <form method='post' action='hapus_siswa_lahir'>
-                <div class='modal-content'>
-                  <div class='modal-header'>
-                    <h4 class='modal-title'>Peringatan</h4>
-                  </div>
-                  <div class='modal-body'>
-                    <label>NIS</label>
-                    <input type='text' name='id' id='nis' class='form-control' value="<?php  echo $this->session->userdata('nis');?>" readonly>
-                    <br>
-                  <label>Tanggal Lahir Siswa Terlalu Tua !</label>
-                  </div>
-                  <div class='modal-footer'>
-                       <input type='submit' name='action' id='action' class='btn btn-danger' value='Hapus' />
-                  </div>
-                </div>
-               </form>
-              </div>
-            </div>
-            <div id="modal-muda" class='modal fade' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
-              <div class='modal-dialog modal-sm'>
-                <form method='post' action='hapus_siswa_lahir'>
-                <div class='modal-content'>
-                  <div class='modal-header'>
-                    <h4 class='modal-title'>Peringatan</h4>
-                  </div>
-                  <div class='modal-body'>
-                    <label>NIS</label>
-                    <input type='text' name='id' id='nis' class='form-control' value="<?php  echo $this->session->userdata('nis');?>" readonly>
-                    <br>
-                  <label>Tanggal Lahir Siswa Terlalu Muda !</label>
-                  </div>
-                  <div class='modal-footer'>
-                       <input type='submit' name='action' id='action' class='btn btn-danger' value='Hapus' />
-                  </div>
-                </div>
-               </form>
-              </div>
-            </div>
-            <div id="modal-over" class='modal fade' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
-              <div class='modal-dialog modal-sm'>
-                <form method='post' action='hapus_siswa_lahir'>
-                <div class='modal-content'>
-                  <div class='modal-header'>
-                    <h4 class='modal-title'>Peringatan</h4>
-                  </div>
-                  <div class='modal-body'>
-                    <label>NIS</label>
-                    <input type='text' name='id' id='nis' class='form-control' value="<?php  echo $this->session->userdata('nis');?>" readonly>
-                    <br>
-                  <label>Tanggal Lahir Siswa Salah !</label>
-                  </div>
-                  <div class='modal-footer'>
-                       <input type='submit' name='action' id='action' class='btn btn-danger' value='Hapus' />
-                  </div>
-                </div>
-               </form>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
-
-
-
+    <div id="modal-alert-<?php echo $nis; ?>" class='modal fade' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
+      <div class='modal-dialog modal-sm'>
+        <form method='post' action='default_tanggal_deadline'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h4 class='modal-title'>Warning</h4>
+          </div>
+          <div class='modal-body'>
+            <label>NIS</label>
+            <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
+            <br>
+          <label>Tanggal Deadline Salah Silahkan Ubah Kembali !</label>
+          </div>
+          <div class='modal-footer'>
+               <input type='submit' name='action' id='action' class='btn btn-default' value='Ubah' />
+          </div>
+        </div>
+       </form>
+      </div>
+    </div>
   </div>
 </div>
