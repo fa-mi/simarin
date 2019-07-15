@@ -22,6 +22,14 @@ class M_prakerin extends CI_Model
   public function konfirmasi_siswa($id){
     $query = $this->db->query("call konfirmasi_siswa($id)");
   }
+  public function konfirmasi_semua_pendaftaran()
+  {
+    $query = $this->db->query("UPDATE prakerin SET prakerin.is_validasi = 1");
+  }
+  public function konfirmasi_semua_penjajakan()
+  {
+    $query = $this->db->query("UPDATE prakerin SET prakerin.is_aktif = 0 WHERE prakerin.is_validasi = 1");
+  }
   public function print_penjajakan($id){
     $query = $this->db->query("call print_penjajakan($id)");
     return $query->result_array();
@@ -45,6 +53,17 @@ class M_prakerin extends CI_Model
     $id = "'".$id."'";
     $keterangan = "'".$keterangan."'";
     $query = $this->db->query("call batal_siswa($id,$keterangan)");
+  }
+  public function hapus_riwayat_siswa($id)
+  {
+    $id = "'".$id."'";
+    $query = $this->db->query("DELETE FROM batal_siswa WHERE batal_siswa.nis = $id");
+  }
+  public function ubah_alasan_siswa($data)
+  {
+    $nis = "'".$data['nis']."'";
+    $alasan = "'".$data['alasan']."'";
+    $query = $this->db->query("UPDATE batal_siswa SET batal_siswa.keterangan = $alasan WHERE batal_siswa.nis = $nis");
   }
   public function tambah_data_prakerin($data)
   {

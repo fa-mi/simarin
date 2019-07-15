@@ -9,8 +9,8 @@
             <div class="clearfix">
             </div>
           </div>
-          <button class='btn btn-md btn-info'><a href="<?php echo site_url(); ?>c_admin/form_tambah_siswa"><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Siswa</a></button>
-          <button class='btn btn-md btn-default'><a href="<?php echo site_url(); ?>c_admin/print_data_siswa" target="_blank"><i class='glyphicon glyphicon-print'></i> Cetak Data</a></button>
+          <a href="<?php echo site_url(); ?>c_admin/form_tambah_siswa"><button class='btn btn-md btn-info'><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Siswa</button></a>
+          <a href="<?php echo site_url(); ?>c_admin/print_data_siswa" target="_blank"><button class='btn btn-md btn-default'><i class='glyphicon glyphicon-print'></i> Cetak Data</button></a>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
@@ -54,9 +54,11 @@
                         <i class='glyphicon glyphicon-edit'></i> Ubah</a></button>
                         <button class='btn btn-xs btn-danger hapus-siswa' data-id='<?php echo $nis; ?>'>
                           <i class='glyphicon glyphicon-trash'></i> Hapus</button>
-                        <?php if ($tgl_deadline == '-'): ?>
                           <button class='btn btn-xs btn-success' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='#modal-tgl-<?php echo $nis; ?>'>
-                            <i class='glyphicon glyphicon-calendar'></i> Tanggal Deadline</button>
+                            <i class='glyphicon glyphicon-calendar'></i> Ubah Tanggal Deadline</button>
+                        <?php if ($tgl_deadline == '-'): ?>
+                          <button class='btn btn-xs btn-danger' data-id='<?php echo $nis; ?>'>
+                            <i class='fa fa-exclamation-circle'></i> Tanggal Deadline Pendaftaran Kosong !</button>
                              <?php else: ?>
                         <?php endif; ?>
                       </td>

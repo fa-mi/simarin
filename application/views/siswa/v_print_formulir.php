@@ -10,12 +10,7 @@
     <td class="prtext">
       <<table cellpadding="0" cellspacing="0" border="0">
         <td valign="top" width="90">
-          <img width="85" src="assets/images/smk.png"></td>
-          <td class="prsmall" valign="top" width="410" align = center>
-            SMK MUHAMMADIYAH 1 MALANG
-            <br>-----------------------------------------------------------------------------------------------------
-            <br>SISTEM INFORMASI MANAJEMEN PRAKERIN
-          </td>
+          <img width="725" src="assets/images/header_print.jpeg"></td>
         </table><br><br>
  <div align="center" class="prtitle">FORMULIR PRAKERIN SISWA</div>
  <br><br>
@@ -43,7 +38,7 @@
      <td width="350">: <?php echo $nis; ?></td>
    </tr>
      <tr class="prtext">
-       <td>Nama</td>
+       <td>Nama Lengkap</td>
        <td>: <?php echo $nama ?></td>
 </tr>
 <tr class="prtext">

@@ -62,6 +62,14 @@ class C_admin extends CI_Controller
     }
 
   }
+  function konfirmasi_semua_pendaftaran()
+  {
+    $this->m_prakerin->konfirmasi_semua_pendaftaran();
+  }
+  function konfirmasi_semua_penjajakan()
+  {
+    $this->m_prakerin->konfirmasi_semua_penjajakan();
+  }
   function default_tanggal_deadline()
   {
   $nis= $this->input->post("nis");
@@ -139,11 +147,26 @@ class C_admin extends CI_Controller
     $this->m_prakerin->konfirmasi_siswa($id);
     echo "{}";
   }
+  function hapus_riwayat_siswa()
+  {
+    $id= $this->input->post("id");
+    $this->m_prakerin->hapus_riwayat_siswa($id);
+    echo "{}";
+  }
   function penjajakan_siswa()
   {
     $id= $this->input->post("id");
     $this->m_prakerin->penjajakan_siswa($id);
     echo "{}";
+  }
+  function ubah_alasan_siswa()
+  {
+    $nis = $this->input->post("nis");
+    $alasan = $this->input->post("alasan_batal");
+    $data = array('nis' => $nis, 'alasan' => $alasan);
+    $this->m_prakerin->ubah_alasan_siswa($data);
+    redirect(base_url().'C_admin/tabel_siswa_batal_prakerin');
+
   }
   function ubah_data_siswa()
   {

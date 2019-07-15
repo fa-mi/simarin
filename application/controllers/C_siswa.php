@@ -49,7 +49,7 @@ class C_siswa extends CI_Controller
            $this->email->to('fahmi.aquinas@gmail.com');
            $this->email->subject('Pendaftaran Siswa Prakerin');
            $this->email->message("Siswa dengan NIS $nis telah mendaftar Prakerin ke dalam sistem.
-           <br><br> Klik <strong><a href='http://localhost:8888/simarin/c_login/v_login_admin' target='_blank' rel='noopener'>disini</a></strong>
+           <br><br> Klik <strong><a href='http://localhost:8888/simarin/c_admin/tabel_siswa_prakerin' target='_blank' rel='noopener'>disini</a></strong>
            untuk konfirmasi.");
            if ($this->email->send()) {
             echo 'Sukses! email berhasil dikirim.';

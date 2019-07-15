@@ -9,13 +9,19 @@
             <div class="clearfix">
             </div>
           </div>
+          <div class="col-md-10 col-sm-6 col-xs-6">
+          <button class='btn btn-md btn-info konfirmasi-pendaftaran-semua'><i class='glyphicon glyphicon-ok-sign'></i> Konfirmasi Pendaftaran</button>
+          </div>
+          <div class="col-md-2 col-sm-6 col-xs-6">
+          <button class='btn btn-md btn-success konfirmasi-penjajakan-semua'><i class='glyphicon glyphicon-ok-sign'></i> Konfirmasi Penjajakan</button>
+          </div>
             <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
                   <th>NIS</th>
                   <th>Jurusan</th>
-                  <th>Nama</th>
+                  <th>Nama Lengkap</th>
                   <th>Industri</th>
                   <th>Konfirmasi</th>
                   <th>Aktif</th>

@@ -47,7 +47,7 @@ class M_tanggal extends CI_Model
   function tanggal_batas($nis)
   {
     $nis = "'".$nis."'";
-      $query = $this->db->query("SELECT DATEDIFF(tanggal.tanggal_deadline+1, CURRENT_DATE) AS tanggal_batas FROM tanggal WHERE tanggal.nis = $nis");
+      $query = $this->db->query("SELECT DATEDIFF(tanggal.tanggal_deadline, CURRENT_DATE) AS tanggal_batas FROM tanggal WHERE tanggal.nis = $nis");
       return $query->row_array();
   }
   function tanggal_over_selesai($nis)

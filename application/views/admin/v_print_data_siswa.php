@@ -19,7 +19,7 @@
     }
 
     .normal{
-      width: 150px;
+      width: 125px;
     }
     table{
       border-collapse: collapse;
@@ -46,12 +46,7 @@
 <body>
       <table cellpadding="0" cellspacing="0" border="0">
         <td valign="top" width="90">
-          <img width="85" src="assets/images/smk.png"></td>
-          <td class="prsmall" valign="top" width="410" align = center>
-            SMK MUHAMMADIYAH 1 MALANG
-            <br>-----------------------------------------------------------------------------------------------------
-            <br>SISTEM INFORMASI MANAJEMEN PRAKERIN
-          </td>
+          <img  width="725" src="assets/images/header_print.jpeg"></td>
         </table>
 
         <br><br>    <div align="center" class="prtitle">DATA SISWA PRAKERIN</div><br><br>
@@ -61,11 +56,10 @@
 	  	<thead>
 	  		<tr>
           <th class="short">Username</th>
-          <th class="short">Password</th>
 	  			<th class="normal">Nama Lengkap</th>
 	  			<th class="normal">Jurusan</th>
           <th class="short">Tahun Ajaran</th>
-          <th class="short">Tanggal Deadline</th>
+          <th class="normal">Tanggal Deadline</th>
 	  		</tr>
 	  	</thead>
 	  	<tbody>
@@ -84,7 +78,6 @@
          ?>
 	  		  <tr>
           <td><?php echo $nis; ?></td>
-          <td><?php echo $nis; ?></td>
 	  			<td><?php echo $nama; ?></td>
 	  			<td><?php echo $jurusan; ?></td>
           <td><?php echo $tahun_ajaran; ?></td>
@@ -94,19 +87,19 @@
 	  	</tbody>
 	  </table>
 	 </div>
-   <br>
    <div>
-     <strong>* Mohon Untuk Segera Mendaftar Sebelum Pada Tanggal Deadline yang Tertera</strong>
+     <strong>* Username dan Password Sama</strong><br>
+     <strong>* Mohon Untuk Segera Mendaftar Sebelum Tanggal Deadline yang Tertera</strong>
    </div>
    <br>
    <table align="right">
        <td>
-         <div><strong>Malang,
+         <div><strong>Malang,</strong>
            <br>
-           <br>Wakil Kepala Humas<br><br><br><br><br>
+           <br><strong>Penanggung Jawab</strong><br><br><br><br><br>
            -----------------------------------------<br>
            <br>
-           <br></strong></div>
+           <br></div>
        </td>
      </table>
 

@@ -86,6 +86,50 @@ $(document).on("click",".konfirmasi-siswa",function(){
 
 });
 
+$(document).on("click",".konfirmasi-pendaftaran-semua",function(){
+ swal({
+   title:"Konfirmasi",
+   text:"Yakin akan konfirmasi semua pendaftaran siswa ?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonText: "Konfirmasi",
+   confirmButtonColor: '#24c9f2',
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/konfirmasi_semua_pendaftaran'); ?>",
+     success: function(){
+     }
+    });
+    location.reload();
+ });
+
+});
+
+$(document).on("click",".konfirmasi-penjajakan-semua",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Konfirmasi",
+   text:"Yakin akan konfirmasi semua penjajakan siswa ?",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonColor: '#47de6f',
+   confirmButtonText: "Konfirmasi",
+
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/konfirmasi_semua_penjajakan'); ?>",
+     success: function(){
+     }
+    });
+    location.reload();
+ });
+
+});
+
 
 $(document).on("click",".aktifasi-siswa",function(){
  var id=$(this).attr("data-id");
@@ -155,6 +199,32 @@ $(document).on("click",".hapus-siswa",function(){
    function(){
     $.ajax({
      url:"<?php echo base_url('c_admin/hapus_siswa'); ?>",
+     data:{id:id},
+     success: function(){
+       $("tr[data-id='"+id+"']").fadeOut("fast",function(){
+         $(this).remove();
+       });
+     }
+    });
+    location.reload();
+ });
+});
+
+$(document).on("click",".hapus-riwayat",function(){
+ var id=$(this).attr("data-id");
+ swal({
+   title:"Hapus Riwayat Siswa",
+   text:"Yakin akan menghapus data riwayat siswa ini?",
+   type: "error",
+   showCancelButton: true,
+   confirmButtonText: "hapus",
+   confirmButtonColor: '#FF5733',
+   cancelButtonText: "kembali",
+   closeOnConfirm: true,
+ },
+   function(){
+    $.ajax({
+     url:"<?php echo base_url('c_admin/hapus_riwayat_siswa'); ?>",
      data:{id:id},
      success: function(){
        $("tr[data-id='"+id+"']").fadeOut("fast",function(){
