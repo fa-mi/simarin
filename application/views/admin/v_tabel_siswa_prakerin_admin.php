@@ -148,14 +148,14 @@
                              </button>
                              <h4 class='modal-title'>Batal Prakerin</h4>
                            </div>
-                           <div class='modal-body'>
-                             <label>NIS</label>
-                             <input type='text' name='nis' id='nis' class='form-control' value=<?php echo $nis; ?> readonly>
-                             <br>
-                           <label>Anda Membatalkan Siswa Ini Karena : </label>
-                           <input type='text' name='keterangan_batal' id='nis' class='form-control' onkeypress="isInputChar(event)"
-                           required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
-                           </div>
+                           <div class="modal-body">
+                                <label>NIS</label>
+                                <input type="text" name="nis" id="tahun_ajaran" class="form-control" value=<?php echo $nis; ?> readonly>
+                                <br>
+                                <label>Siswa Batal Dikarenakan: </label>
+                                <input type="text" name="nama_depan" id="nama_depan" class="form-control" onkeypress="isInputChar(event)"
+                                required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
+                              </div>
                            <div class='modal-footer'>
                                 <input type='submit' name='action' id='action' class='btn btn-danger' value='Batal' />
                            </div>

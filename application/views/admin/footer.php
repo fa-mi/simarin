@@ -29,6 +29,8 @@ setInputFilter(document.getElementById("tahun_ajaran"), function(value) {
   return /^\d*$/.test(value); });
 setInputFilter(document.getElementById("nama_depan"), function(value) {
   return /^\D*$/.test(value); });
+  setInputFilter(document.getElementById("keterangan"), function(value) {
+    return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("nama_belakang"), function(value) {
   return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("tempat_lahir"), function(value) {
