@@ -51,7 +51,7 @@
    $jurusan= $siswa['jurusan'];
    $tahun_ajaran= $siswa['tahun_ajaran'];
  ?>
- <div align="center" class="prtitle">FORMULIR PENJAJAKAN SISWA <?php echo "$tahun_ajaran"; ?> </div>
+ <div align="center" class="prtitle">FORMULIR PENJAJAKAN SISWA TAHUN AJARAN <?php echo "$tahun_ajaran"; ?> </div>
 <br>
  <div align="center">
  NIS : <?php echo $nis ?><br>
