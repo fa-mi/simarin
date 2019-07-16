@@ -1,4 +1,3 @@
-
 <div class="right_col" role="main">
   <div class="">
     <div class="clearfix"></div>
@@ -16,10 +15,8 @@
               }
               ?>
             </div>
-
           </div>
-
-          <button class='btn btn-md btn-info'><a href="<?php echo site_url(); ?>c_admin/form_tambah_industri"><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Industri</a></button>
+          <a href="<?php echo site_url(); ?>c_admin/form_tambah_industri"><button class='btn btn-md btn-info'><i class='glyphicon glyphicon-plus-sign'></i> Tambah Data Industri</button></a>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>

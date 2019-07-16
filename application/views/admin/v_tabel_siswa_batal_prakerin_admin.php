@@ -13,6 +13,7 @@
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>NIS</th>
                   <th>Jurusan</th>
                   <th>Nama Lengkap</th>
@@ -24,6 +25,7 @@
               <tbody>
                 <?php
                 foreach ($data as $data):
+                  $id = $data['id'];
                   $nis = $data['nis'];
                   $nama= $data['nama'];
                   $jurusan= $data['jurusan'];
@@ -32,18 +34,19 @@
 
 ?>
                  <tr data-id='<?php echo $nis; ?>'>
-                     <td><span class='span-nis caption' data-id='<?php echo $nis; ?>'><?php echo $nis; ?></span> </td>
-                     <td><span class='span-jurusan caption' data-id='<?php echo $nis; ?>'><?php echo $jurusan; ?></span> </td>
-                     <td><span class='span-nama caption' data-id='<?php echo $nis; ?>'><?php echo $nama; ?></span></td>
-                     <td><span class='span-keterangan caption' data-id='<?php echo $nis; ?>'><?php echo $keterangan; ?></span></td>
+                   <td><span class='span-nis caption' data-id='<?php echo $id; ?>'><?php echo $id; ?></span> </td>
+                     <td><span class='span-nis caption' data-id='<?php echo $id; ?>'><?php echo $nis; ?></span> </td>
+                     <td><span class='span-jurusan caption' data-id='<?php echo $id; ?>'><?php echo $jurusan; ?></span> </td>
+                     <td><span class='span-nama caption' data-id='<?php echo $id; ?>'><?php echo $nama; ?></span></td>
+                     <td><span class='span-keterangan caption' data-id='<?php echo $id; ?>'><?php echo $keterangan; ?></span></td>
                      <td>
-                     <button class='btn btn-xs btn-warning' data-id='<?php echo $nis; ?>' data-toggle='modal' data-target='#modal-ubah-<?php echo $nis; ?>'>
+                     <button class='btn btn-xs btn-warning' data-id='<?php echo $id; ?>' data-toggle='modal' data-target='#modal-ubah-<?php echo $nis; ?>'>
                        <i class='glyphicon glyphicon-edit'></i> Ubah Alasan</a></button>
                        <button class='btn btn-xs btn-danger hapus-riwayat' data-id='<?php echo $nis; ?>'>
                          <i class='glyphicon glyphicon-trash'></i> Hapus</button>
                        </td>
                      </tr>
-                     <div id="modal-ubah-<?php echo $nis; ?>" class="modal fade">
+                     <div id="modal-ubah-<?php echo $id; ?>" class="modal fade">
                            <div class="modal-dialog">
                                 <form method="post" action="<?php echo base_url(); ?>c_admin/ubah_alasan_siswa">
                                      <div class="modal-content">

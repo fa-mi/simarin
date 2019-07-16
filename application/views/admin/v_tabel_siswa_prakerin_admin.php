@@ -153,7 +153,7 @@
                                 <input type="text" name="nis" id="tahun_ajaran" class="form-control" value=<?php echo $nis; ?> readonly>
                                 <br>
                                 <label>Siswa Batal Dikarenakan: </label>
-                                <input type="text" name="nama_depan" id="nama_depan" class="form-control" onkeypress="isInputChar(event)"
+                                <input type="text" name="keterangan_batal" id="nama_depan" class="form-control" onkeypress="isInputChar(event)"
                                 required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                               </div>
                            <div class='modal-footer'>
