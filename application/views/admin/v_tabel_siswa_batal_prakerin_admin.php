@@ -40,7 +40,7 @@
                      <td><span class='span-nama caption' data-id='<?php echo $id; ?>'><?php echo $nama; ?></span></td>
                      <td><span class='span-keterangan caption' data-id='<?php echo $id; ?>'><?php echo $keterangan; ?></span></td>
                      <td>
-                     <button class='btn btn-xs btn-warning' data-id='<?php echo $id; ?>' data-toggle='modal' data-target='#modal-ubah-<?php echo $nis; ?>'>
+                     <button class='btn btn-xs btn-warning' data-id='<?php echo $id; ?>' data-toggle='modal' data-target='#modal-ubah-<?php echo $id; ?>'>
                        <i class='glyphicon glyphicon-edit'></i> Ubah Alasan</a></button>
                        <button class='btn btn-xs btn-danger hapus-riwayat' data-id='<?php echo $nis; ?>'>
                          <i class='glyphicon glyphicon-trash'></i> Hapus</button>

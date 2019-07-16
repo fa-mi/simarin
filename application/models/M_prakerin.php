@@ -57,7 +57,7 @@ class M_prakerin extends CI_Model
   public function hapus_riwayat_siswa($id)
   {
     $id = "'".$id."'";
-    $query = $this->db->query("DELETE FROM batal_siswa WHERE batal_siswa.nis = $id");
+    $query = $this->db->query("DELETE FROM batal_siswa WHERE batal_siswa.id = $id");
   }
   public function ubah_alasan_siswa($data)
   {
