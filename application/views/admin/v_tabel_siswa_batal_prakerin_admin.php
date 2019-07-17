@@ -42,7 +42,7 @@
                      <td>
                      <button class='btn btn-xs btn-warning' data-id='<?php echo $id; ?>' data-toggle='modal' data-target='#modal-ubah-<?php echo $id; ?>'>
                        <i class='glyphicon glyphicon-edit'></i> Ubah Alasan</a></button>
-                       <button class='btn btn-xs btn-danger hapus-riwayat' data-id='<?php echo $nis; ?>'>
+                       <button class='btn btn-xs btn-danger hapus-riwayat' data-id='<?php echo $id; ?>'>
                          <i class='glyphicon glyphicon-trash'></i> Hapus</button>
                        </td>
                      </tr>
@@ -57,6 +57,7 @@
                                           <div class="modal-body">
                                                <label>NIS</label>
                                                <input type="text" name="nis" id="nis" class="form-control" value=<?php echo $nis; ?> readonly>
+                                               <br>
                                                <label>Alasan Batal</label>
                                                <input type="text" name="alasan_batal" id="nama_depan" class="form-control" onkeypress="isInputChar(event)"
                                                required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
