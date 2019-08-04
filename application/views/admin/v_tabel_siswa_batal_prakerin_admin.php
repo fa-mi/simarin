@@ -34,7 +34,7 @@
 
 ?>
                  <tr data-id='<?php echo $nis; ?>'>
-                   <td><span class='span-nis caption' data-id='<?php echo $id; ?>'><?php echo $id; ?></span> </td>
+                   <td><span class='span-id caption' data-id='<?php echo $id; ?>'><?php echo $id; ?></span> </td>
                      <td><span class='span-nis caption' data-id='<?php echo $id; ?>'><?php echo $nis; ?></span> </td>
                      <td><span class='span-jurusan caption' data-id='<?php echo $id; ?>'><?php echo $jurusan; ?></span> </td>
                      <td><span class='span-nama caption' data-id='<?php echo $id; ?>'><?php echo $nama; ?></span></td>

@@ -33,6 +33,8 @@ setInputFilter(document.getElementById("nama_depan"), function(value) {
     return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("nama_belakang"), function(value) {
   return /^\D*$/.test(value); });
+  setInputFilter(document.getElementById("nama_industri"), function(value) {
+    return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("tempat_lahir"), function(value) {
   return /^\D*$/.test(value); });
 setInputFilter(document.getElementById("domisili"), function(value) {

@@ -31,7 +31,7 @@
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industri">Nama Industri
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="nama_industri" class="optional form-control col-md-7 col-xs-12" required
+                    <input type="text" name="nama_industri" id = "nama_industri" onkeypress="isInputChar(event)" class="optional form-control col-md-7 col-xs-12" required
                     oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
                   </div>
                 </div>
